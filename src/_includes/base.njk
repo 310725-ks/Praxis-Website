@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{ title }} · Stefan Gowitzke</title>
+<meta name="description" content="{{ description }}">
+<link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav">
+      <a class="logo" href="/">Stefan Gowitzke</a>
+      <ul>
+        <li><a href="/paartherapie/">Paartherapie</a></li>
+        <li><a href="/einzeltherapie/">Einzeltherapie</a></li>
+        <li><a href="/coaching/">Coaching</a></li>
+        <li><a href="/ueber-mich/">Über mich</a></li>
+        <li><a href="/kontakt/">Kontakt</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    {{ content | safe }}
+  </main>
+
+  <footer class="site-footer">
+    <div>© {% year %} Stefan Gowitzke</div>
+    <div><a href="/impressum/">Impressum</a> · <a href="/datenschutz/">Datenschutz</a></div>
+  </footer>
+</body>
+</html>
