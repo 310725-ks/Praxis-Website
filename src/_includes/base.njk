@@ -5,18 +5,18 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>{{ title }} · Stefan Gowitzke</title>
 <meta name="description" content="{{ description }}">
-<link rel="stylesheet" href="/assets/css/style.css">
+<link rel="stylesheet" href="{{ '/assets/css/style.css' | url }}">
 </head>
 <body>
   <header class="site-header">
     <nav class="nav">
-      <a class="logo" href="/">Stefan Gowitzke</a>
+      <a class="logo" href="{{ '/' | url }}">Stefan Gowitzke</a>
       <ul>
-        <li><a href="/paartherapie/">Paartherapie</a></li>
-        <li><a href="/einzeltherapie/">Einzeltherapie</a></li>
-        <li><a href="/coaching/">Coaching</a></li>
-        <li><a href="/ueber-mich/">Über mich</a></li>
-        <li><a href="/kontakt/">Kontakt</a></li>
+        <li><a href="{{ '/paartherapie/' | url }}">Paartherapie</a></li>
+        <li><a href="{{ '/einzeltherapie/' | url }}">Einzeltherapie</a></li>
+        <li><a href="{{ '/coaching/' | url }}">Coaching</a></li>
+        <li><a href="{{ '/ueber-mich/' | url }}">Über mich</a></li>
+        <li><a href="{{ '/kontakt/' | url }}">Kontakt</a></li>
       </ul>
     </nav>
   </header>
@@ -26,8 +26,8 @@
   </main>
 
   <footer class="site-footer">
-    <div>© {% year %} Stefan Gowitzke</div>
-    <div><a href="/impressum/">Impressum</a> · <a href="/datenschutz/">Datenschutz</a></div>
+    <div>© {{ currentYear }} Stefan Gowitzke</div>
+    <div><a href="{{ '/impressum/' | url }}">Impressum</a> · <a href="{{ '/datenschutz/' | url }}">Datenschutz</a></div>
   </footer>
 </body>
 </html>
