@@ -32,8 +32,6 @@ jobs:
 
       - name: Build site with Eleventy
         run: npm run build
-        env:
-          ELEVENTY_PATH_PREFIX: /Praxis-Website/
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
