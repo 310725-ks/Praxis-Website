@@ -33,6 +33,7 @@ h1,h2,h3{font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;font-weight:700
 .main-nav a:hover{color:var(--gold);}
 .main-nav a.nav-plain{color:var(--muted);}
 .main-nav a.nav-plain:hover{color:var(--gold);}
+.main-nav ul > li > a{font-weight:700;}
 .has-dropdown{position:relative;padding:8px 0;}
 .has-dropdown > a::after{content:"";display:inline-block;margin-left:6px;width:7px;height:7px;border-right:2px solid var(--gold);border-bottom:2px solid var(--gold);transform:rotate(45deg) translateY(-2px);}
 .dropdown{position:absolute;top:100%;left:0;background:#fff;border-radius:10px;min-width:250px;padding:8px;box-shadow:0 16px 34px -18px rgba(20,20,20,.35);opacity:0;visibility:hidden;transform:translateY(-6px);transition:opacity .16s ease,transform .16s ease,visibility .16s;}
@@ -52,7 +53,20 @@ h1,h2,h3{font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;font-weight:700
 .hero h1{color:var(--navy);line-height:1.05;}
 .hero p{color:var(--muted);line-height:1.65;}
 .hero-split{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center;}
-.hero-block{border-radius:20px;background:var(--grad);opacity:.9;aspect-ratio:1/1;}
+.hero-block{
+  border-radius:20px;background:var(--grad);opacity:.9;aspect-ratio:1/1;
+  background-size:120% 120%;background-position:35% 35%;
+  animation:heroBreathe 10s ease-in-out infinite;
+}
+/* Sanftes Atmen: 4s Ausgangsbild halten (0–40% von 10s), dann 6s ein-/ausatmen */
+@keyframes heroBreathe{
+  0%,40%{background-size:120% 120%;background-position:35% 35%;}
+  70%{background-size:175% 175%;background-position:60% 60%;}
+  100%{background-size:120% 120%;background-position:35% 35%;}
+}
+@media (prefers-reduced-motion:reduce){
+  .hero-block{animation:none;}
+}
 
 /* ---- cards ---- */
 .tile.card{
