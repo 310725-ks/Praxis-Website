@@ -57,7 +57,7 @@ h1,h2,h3{font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;font-weight:700
 /* ---- cards ---- */
 .tile.card{
   display:block;background:var(--card);border-radius:14px;border-top:none;
-  box-shadow:0 14px 30px -22px rgba(20,20,20,.3);border-left:3px solid var(--navy);cursor:pointer;
+  box-shadow:0 14px 30px -22px rgba(20,20,20,.3);border-left:5px solid var(--navy);cursor:pointer;
 }
 .tile.card:nth-child(2){border-left-color:var(--sage);}
 .tile.card:nth-child(3){border-left-color:var(--gold);}
@@ -66,6 +66,20 @@ h1,h2,h3{font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;font-weight:700
 .tile .num{color:var(--muted);display:block;font-weight:700;}
 .tile h3{color:var(--navy);}
 .tile p{color:var(--muted);line-height:1.5;margin:0;}
+
+/* ---- Karten-Hover (nur Desktop mit echtem Zeigegerät): Anheben + Vergrößern ----
+   Akzentbalken bleibt beim Hover konstant (nur Karte selbst hebt sich/wächst). */
+@media (min-width:1025px) and (hover:hover) and (pointer:fine){
+  .tile.card{
+    transition:transform .3s cubic-bezier(.2,.8,.3,1),box-shadow .3s ease;
+  }
+  .tile.card:hover{
+    transform:translateY(-20px) scale(1.06);
+    box-shadow:0 40px 60px -20px rgba(20,56,92,.35);
+    z-index:2;
+    position:relative;
+  }
+}
 
 /* ---- quote (aktuell auf keiner Seite im Einsatz, Regeln bleiben für spätere Verwendung) ---- */
 .quote-box-wide{background:var(--navy);color:#fff;border-radius:20px;text-align:center;margin:0 auto;}
