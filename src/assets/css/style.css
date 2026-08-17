@@ -334,7 +334,12 @@ body.on-contact .snap-dots button.is-active{background:#cdd8cb;}
     aspect-ratio:unset;opacity:1;border-radius:0;
     height:100px;width:calc(100% + 10vw);margin:-40px -5vw 20px;
   }
-  .hero-photo{display:none;}
+  .hero-photo{
+    display:block;height:min(40vh,300px);width:auto;
+    justify-self:center;margin:14px auto 0;
+    border-radius:16px;overflow:hidden;aspect-ratio:4/5;
+    box-shadow:0 20px 40px -18px rgba(20,20,20,.35);
+  }
   .hero-wrap .eyebrow{color:var(--sage);}
   .hero-wrap h1{color:var(--navy);}
   .hero-wrap p{color:var(--muted);}
