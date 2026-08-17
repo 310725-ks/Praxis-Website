@@ -126,12 +126,15 @@ h1,h2,h3{font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;font-weight:700
 .about{display:grid;grid-template-columns:1fr .8fr;gap:56px;align-items:center;}
 .about h2{color:var(--navy);margin:0 0 14px;}
 .about p{color:var(--muted);line-height:1.75;}
-.about-quote{background:#F4EDE2;border-radius:16px;padding:30px 30px;}
+/* Offenes Zitatfeld ohne Füllfläche/Kasten – nur ein schlanker, einfarbiger
+   Goldstrich links (2,4px, 20% schlanker als der ursprüngliche 3px-Strich),
+   grenzt sich so von der cremefarbenen Mitgliedschaften-Fläche ab. */
+.about-quote{position:relative;padding:6px 4px 4px 26px;border-left:2.4px solid var(--gold);}
 .about-quote .mark{color:var(--gold);font-family:Georgia,serif;line-height:.6;}
-.about-quote .mark-open{font-size:2.6rem;display:block;margin-bottom:10px;}
-.about-quote .mark-close{font-size:1.9rem;display:inline;margin-left:3px;}
-.about-quote p{color:var(--navy);font-size:1.05rem;font-weight:600;line-height:1.5;font-style:italic;margin:0;}
-.about-quote cite{display:block;color:var(--muted);font-style:normal;font-size:1rem;font-weight:600;letter-spacing:.01em;margin-top:6px;}
+.about-quote .mark-open{font-size:2.3rem;display:block;margin-bottom:8px;}
+.about-quote .mark-close{font-size:1.7rem;display:inline;margin-left:3px;}
+.about-quote p{color:var(--navy);font-size:1.03rem;font-weight:600;line-height:1.5;font-style:italic;margin:0;}
+.about-quote cite{display:block;color:var(--navy);font-style:normal;font-size:.9rem;font-weight:600;letter-spacing:.01em;margin-top:8px;}
 
 /* ---- Mitgliedschaften (in Abschnitt 3, nach "Über mich"): Überschrift
    linksbündig neben den (ca. 1,4-fach größeren) Logos statt darüber –
@@ -246,7 +249,6 @@ h1,h2,h3{font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;font-weight:700
 .s-about .about{gap:56px;}
 .s-about .about h2{font-size:1.825rem;}
 .s-about .about p{font-size:1.167rem;}
-.s-about .about-quote p{font-size:1.2rem;}
 .s-about .member-band{max-width:1180px;margin:32px auto 0;width:100%;border-radius:16px;}
 
 /* ---- Abschnitt 4: Kontakt ---- */
@@ -355,8 +357,7 @@ body.on-contact .snap-dots button.is-active{background:#cdd8cb;}
   .s-about .about{grid-template-columns:1fr;gap:22px;max-width:100%;}
   .s-about .about h2{font-size:1.5rem;}
   .s-about .about p{font-size:1rem;}
-  .about-quote{padding:22px 22px;}
-  .about-quote p{font-size:.98rem;}
+  .about-quote{padding:4px 4px 4px 20px;}
 
   .s-contact .kb-grid{grid-template-columns:1fr;gap:26px;max-width:100%;}
   .s-contact .kb-left{margin-top:0;}
