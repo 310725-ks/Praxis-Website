@@ -306,6 +306,10 @@ body.on-contact .snap-dots button.is-active{background:#cdd8cb;}
 
 /* ---- Mobile (<=640px): Hamburger-Menü, normaler Scroll, Angebote als Akkordeon ---- */
 @media (max-width:640px){
+  /* Verhindert, dass beim Überscrollen (elastisches Bounce am unteren Rand)
+     die helle Body-Hintergrundfarbe statt des dunkelblauen Footers sichtbar wird. */
+  html{background:var(--navy);}
+
   .utility-bar{padding:6px 5vw;font-size:.82rem;}
   .utility-contacts{display:none;}
   .site-header{padding:13px 5vw;}
