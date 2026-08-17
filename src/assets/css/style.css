@@ -123,7 +123,7 @@ h1,h2,h3{font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;font-weight:700
   background-size:120% 120%;background-position:35% 35%;
   animation:heroBreathe 10s ease-in-out infinite;
 }
-.about{display:grid;grid-template-columns:1fr .8fr;gap:56px;align-items:center;}
+.about{display:grid;grid-template-columns:1fr .8fr;gap:84px;align-items:center;}
 .about h2{color:var(--navy);margin:0 0 14px;}
 .about p{color:var(--muted);line-height:1.75;}
 /* Offenes Zitatfeld ohne Füllfläche/Kasten – nur ein schlanker, einfarbiger
@@ -133,8 +133,8 @@ h1,h2,h3{font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;font-weight:700
 .about-quote .mark{color:var(--gold);font-family:Georgia,serif;line-height:.6;}
 .about-quote .mark-open{font-size:2.3rem;display:block;margin-bottom:8px;}
 .about-quote .mark-close{font-size:1.7rem;display:inline;margin-left:3px;}
-.about-quote p{color:var(--navy);font-size:1.03rem;font-weight:600;line-height:1.5;font-style:italic;margin:0;}
-.about-quote cite{display:block;color:var(--navy);font-style:normal;font-size:.9rem;font-weight:600;letter-spacing:.01em;margin-top:8px;}
+.about-quote p{color:var(--navy);font-size:1.03rem;font-weight:500;line-height:1.5;font-style:italic;margin:0;}
+.about-quote cite{display:block;color:var(--navy);font-style:normal;font-size:.9rem;font-weight:500;letter-spacing:.01em;margin-top:8px;}
 
 /* ---- Mitgliedschaften (in Abschnitt 3, nach "Über mich"): Überschrift
    linksbündig neben den (ca. 1,4-fach größeren) Logos statt darüber –
@@ -246,7 +246,7 @@ h1,h2,h3{font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;font-weight:700
 /* ---- Abschnitt 3: Über mich ---- */
 .snap-section.s-about{padding:0 8vw;position:relative;}
 .s-about .about-wrap{max-width:1180px;margin:0 auto;}
-.s-about .about{gap:56px;}
+.s-about .about{gap:84px;}
 .s-about .about h2{font-size:1.825rem;}
 .s-about .about p{font-size:1.167rem;}
 .s-about .member-band{max-width:1180px;margin:32px auto 0;width:100%;border-radius:16px;}
