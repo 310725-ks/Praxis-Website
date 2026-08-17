@@ -363,6 +363,10 @@ body.on-contact .snap-dots button.is-active{background:#cdd8cb;}
   .tile.card.is-open p{max-height:280px;opacity:1;margin-top:10px;}
 
   .about-band{width:calc(100% + 10vw);margin:-38px -5vw 24px;height:15px;}
+  .offers-band{
+    display:block;width:calc(100% + 10vw);
+    margin:-68px -5vw 53px;height:15px;
+  }
   .s-about .about{grid-template-columns:1fr;gap:22px;max-width:100%;}
   .s-about .about h2{font-size:1.5rem;}
   .s-about .about p{font-size:1rem;}
