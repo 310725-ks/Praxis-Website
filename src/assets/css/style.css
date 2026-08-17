@@ -270,7 +270,10 @@ body.on-contact .snap-dots button.is-active{background:#cdd8cb;}
   .snap-section.s-hero .hero .eyebrow{font-size:.8rem;}
   .snap-section.s-hero .hero h1{font-size:1.9rem;margin:10px 0 14px;}
   .snap-section.s-hero .hero p{font-size:1rem;max-width:100%;}
-  .hero-block{aspect-ratio:unset;height:6px;width:64px;margin:4px 0 0;border-radius:999px;opacity:1;}
+  .hero-block{
+    aspect-ratio:unset;order:-1;opacity:1;border-radius:0;
+    height:100px;width:calc(100% + 10vw);margin:-40px -5vw 20px;
+  }
 
   .s-offers-inner{max-width:100%;}
   .s-offers .eyebrow-label{font-size:1.35rem;margin-top:0;margin-bottom:16px;}
