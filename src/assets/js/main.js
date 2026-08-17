@@ -11,12 +11,19 @@
   function isDesktopMode(){ return window.innerWidth > SNAP_BP; }
 
   var header = document.querySelector('.header-sticky-group');
+  var utilityBar = document.querySelector('.utility-bar');
+  var siteHeader = document.querySelector('.site-header');
   var dots = Array.prototype.slice.call(document.querySelectorAll('#snapDots button'));
   var index = 0, animating = false, sectionH = 0;
 
   function setHeaderH(){
     var h = header.offsetHeight;
     document.documentElement.style.setProperty('--header-h', h + 'px');
+    // Einzelhöhen der beiden Headerzeilen (1. Zeile: utility-bar, 2. Zeile: site-header)
+    // werden separat als CSS-Variablen bereitgestellt, damit Abschnitte ihre
+    // Farbverlaufs-Bänder/Legal-Strip exakt an diesen Maßen ausrichten können.
+    if(utilityBar) document.documentElement.style.setProperty('--header1-h', utilityBar.offsetHeight + 'px');
+    if(siteHeader) document.documentElement.style.setProperty('--header2-h', siteHeader.offsetHeight + 'px');
     sectionH = window.innerHeight - h;
     if(isDesktopMode()) goTo(index, true);
   }

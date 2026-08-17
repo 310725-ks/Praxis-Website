@@ -56,7 +56,7 @@ h1,h2,h3{font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;font-weight:700
 .hero-split{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center;}
 
 /* Abschnitt 1 (Entwurf 2): randloses Farbverlaufs-Band als Sockel hinter Text+Foto */
-.hero-wrap{position:relative;width:100%;}
+.hero-wrap{width:100%;}
 .hero-band{
   position:absolute;top:0;bottom:0;left:-8vw;right:-8vw;z-index:0;
   background:var(--grad);opacity:.9;
@@ -118,7 +118,7 @@ h1,h2,h3{font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;font-weight:700
 /* ---- about (Abschnitt 3, Entwurf 2: Text + Akzent-Zitat statt Foto) ---- */
 .about-wrap{width:100%;}
 .about-band{
-  margin:0 -8vw 40px;width:calc(100% + 16vw);height:90px;
+  margin:0 -8vw 40px;width:calc(100% + 16vw);height:var(--header2-h,90px);
   background:var(--grad);opacity:.9;
   background-size:120% 120%;background-position:35% 35%;
   animation:heroBreathe 10s ease-in-out infinite;
@@ -127,9 +127,11 @@ h1,h2,h3{font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;font-weight:700
 .about h2{color:var(--navy);margin:0 0 14px;}
 .about p{color:var(--muted);line-height:1.75;}
 .about-quote{background:#F4EDE2;border-radius:16px;padding:30px 30px;}
-.about-quote .mark{font-size:2.6rem;color:var(--gold);font-family:Georgia,serif;line-height:.6;display:block;margin-bottom:10px;}
+.about-quote .mark{color:var(--gold);font-family:Georgia,serif;line-height:.6;}
+.about-quote .mark-open{font-size:2.6rem;display:block;margin-bottom:10px;}
+.about-quote .mark-close{font-size:1.9rem;display:inline;margin-left:3px;}
 .about-quote p{color:var(--navy);font-size:1.05rem;font-weight:600;line-height:1.5;font-style:italic;margin:0;}
-.about-quote cite{display:block;color:var(--muted);font-style:normal;font-size:.82rem;margin-top:14px;}
+.about-quote cite{display:block;color:var(--gold);font-style:normal;font-size:1.05rem;font-weight:700;letter-spacing:.01em;margin-top:16px;}
 
 /* ---- Mitgliedschaften (in Abschnitt 3, nach "Über mich") ---- */
 .member-band{margin:40px -8vw 0;width:calc(100% + 16vw);padding:28px 8vw;background:#F4EDE2;text-align:center;}
@@ -227,14 +229,15 @@ h1,h2,h3{font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;font-weight:700
 .hero .eyebrow{font-size:1rem;}
 
 /* ---- Abschnitt 1: Hero ---- */
-.snap-section.s-hero{padding:0 8vw;}
+.snap-section.s-hero{padding:0 8vw;position:relative;}
 .snap-section.s-hero .hero-split{width:100%;}
 .snap-section.s-hero .hero h1{font-size:2.6rem;margin:16px 0 20px;}
 .snap-section.s-hero .hero p{font-size:1.167rem;max-width:520px;}
 
 /* ---- Abschnitt 2: Meine Angebote (1x4) ---- */
 .snap-section.s-offers{padding:0 8vw;background:#F4EDE2;}
-.s-offers-inner{width:100%;max-width:1220px;margin:0 auto;}
+.s-offers-inner{width:100%;max-width:1220px;margin:0 auto;position:relative;}
+.offers-band{display:none;}
 .s-offers .eyebrow-label{color:var(--navy);text-transform:none;letter-spacing:.015em;font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;font-size:1.825rem;font-weight:700;display:block;text-align:left;margin-top:-14px;margin-bottom:64px;}
 .tiles-cards-1x4{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;}
 .tile.card{padding:40px 30px;min-height:266px;}
@@ -420,6 +423,45 @@ body.on-contact .snap-dots button.is-active{background:#cdd8cb;}
   .s-contact .kb-left{margin-top:0;}
   .s-contact .kb-headline{font-size:2rem;}
   .s-contact .legal-strip{display:none;}
+}
+
+/* ---- Desktop-Feinschliff (>1024px, deckt sich mit der Wechsel-Mechanik-Grenze):
+   Bänder richten sich an den Höhen der beiden Headerzeilen aus, das Hero-Foto wird
+   zwischen Hero-Text und den Abschnitts-Punkten zentriert, Abschnitt 2 erhält ein
+   eigenes Band wie Abschnitt 3, und die Impressum/Datenschutz-Zeile in Abschnitt 4
+   sitzt ganz unten in Höhe der 1. Headerzeile (utility-bar). ---- */
+@media (min-width:1025px){
+  /* Abschnitt 1: Abstand zwischen Bandkante und Abschnittskante = Höhe der
+     2. Headerzeile (oben wie unten); Foto vergrößert und zwischen Hero-Text
+     und den fixen Abschnitts-Punkten zentriert. */
+  .hero-band{top:var(--header2-h,64px);bottom:var(--header2-h,64px);right:-64px;}
+  .snap-section.s-hero{padding-right:64px;}
+  .hero-photo{height:min(56vh,460px);justify-self:center;}
+
+  /* Abschnitt 2: eigenes Band, genauso oben angesetzt wie in Abschnitt 3;
+     Überschrift rückt entsprechend herunter, Karten etwas kompakter, damit
+     der Abschnitt trotz Band nicht gedrungen wirkt. */
+  .offers-band{display:block;margin:var(--header2-h,64px) -8vw 22px;}
+  .s-offers .eyebrow-label{margin-top:0;margin-bottom:34px;}
+  .tile.card{padding:28px 26px;min-height:210px;}
+  .tile .num{margin-bottom:10px;}
+  .tile h3{font-size:1.2rem;margin:0 0 10px;min-height:46px;}
+  .tile p{font-size:.98rem;line-height:1.55;}
+
+  /* Abschnitt 3: Band setzt genauso oben an wie in Abschnitt 2 (Höhe der
+     2. Headerzeile als Abstand); die Bandhöhe selbst entspricht ebenfalls
+     dieser Headerzeile (siehe .about-band Grundregel weiter oben). */
+  .about-band{margin-top:var(--header2-h,64px);}
+
+  /* Abschnitt 4: Impressum/Datenschutz-Zeile sitzt ganz unten im Abschnitt,
+     mit einer Höhe wie die 1. Headerzeile (utility-bar). */
+  .snap-section.s-contact{position:relative;padding-bottom:calc(var(--header1-h,38px) + 14px);}
+  .s-contact .legal-strip{
+    position:absolute;left:0;right:0;bottom:0;margin:0;
+    width:100%;height:var(--header1-h,38px);padding:0 8vw;
+    display:flex;align-items:center;justify-content:space-between;
+    border-top:1px solid rgba(255,255,255,.18);
+  }
 }
 
 /* ---- legal pages (Impressum / Datenschutz) ---- */
