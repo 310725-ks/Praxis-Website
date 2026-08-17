@@ -26,7 +26,8 @@ h1,h2,h3{font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;font-weight:700
 .utility-contacts svg{flex-shrink:0;}
 
 .site-header{display:flex;align-items:center;justify-content:space-between;gap:24px;position:relative;z-index:20;border-bottom:1px solid #eee6d6;background:var(--bg);}
-.brand{font-weight:700;color:var(--navy);white-space:nowrap;}
+.brand{font-weight:700;color:var(--navy);white-space:nowrap;transition:color .16s ease;}
+.brand:hover{color:var(--gold);}
 .main-nav{flex:1;}
 .main-nav ul{display:flex;align-items:center;justify-content:center;}
 .main-nav a{color:var(--ink);font-weight:500;transition:color .16s ease;}
@@ -93,6 +94,10 @@ h1,h2,h3{font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;font-weight:700
     z-index:2;
     position:relative;
   }
+  /* Text bleibt beim Anheben/Vergrößern der Karte optisch gleich groß:
+     Gegenskalierung hebt die 1.06-fache Kartenvergrößerung wieder auf. */
+  .tile.card p{transform-origin:top left;transition:transform .3s cubic-bezier(.2,.8,.3,1);}
+  .tile.card:hover p{transform:scale(0.9434);}
 }
 
 /* ---- quote (aktuell auf keiner Seite im Einsatz, Regeln bleiben für spätere Verwendung) ---- */
@@ -177,7 +182,7 @@ h1,h2,h3{font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;font-weight:700
 .brand{font-size:1.825rem;}
 .main-nav ul{gap:34px;}
 .main-nav a{font-size:1.133rem;color:var(--navy);}
-.main-nav a.nav-plain{color:#485C79;margin-left:20px;}
+.main-nav a.nav-plain{color:#485C79;margin-left:44px;}
 .hero .eyebrow{font-size:1rem;}
 
 /* ---- Abschnitt 1: Hero ---- */
@@ -195,7 +200,7 @@ h1,h2,h3{font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;font-weight:700
 .tile .num{font-size:.86rem;margin-bottom:14px;}
 .tile h3{font-size:1.317rem;margin:0 0 12px;min-height:54px;}
 .tile.card:nth-child(3) h3, .tile.card:nth-child(4) h3{min-height:24px;}
-.tile p{font-size:1.167rem;line-height:1.6;}
+.tile p{font-size:1.083rem;line-height:1.6;}
 
 /* ---- Abschnitt 3: Über mich ---- */
 .snap-section.s-about{padding:0 8vw;}
