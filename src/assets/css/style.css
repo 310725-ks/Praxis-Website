@@ -358,7 +358,7 @@ body.on-contact .snap-dots button.is-active{background:#cdd8cb;}
   .tile p{order:2;flex-basis:100%;max-height:0;overflow:hidden;opacity:0;margin:0;font-size:.92rem;transition:max-height .3s ease,opacity .25s ease,margin .3s ease;}
   .tile.card.is-open p{max-height:280px;opacity:1;margin-top:10px;}
 
-  .about-band{width:calc(100% + 10vw);margin:-38px -5vw 24px;height:22px;}
+  .about-band{width:calc(100% + 10vw);margin:-38px -5vw 24px;height:15px;}
   .s-about .about{grid-template-columns:1fr;gap:22px;max-width:100%;}
   .s-about .about h2{font-size:1.5rem;}
   .s-about .about p{font-size:1rem;}
