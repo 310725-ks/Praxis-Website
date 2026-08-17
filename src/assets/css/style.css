@@ -429,10 +429,11 @@ body.on-contact .snap-dots button.is-active{background:#cdd8cb;}
    eigenes Band wie Abschnitt 3, und die Impressum/Datenschutz-Zeile in Abschnitt 4
    sitzt ganz unten in Höhe der 1. Headerzeile (utility-bar). ---- */
 @media (min-width:1025px){
-  /* Abschnitt 1: Abstand zwischen Bandkante und Abschnittskante = Höhe der
-     2. Headerzeile (oben wie unten); Foto vergrößert und zwischen Hero-Text
-     und den fixen Abschnitts-Punkten zentriert. */
-  .hero-band{top:var(--header2-h,64px);bottom:var(--header2-h,64px);right:-64px;}
+  /* Abschnitt 1: Farbverlauf füllt den Abschnitt vollständig aus, direkt
+     unterhalb des Headers beginnend, ohne hellen Rand oben/unten; Foto
+     vergrößert und zwischen Hero-Text und den fixen Abschnitts-Punkten
+     zentriert. */
+  .hero-band{top:0;bottom:0;right:-64px;}
   .snap-section.s-hero{padding-right:64px;}
   .hero-photo{height:min(56vh,460px);justify-self:center;}
 
@@ -446,19 +447,20 @@ body.on-contact .snap-dots button.is-active{background:#cdd8cb;}
   .tile p{font-size:.98rem;line-height:1.55;}
 
   /* Abschnitt 2 & 3: Band setzt direkt am unteren Rand der 2. Headerzeile an
-     (kein Abstand mehr) und ist ca. 2,5cm hoch; liegt als eigenständiges,
+     (kein Abstand) und ist um 75% verkleinert (0,625cm statt 2,5cm) – ein
+     schlankes Band direkt am oberen Header; liegt als eigenständiges,
      absolut positioniertes Element direkt im Abschnitt (statt im
      breitenbegrenzten Wrapper), damit es unabhängig von dessen max-width
      wirklich über die volle Abschnittsbreite verläuft. */
   .about-band{
     position:absolute;top:0;left:0;right:0;margin:0;
-    width:auto;height:2.5cm;
+    width:auto;height:0.625cm;
   }
   /* Sicherheitsabstand, damit der (jetzt freischwebende) Inhalt bei
      niedrigeren Bildschirmhöhen nicht mit dem am oberen Rand ansetzenden
      Band kollidiert. */
-  .s-about .about-wrap{padding-top:calc(2.5cm + 26px);}
-  .s-offers-inner{padding-top:calc(2.5cm + 26px);}
+  .s-about .about-wrap{padding-top:calc(0.625cm + 24px);}
+  .s-offers-inner{padding-top:calc(0.625cm + 24px);}
 
   /* Abschnitt 4: Impressum/Datenschutz-Zeile sitzt ganz unten im Abschnitt,
      mit einer Höhe wie die 1. Headerzeile (utility-bar). */
