@@ -235,7 +235,7 @@ h1,h2,h3{font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;font-weight:700
 .snap-section.s-hero .hero p{font-size:1.167rem;max-width:520px;}
 
 /* ---- Abschnitt 2: Meine Angebote (1x4) ---- */
-.snap-section.s-offers{padding:0 8vw;background:#F4EDE2;}
+.snap-section.s-offers{padding:0 8vw;background:#F4EDE2;position:relative;}
 .s-offers-inner{width:100%;max-width:1220px;margin:0 auto;position:relative;}
 .offers-band{display:none;}
 .s-offers .eyebrow-label{color:var(--navy);text-transform:none;letter-spacing:.015em;font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;font-size:1.825rem;font-weight:700;display:block;text-align:left;margin-top:-14px;margin-bottom:64px;}
@@ -247,7 +247,7 @@ h1,h2,h3{font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;font-weight:700
 .tile p{font-size:1.083rem;line-height:1.6;}
 
 /* ---- Abschnitt 3: Über mich ---- */
-.snap-section.s-about{padding:0 8vw;}
+.snap-section.s-about{padding:0 8vw;position:relative;}
 .s-about .about-wrap{max-width:1180px;margin:0 auto;}
 .s-about .about{gap:56px;}
 .s-about .about h2{font-size:1.825rem;}
@@ -439,19 +439,28 @@ body.on-contact .snap-dots button.is-active{background:#cdd8cb;}
   .hero-photo{height:min(56vh,460px);justify-self:center;}
 
   /* Abschnitt 2: eigenes Band, genauso oben angesetzt wie in Abschnitt 3;
-     Überschrift rückt entsprechend herunter, Karten etwas kompakter, damit
-     der Abschnitt trotz Band nicht gedrungen wirkt. */
-  .offers-band{display:block;margin:var(--header2-h,64px) -8vw 22px;}
-  .s-offers .eyebrow-label{margin-top:0;margin-bottom:34px;}
+     Karten etwas kompakter, damit der Abschnitt trotz Band nicht gedrungen
+     wirkt. */
+  .offers-band{display:block;}
   .tile.card{padding:28px 26px;min-height:210px;}
   .tile .num{margin-bottom:10px;}
   .tile h3{font-size:1.2rem;margin:0 0 10px;min-height:46px;}
   .tile p{font-size:.98rem;line-height:1.55;}
 
-  /* Abschnitt 3: Band setzt genauso oben an wie in Abschnitt 2 (Höhe der
-     2. Headerzeile als Abstand); die Bandhöhe selbst entspricht ebenfalls
-     dieser Headerzeile (siehe .about-band Grundregel weiter oben). */
-  .about-band{margin-top:var(--header2-h,64px);}
+  /* Abschnitt 2 & 3: Band setzt direkt am unteren Rand der 2. Headerzeile an
+     (kein Abstand mehr) und ist ca. 2,5cm hoch; liegt als eigenständiges,
+     absolut positioniertes Element direkt im Abschnitt (statt im
+     breitenbegrenzten Wrapper), damit es unabhängig von dessen max-width
+     wirklich über die volle Abschnittsbreite verläuft. */
+  .about-band{
+    position:absolute;top:0;left:0;right:0;margin:0;
+    width:auto;height:2.5cm;
+  }
+  /* Sicherheitsabstand, damit der (jetzt freischwebende) Inhalt bei
+     niedrigeren Bildschirmhöhen nicht mit dem am oberen Rand ansetzenden
+     Band kollidiert. */
+  .s-about .about-wrap{padding-top:calc(2.5cm + 26px);}
+  .s-offers-inner{padding-top:calc(2.5cm + 26px);}
 
   /* Abschnitt 4: Impressum/Datenschutz-Zeile sitzt ganz unten im Abschnitt,
      mit einer Höhe wie die 1. Headerzeile (utility-bar). */
