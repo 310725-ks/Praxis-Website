@@ -13,17 +13,12 @@
   var header = document.querySelector('.header-sticky-group');
   var dots = Array.prototype.slice.call(document.querySelectorAll('#snapDots button'));
   var index = 0, animating = false, sectionH = 0;
-  // "released": true, sobald auf Desktop-Breite über den letzten Abschnitt hinaus in den
-  // Footer (inkl. Mitgliedschaften-Logos) gescrollt wurde. In diesem Zustand läuft der
-  // normale Seiten-Scroll; erst beim Zurückscrollen an den oberen Rand wird wieder in die
-  // Abschnitts-Wechsel-Mechanik eingerastet.
-  var released = false;
 
   function setHeaderH(){
     var h = header.offsetHeight;
     document.documentElement.style.setProperty('--header-h', h + 'px');
     sectionH = window.innerHeight - h;
-    if(isDesktopMode() && !released) goTo(index, true);
+    if(isDesktopMode()) goTo(index, true);
   }
   function setActive(i){
     dots.forEach(function(d,idx){ d.classList.toggle('is-active', idx===i); });
@@ -42,25 +37,6 @@
 
   window.addEventListener('wheel', function(e){
     if(!isDesktopMode()) return;
-
-    if(released){
-      // Im Footer-Bereich: normaler Scroll. Nur am oberen Rand + weiterem Hochscrollen
-      // wieder in die Abschnitts-Mechanik einrasten.
-      if(window.scrollY <= 0 && e.deltaY < 0){
-        e.preventDefault();
-        released = false;
-        goTo(sections.length - 1, true);
-      }
-      return;
-    }
-
-    if(index === sections.length - 1 && e.deltaY > 0){
-      // Letzter Abschnitt erreicht, weiter nach unten: Footer freigeben, dieser
-      // Wheel-Tick scrollt die Seite bereits ganz normal weiter.
-      released = true;
-      return;
-    }
-
     e.preventDefault();
     if(animating) return;
     if(Math.abs(e.deltaY) < 8) return;
@@ -71,34 +47,14 @@
 
   window.addEventListener('keydown', function(e){
     if(!isDesktopMode()) return;
-
-    if(released){
-      if((e.key==='ArrowUp'||e.key==='PageUp') && window.scrollY <= 0){
-        e.preventDefault();
-        released = false;
-        goTo(sections.length - 1, true);
-      }
-      return;
-    }
-
-    if(e.key==='ArrowDown'||e.key==='PageDown'){
-      if(index === sections.length - 1){ released = true; return; }
-      e.preventDefault();
-      if(!animating){animating=true; goTo(index+1); setTimeout(function(){animating=false;},700);}
-    }
+    if(e.key==='ArrowDown'||e.key==='PageDown'){ e.preventDefault(); if(!animating){animating=true; goTo(index+1); setTimeout(function(){animating=false;},700);} }
     if(e.key==='ArrowUp'||e.key==='PageUp'){ e.preventDefault(); if(!animating){animating=true; goTo(index-1); setTimeout(function(){animating=false;},700);} }
-  });
-
-  window.addEventListener('scroll', function(){
-    if(!isDesktopMode()) return;
-    if(window.scrollY > 0) released = true;
   });
 
   dots.forEach(function(d){
     d.addEventListener('click', function(){
       if(!isDesktopMode()) return;
       if(animating) return;
-      if(released){ released = false; window.scrollTo(0,0); }
       animating = true;
       goTo(parseInt(d.dataset.index,10));
       setTimeout(function(){ animating=false; }, 700);
