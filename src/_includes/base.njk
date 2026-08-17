@@ -38,7 +38,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>{{ title }} · Stefan Gowitzke</title>
 <meta name="description" content="{{ description }}">
-<link rel="stylesheet" href="{{ '/assets/css/style.css' | url }}">
+<link rel="stylesheet" href="{{ '/assets/css/style.css' | url }}?v={{ assetVersion.css }}">
 </head>
 <body>
 <div class="header-sticky-group">
@@ -125,6 +125,6 @@
   <div><a href="{{ '/impressum/' | url }}">{{ t.footerImpressum }}</a> · <a href="{{ '/datenschutz/' | url }}">{{ t.footerDatenschutz }}</a></div>
 </footer>
 
-<script src="{{ '/assets/js/main.js' | url }}"></script>
+<script src="{{ '/assets/js/main.js' | url }}?v={{ assetVersion.js }}"></script>
 </body>
 </html>
