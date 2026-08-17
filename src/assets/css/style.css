@@ -205,7 +205,7 @@ h1,h2,h3{font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;font-weight:700
 .mobile-nav-sub{max-height:0;overflow:hidden;transition:max-height .28s ease;padding:0 6vw;}
 .mobile-nav-item.is-open .mobile-nav-sub{max-height:260px;padding-bottom:10px;}
 .mobile-nav-sub a{display:block;padding:9px 4px;text-decoration:none;color:var(--muted);}
-.mobile-contact-btn{background:var(--grad);color:#fff !important;font-weight:600;border-radius:12px;padding:12px 14px !important;margin:6px 0;display:flex;align-items:center;gap:10px;}
+.mobile-contact-btn{background:var(--grad);color:#fff !important;font-weight:600;border-radius:12px;padding:12px 14px !important;margin:6px 0;display:flex !important;align-items:center;gap:10px !important;}
 .mobile-contact-btn svg{width:16px;height:16px;flex-shrink:0;}
 
 /* =====================================================================
@@ -371,7 +371,12 @@ body.on-contact .snap-dots button.is-active{background:#cdd8cb;}
   .s-contact .kb-buttons a{font-size:.9rem;padding:11px 20px;}
   .s-contact .legal-strip{display:none;}
 
-  .site-footer{flex-wrap:wrap;gap:8px;padding:20px 5vw;font-size:.78rem;}
+  .site-footer{
+    flex-wrap:wrap;gap:8px;padding:20px 5vw;font-size:.78rem;
+    background:var(--navy);border-top:1px solid rgba(255,255,255,.18);color:#a9b7cb;
+  }
+  .site-footer a{color:#a9b7cb;}
+  .site-footer a:hover{color:#fff;}
 
   .member-band{
     width:calc(100% + 10vw);margin:24px -5vw 0;padding:24px 5vw;
