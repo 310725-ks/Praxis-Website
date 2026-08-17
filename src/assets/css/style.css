@@ -194,7 +194,7 @@ h1,h2,h3{font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;font-weight:700
 /* ---- Abschnitt 2: Meine Angebote (1x4) ---- */
 .snap-section.s-offers{padding:0 8vw;background:#F4EDE2;}
 .s-offers-inner{width:100%;max-width:1220px;margin:0 auto;}
-.s-offers .eyebrow-label{color:var(--navy);text-transform:none;letter-spacing:.015em;font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;font-size:1.825rem;font-weight:700;display:block;text-align:left;margin-top:-14px;margin-bottom:30px;}
+.s-offers .eyebrow-label{color:var(--navy);text-transform:none;letter-spacing:.015em;font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;font-size:1.825rem;font-weight:700;display:block;text-align:left;margin-top:-14px;margin-bottom:64px;}
 .tiles-cards-1x4{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;}
 .tile.card{padding:40px 30px;min-height:266px;}
 .tile .num{font-size:.86rem;margin-bottom:14px;}
