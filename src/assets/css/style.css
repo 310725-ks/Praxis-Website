@@ -133,6 +133,14 @@ h1,h2,h3{font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;font-weight:700
 .site-footer a{color:var(--muted);}
 .site-footer a:hover{color:var(--gold);}
 
+.member-band{background:#f2ede0;padding:30px 8vw;text-align:center;border-top:1px solid #e9e2d2;}
+.member-eyebrow{color:var(--sage);text-transform:uppercase;letter-spacing:.12em;font-size:.68rem;font-weight:700;display:block;margin-bottom:18px;}
+.member-logos{display:flex;align-items:center;justify-content:center;gap:36px;flex-wrap:wrap;}
+.member-logo{height:52px;display:flex;align-items:center;}
+.member-logo a{display:block;height:100%;}
+.member-logo img{height:100%;width:auto;display:block;}
+.member-sep{width:1px;height:52px;background:#ddd4bf;}
+
 /* ---- Work in progress Platzhalter ---- */
 .wip{padding:110px 8vw 130px;text-align:center;}
 .wip-inner{max-width:520px;margin:0 auto;}
@@ -311,6 +319,11 @@ body.on-contact .snap-dots button.is-active{background:#cdd8cb;}
   .s-contact .kb-buttons a{font-size:.9rem;padding:11px 20px;}
 
   .site-footer{flex-wrap:wrap;gap:8px;padding:20px 5vw;font-size:.78rem;}
+
+  .member-band{padding:24px 5vw;}
+  .member-logos{gap:22px;}
+  .member-logo{height:40px;}
+  .member-sep{height:40px;}
 }
 
 /* ---- Tablet (641px–1024px): Hamburger-Menü, normaler Scroll, Angebote als 2x2-Raster ---- */
