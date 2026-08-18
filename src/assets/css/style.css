@@ -310,7 +310,13 @@ body.on-contact .snap-dots button.is-active{background:#cdd8cb;}
      die helle Body-Hintergrundfarbe statt des dunkelblauen Footers sichtbar wird.
      Zusammen mit viewport-fit=cover (siehe base.njk) sorgt das auch dafür, dass
      die Fläche hinter der Home-Indicator-Leiste (iPhone-Safe-Area) in Navy statt
-     in Weiß erscheint. */
+     in Weiß erscheint.
+     Zusätzlich: overscroll-behavior unterbindet den "Rubber-Band"-Bounce-Effekt
+     selbst (iOS Safari 16+, Android Chrome) — dann gibt es dort gar nichts mehr
+     zu sehen, unabhängig davon, wie der jeweilige Browser die Bounce-Farbe im
+     Detail ermittelt. Das ist der robustere Fix, falls die reine Farbzuweisung
+     auf einzelnen Geräten/Browsern nicht zuverlässig respektiert wird. */
+  html,body{overscroll-behavior-y:none;}
   html{background:var(--navy);}
 
   .utility-bar{padding:calc(6px + env(safe-area-inset-top)) 5vw 6px;font-size:.82rem;}
