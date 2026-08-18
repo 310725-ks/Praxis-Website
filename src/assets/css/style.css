@@ -142,11 +142,11 @@ h1,h2,h3{font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;font-weight:700
 .member-band{margin:40px -8vw 0;width:calc(100% + 16vw);padding:30px 8vw;background:#F4EDE2;display:flex;align-items:center;gap:32px;}
 .member-eyebrow{color:var(--sage);text-transform:uppercase;letter-spacing:.12em;font-size:.72rem;font-weight:700;white-space:nowrap;margin:0;}
 .member-logos{display:flex;align-items:center;justify-content:center;flex:1;flex-wrap:wrap;gap:40px;}
-.member-logo{height:112px;display:flex;align-items:center;}
-.member-logo-sg{height:75px;}
+.member-logo{height:84px;display:flex;align-items:center;}
+.member-logo-sg{height:56px;}
 .member-logo a{display:block;height:100%;}
 .member-logo img{height:100%;width:auto;display:block;}
-.member-sep{width:1px;height:112px;background:#ddd0b8;}
+.member-sep{width:1px;height:84px;background:#ddd0b8;}
 
 /* ---- contact band ---- */
 .kb-eyebrow{text-transform:uppercase;letter-spacing:.12em;color:var(--sage);font-weight:700;display:block;}
