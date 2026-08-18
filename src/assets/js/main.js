@@ -58,6 +58,38 @@
     if(e.key==='ArrowUp'||e.key==='PageUp'){ e.preventDefault(); if(!animating){animating=true; goTo(index-1); setTimeout(function(){animating=false;},700);} }
   });
 
+  // Touch-Wischgesten für den Abschnittswechsel: Tablets (v.a. im Querformat, wo die
+  // Bildschirmbreite die Desktop-Grenze überschreitet) feuern beim Wischen keine
+  // "wheel"-Events, sondern nur Touch-Events. Ohne diese Handler ließ sich der
+  // Abschnitt nur über die Punkte, nicht aber per Wischen wechseln.
+  var touchStartX = null, touchStartY = null;
+  window.addEventListener('touchstart', function(e){
+    if(!isDesktopMode()) return;
+    if(e.touches.length !== 1) return;
+    touchStartX = e.touches[0].clientX;
+    touchStartY = e.touches[0].clientY;
+  }, {passive:true});
+
+  window.addEventListener('touchmove', function(e){
+    if(!isDesktopMode()) return;
+    if(touchStartY === null) return;
+    e.preventDefault();
+  }, {passive:false});
+
+  window.addEventListener('touchend', function(e){
+    if(!isDesktopMode()) return;
+    if(touchStartY === null) return;
+    var touch = e.changedTouches[0];
+    var deltaY = touchStartY - touch.clientY;
+    var deltaX = touchStartX - touch.clientX;
+    touchStartX = null; touchStartY = null;
+    if(Math.abs(deltaY) < 40 || Math.abs(deltaY) < Math.abs(deltaX)) return;
+    if(animating) return;
+    animating = true;
+    goTo(index + (deltaY > 0 ? 1 : -1));
+    setTimeout(function(){ animating = false; }, 700);
+  }, {passive:true});
+
   dots.forEach(function(d){
     d.addEventListener('click', function(){
       if(!isDesktopMode()) return;
