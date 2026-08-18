@@ -307,10 +307,13 @@ body.on-contact .snap-dots button.is-active{background:#cdd8cb;}
 /* ---- Mobile (<=640px): Hamburger-Menü, normaler Scroll, Angebote als Akkordeon ---- */
 @media (max-width:640px){
   /* Verhindert, dass beim Überscrollen (elastisches Bounce am unteren Rand)
-     die helle Body-Hintergrundfarbe statt des dunkelblauen Footers sichtbar wird. */
+     die helle Body-Hintergrundfarbe statt des dunkelblauen Footers sichtbar wird.
+     Zusammen mit viewport-fit=cover (siehe base.njk) sorgt das auch dafür, dass
+     die Fläche hinter der Home-Indicator-Leiste (iPhone-Safe-Area) in Navy statt
+     in Weiß erscheint. */
   html{background:var(--navy);}
 
-  .utility-bar{padding:6px 5vw;font-size:.82rem;}
+  .utility-bar{padding:calc(6px + env(safe-area-inset-top)) 5vw 6px;font-size:.82rem;}
   .utility-contacts{display:none;}
   .site-header{padding:13px 5vw;}
   .brand{font-size:1.28rem;}
@@ -385,7 +388,7 @@ body.on-contact .snap-dots button.is-active{background:#cdd8cb;}
   .s-contact .legal-strip{display:none;}
 
   .site-footer{
-    flex-wrap:wrap;gap:8px;padding:20px 5vw;font-size:.78rem;
+    flex-wrap:wrap;gap:8px;padding:20px 5vw calc(20px + env(safe-area-inset-bottom));font-size:.78rem;
     background:var(--navy);border-top:1px solid rgba(255,255,255,.18);color:#a9b7cb;
   }
   .site-footer a{color:#a9b7cb;}
