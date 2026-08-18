@@ -146,7 +146,6 @@ h1,h2,h3{font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;font-weight:700
 .member-logo-sg{height:56px;}
 .member-logo a{display:block;height:100%;}
 .member-logo img{height:100%;width:auto;display:block;}
-.member-sep{width:1px;height:84px;background:#ddd0b8;}
 
 /* ---- contact band ---- */
 .kb-eyebrow{text-transform:uppercase;letter-spacing:.12em;color:var(--sage);font-weight:700;display:block;}
@@ -403,7 +402,6 @@ body.on-contact .snap-dots button.is-active{background:#cdd8cb;}
   .member-logos{gap:20px;}
   .member-logo{height:79px;}
   .member-logo-sg{height:53px;}
-  .member-sep{height:79px;}
 }
 
 /* ---- Tablet (641px–1024px): Hamburger-Menü, normaler Scroll, Angebote als 2x2-Raster ---- */
