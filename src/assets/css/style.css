@@ -618,9 +618,12 @@ body.on-contact .snap-dots button.is-active{background:#cdd8cb;}
 /* Diese beiden nur für die Paartherapie-Seite (.ph-contact) skaliert, damit
    der geteilte Kontaktabschnitt der Startseite (.s-contact ohne .ph-contact)
    unverändert bleibt. */
-.ph-contact .kb-right .kb-eyebrow{font-size:.9rem;}
+.ph-contact .kb-right .kb-eyebrow{font-size:.9rem;margin:0 0 14px;}
 .ph-contact .kb-right .kb-text{font-size:1.05rem;max-width:none;margin:0 0 18px;}
 .s-contact .kb-buttons a{font-size:.84rem;padding:11px 20px;}
+/* Buttons nur auf der Paartherapie-Seite größer, auf gleicher Schriftgröße
+   wie der übrige Text (Startseiten-Buttons bleiben unverändert). */
+.ph-contact .kb-buttons a{font-size:1.05rem;padding:13px 24px;}
 
 /* Zweispaltige Anordnung (Rahmen-Block nach links gerückt, Kontaktfeld
    rechts mit Trennstrich) gilt nur ab Desktop-Breite – darunter bleibt es
@@ -633,6 +636,16 @@ body.on-contact .snap-dots button.is-active{background:#cdd8cb;}
      bleibenden Rand links/rechts stärker aus -- nur auf der Paartherapie-
      Seite, die Startseite behält ihre bisherige, schmalere Breite. */
   .ph-contact .kb-grid{max-width:1300px;}
+  /* "Nächster Schritt" wird (nur auf dieser Seite) vertikal zwischen der
+     Oberkante der "Rahmen"-Überschrift und der Unterkante der 3 Spalten
+     zentriert, statt mit einem festen Abstand nach unten versetzt zu sein --
+     dafür übernimmt die Grid-Zeile (deren Höhe durch die linke, höhere
+     Spalte vorgegeben wird) die Zentrierung. */
+  .ph-contact .kb-right{margin-top:0;align-self:center;}
+  /* Der negative margin-top auf .kb-left (Startseiten-Feinjustierung) würde
+     die Zeilenhöhe für die Grid-Zentrierung verfälschen -- auf dieser Seite
+     zurückgesetzt. */
+  .ph-contact .kb-left{margin-top:0;}
 }
 
 @media(max-width:640px){
