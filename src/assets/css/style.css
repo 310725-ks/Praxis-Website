@@ -521,3 +521,121 @@ body.on-contact .snap-dots button.is-active{background:#cdd8cb;}
 .note-box{margin:14px 0 22px;padding:14px 18px;background:#fbf3e4;border-left:3px solid var(--gold);border-radius:6px;}
 .note-box p{margin:0;color:#6b5322;font-size:.86rem;line-height:1.6;}
 .note-box p b{color:#4a3a17;}
+
+/* =====================================================================
+   Unterseite Paartherapie & Beziehungsberatung: nutzt die Abschnitts-Optik
+   der Startseite (Klassen s-hero/s-offers/s-contact für Hintergrund, Bänder,
+   Typografie) INKLUSIVE der Einrast-Mechanik (#snapViewport/#snapTrack/
+   #snapDots wie auf der Startseite) – die Abschnitte wechseln also wieder
+   per Vollbild-Einrasten. Damit trotzdem auch lange FAQ-Antworten ohne
+   internes Scrollen lesbar sind, bleiben beim Öffnen alle Fragen sichtbar
+   und die Antwort wird sanft eingeblendet (siehe FAQ-Akkordeon weiter unten). */
+
+/* Abschnitt 2: Einleitungstext + FAQ-Akkordeon in voller Breite. Am Desktop
+   sitzt der Text nah am oberen Rand (mehr Platz für das Aufklappen der
+   Fragen), die Fragenliste selbst wird im verbleibenden Raum vertikal
+   zentriert dargestellt. */
+.faq-top{margin-bottom:26px;}
+.faq-eyebrow{color:var(--sage);text-transform:uppercase;letter-spacing:.1em;font-weight:700;font-size:1rem;margin:24px 0 0;}
+.faq-teaser{color:var(--ink);font-size:1.05rem;line-height:1.7;margin:0;max-width:none;}
+.faq-list{display:flex;flex-direction:column;gap:12px;}
+.faq-item{background:#fff;border-radius:14px;border-left:5px solid var(--navy);box-shadow:0 14px 30px -24px rgba(20,20,20,.3);overflow:hidden;}
+.faq-item:nth-of-type(2){border-left-color:var(--sage);}
+.faq-item:nth-of-type(3){border-left-color:var(--gold);}
+.faq-item:nth-of-type(4){border-left-color:var(--navy);}
+.faq-summary{all:unset;box-sizing:border-box;width:100%;cursor:pointer;display:flex;align-items:center;gap:16px;padding:18px 22px;}
+.faq-q{flex:1;color:var(--navy);font-weight:700;font-size:1.02rem;}
+.faq-toggle{width:26px;height:26px;border-radius:50%;background:var(--grad);flex-shrink:0;position:relative;transition:transform .35s cubic-bezier(.4,0,.2,1);}
+.faq-toggle::before,.faq-toggle::after{content:"";position:absolute;background:#fff;border-radius:2px;}
+.faq-toggle::before{left:7px;right:7px;top:12px;height:2px;}
+.faq-toggle::after{top:7px;bottom:7px;left:12px;width:2px;transition:opacity .25s ease;}
+.faq-item.is-open .faq-toggle::after{opacity:0;}
+.faq-item.is-open .faq-toggle{transform:rotate(180deg);}
+.faq-a{padding:0 22px 22px 22px;color:var(--muted);}
+.faq-a p{line-height:1.7;font-size:.94rem;margin:0 0 12px;}
+.faq-a p:last-child{margin-bottom:0;}
+.faq-a ul{margin:0 0 12px;}
+.faq-a ul li{list-style:none;padding-left:18px;position:relative;line-height:1.6;font-size:.92rem;margin:0 0 7px;color:var(--muted);}
+.faq-a ul li::before{content:"";position:absolute;left:0;top:8px;width:5px;height:5px;border-radius:50%;background:var(--gold);}
+
+/* Sanftes Öffnen/Schließen: Grid-Rows-Trick (0fr -> 1fr) statt max-height,
+   dadurch butterweich animierbar ohne dass eine feste Zielhöhe im Voraus
+   bekannt sein muss. Sanfte "ease-out"-Kurve (statt linearer/technischer
+   Bewegung) für ein ruhigeres, elegantes Ausklappen. Der Antworttext blendet
+   zusätzlich leicht verzögert mit Fade + kleinem Schub von oben ein statt
+   nur mit der Box mitzuwachsen. */
+.faq-a-wrap{display:grid;grid-template-rows:0fr;transition:grid-template-rows .6s cubic-bezier(.16,1,.3,1);}
+.faq-a-inner{overflow:hidden;min-height:0;}
+.faq-item.is-open .faq-a-wrap{grid-template-rows:1fr;}
+.faq-a{opacity:0;transform:translateY(-8px);transition:opacity .5s ease-out .12s,transform .5s cubic-bezier(.16,1,.3,1) .12s;}
+.faq-item.is-open .faq-a{opacity:1;transform:translateY(0);}
+
+@media(min-width:1025px){
+  .s-offers-inner{height:100%;display:flex;flex-direction:column;padding-top:calc(0.625cm + 10px);}
+  .faq-top{flex:0 0 auto;}
+
+  /* Der Teaser-Text sitzt (per position:absolute) direkt unter der Überschrift,
+     ohne selbst Platz im Flex-Fluss zu beanspruchen. Dadurch kann die
+     Fragenliste unabhängig davon im GESAMTEN verbleibenden Raum zwischen
+     Überschrift-Unterkante und unterem Seitenrand zentriert werden. */
+  .faq-body{flex:1 1 auto;min-height:0;position:relative;display:flex;flex-direction:column;justify-content:center;}
+  .faq-teaser{
+    position:absolute;top:0;left:0;right:0;
+    display:grid;grid-template-rows:1fr;opacity:1;overflow:hidden;
+    transition:grid-template-rows .5s cubic-bezier(.16,1,.3,1), opacity .4s ease-out;
+  }
+  /* Ohne dies dürfen sich die FAQ-Kacheln als Flex-Kinder unterhalb ihrer
+     Inhaltshöhe zusammenquetschen (Standardverhalten von Flexbox) -- dadurch
+     konnte Inhalt abgeschnitten werden, statt dass die Liste bei echtem
+     Platzmangel zuverlässig scrollbar wird. */
+  .faq-item{flex-shrink:0;}
+  /* margin-top zwischen Teaser-Ende und Liste (zentriert per Flex, siehe
+     .faq-body) -- etwas großzügiger im geschlossenen Zustand, im geöffneten
+     Zustand kleiner, damit möglichst viel Platz für die Antwort frei bleibt.
+     Der Positionswechsel selbst wird per JS (FLIP-Technik, siehe main.js)
+     smooth über "transform" animiert, da "justify-content" selbst nicht
+     animierbar ist. */
+  .faq-list{flex:0 1 auto;min-height:0;overflow-y:auto;margin-top:24px;transition:transform .55s cubic-bezier(.16,1,.3,1);}
+
+  /* Ist ein FAQ-Punkt geöffnet, blendet der Einleitungstext aus (die
+     Überschrift bleibt als Orientierung stehen) und die Liste rückt dicht
+     unter die Überschrift (ca. 1cm Abstand), damit für die aufgeklappte
+     Antwort möglichst viel Platz nach unten frei wird. */
+  .s-offers.has-open .faq-body{justify-content:flex-start;}
+  .s-offers.has-open .faq-teaser{grid-template-rows:0fr;opacity:0;pointer-events:none;}
+  /* 12px zusätzlich zur festen Überschrift-Text-Distanz (26px) ergeben in
+     Summe knapp 1cm Abstand zwischen Überschrift-Unterkante und Listenanfang. */
+  .s-offers.has-open .faq-list{margin-top:12px;}
+}
+
+/* Abschnitt 3: Rahmen-Übersicht (links, Spalten/Schriftgrößen wie im
+   ausgewählten Design-Entwurf A) + Kontakt mit Farbverlauf-Buttons (rechts,
+   abgesetzt durch einen schmalen vertikalen Trennstrich) */
+.rahmen-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;padding-top:24px;border-top:1px solid rgba(255,255,255,.2);margin-top:24px;}
+.rahmen-grid h3{font-size:1rem;margin:0 0 8px;color:#fff;}
+/* Gleiche Schriftgröße wie der Fließtext in Abschnitt 2 (.faq-teaser). */
+.rahmen-grid p{margin:0;color:#c9cfd6;font-size:1.05rem;line-height:1.6;}
+/* Diese beiden nur für die Paartherapie-Seite (.ph-contact) skaliert, damit
+   der geteilte Kontaktabschnitt der Startseite (.s-contact ohne .ph-contact)
+   unverändert bleibt. */
+.ph-contact .kb-right .kb-eyebrow{font-size:.9rem;}
+.ph-contact .kb-right .kb-text{font-size:1.05rem;max-width:none;margin:0 0 18px;}
+.s-contact .kb-buttons a{font-size:.84rem;padding:11px 20px;}
+
+/* Zweispaltige Anordnung (Rahmen-Block nach links gerückt, Kontaktfeld
+   rechts mit Trennstrich) gilt nur ab Desktop-Breite – darunter bleibt es
+   bei der bestehenden, gestapelten Darstellung. */
+@media(min-width:1025px){
+  .s-contact .kb-grid{grid-template-columns:1.3fr .7fr;gap:64px;}
+  .s-contact .kb-right{position:relative;padding-left:48px;}
+  .s-contact .kb-right::before{content:"";position:absolute;left:0;top:2px;bottom:2px;width:1px;background:rgba(255,255,255,.2);}
+  /* Die 3 Spalten (und der Kontaktblock rechts) nutzen den bislang leer
+     bleibenden Rand links/rechts stärker aus -- nur auf der Paartherapie-
+     Seite, die Startseite behält ihre bisherige, schmalere Breite. */
+  .ph-contact .kb-grid{max-width:1300px;}
+}
+
+@media(max-width:640px){
+  .rahmen-grid{grid-template-columns:1fr;gap:18px;}
+  .faq-eyebrow{font-size:.8rem;}
+}

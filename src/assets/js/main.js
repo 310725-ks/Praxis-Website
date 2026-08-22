@@ -42,8 +42,23 @@
   setHeaderH();
   window.addEventListener('resize', setHeaderH);
 
+  function isPassthroughScroll(e){
+    // Erlaubt normales Scrollen innerhalb der FAQ-Liste (Unterseite
+    // Paartherapie), falls deren Inhalt trotz vertikaler Zentrierung/
+    // Sicherheitsnetz höher als der verfügbare Platz im Abschnitt ist –
+    // sonst würde das Mausrad sofort den Abschnittswechsel auslösen.
+    var el = e.target.closest ? e.target.closest('.faq-list') : null;
+    if(!el || el.scrollHeight <= el.clientHeight) return false;
+    var atTop = el.scrollTop <= 0;
+    var atBottom = Math.ceil(el.scrollTop + el.clientHeight) >= el.scrollHeight;
+    if(e.deltaY < 0 && !atTop) return true;
+    if(e.deltaY > 0 && !atBottom) return true;
+    return false;
+  }
+
   window.addEventListener('wheel', function(e){
     if(!isDesktopMode()) return;
+    if(isPassthroughScroll(e)) return;
     e.preventDefault();
     if(animating) return;
     if(Math.abs(e.deltaY) < 8) return;
@@ -140,6 +155,62 @@
         e.preventDefault();
         card.classList.toggle('is-open');
       }
+    });
+  });
+})();
+
+(function(){
+  // FAQ-Akkordeon (Unterseite Paartherapie): immer nur eine Antwort gleichzeitig
+  // geöffnet, alle Fragen bleiben dabei sichtbar (oberhalb und unterhalb der
+  // geöffneten). Die Klasse "is-open" schaltet nur den Zustand um – das
+  // eigentliche sanfte Auf-/Zuklappen (Höhe + Fade/Slide) übernimmt CSS.
+  // Zusätzlich bekommt der Abschnitt die Klasse "has-open", sobald irgendein
+  // Punkt offen ist -- darüber blendet CSS den Einleitungstext aus und rückt
+  // die Liste dichter unter die Überschrift, damit mehr Platz frei wird.
+  var section = document.querySelector('.s-offers');
+  var list = document.querySelector('.faq-list');
+  var items = Array.prototype.slice.call(document.querySelectorAll('.faq-item'));
+  if(!items.length) return;
+
+  // Der Positionswechsel der Liste (zentriert <-> dicht unter der Überschrift)
+  // wird durch einen Wechsel von "justify-content" ausgelöst -- diese
+  // CSS-Eigenschaft ist selbst nicht animierbar, der Sprung würde also hart
+  // wirken. Per FLIP-Technik (First-Last-Invert-Play) wird die Positions-
+  // differenz stattdessen als "transform" smooth animiert: Position vorher
+  // messen, Klasse umschalten, Position nachher messen, die Differenz sofort
+  // (ohne Übergang) als Versatz anwenden und im nächsten Frame sanft auf 0
+  // zurück animieren -- so wirkt der Wechsel wie eine einzige, weiche Bewegung.
+  function flipList(applyChange){
+    if(!list){ applyChange(); return; }
+    var before = list.getBoundingClientRect().top;
+    applyChange();
+    var after = list.getBoundingClientRect().top;
+    var delta = before - after;
+    if(Math.abs(delta) < 1) return;
+    list.style.transition = 'none';
+    list.style.transform = 'translateY(' + delta + 'px)';
+    list.getBoundingClientRect(); // reflow erzwingen
+    requestAnimationFrame(function(){
+      list.style.transition = '';
+      list.style.transform = '';
+    });
+  }
+
+  items.forEach(function(item){
+    var btn = item.querySelector('.faq-summary');
+    btn.addEventListener('click', function(){
+      var willOpen = !item.classList.contains('is-open');
+      flipList(function(){
+        items.forEach(function(other){
+          other.classList.remove('is-open');
+          other.querySelector('.faq-summary').setAttribute('aria-expanded','false');
+        });
+        if(willOpen){
+          item.classList.add('is-open');
+          btn.setAttribute('aria-expanded','true');
+        }
+        if(section) section.classList.toggle('has-open', willOpen);
+      });
     });
   });
 })();
