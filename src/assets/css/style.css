@@ -463,7 +463,7 @@ body.on-contact .snap-dots button.is-active{background:#cdd8cb;}
      zentriert. */
   .hero-band{top:0;bottom:0;right:-64px;}
   .snap-section.s-hero{padding-right:64px;}
-  .hero-photo{height:min(56vh,460px);justify-self:center;position:relative;left:-1.5cm;}
+  .hero-photo{height:min(64.4vh,529px);justify-self:center;position:relative;left:-6px;}
 
   /* Abschnitt 2: eigenes Band, genauso oben angesetzt wie in Abschnitt 3;
      Karten etwas kompakter, damit der Abschnitt trotz Band nicht gedrungen
@@ -560,7 +560,7 @@ body.on-contact .snap-dots button.is-active{background:#cdd8cb;}
 .ph-hero .photo-credit{margin:10px 0 0;font-size:.78rem;font-style:italic;color:var(--muted);opacity:.8;text-align:center;}
 
 @media(min-width:641px){
-  .ph-hero .hero-photo-wrap{max-width:520px;justify-self:center;margin:0 auto;}
+  .ph-hero .hero-photo-wrap{max-width:598px;justify-self:center;margin:0 auto;}
 }
 
 @media(min-width:1025px){
@@ -569,14 +569,14 @@ body.on-contact .snap-dots button.is-active{background:#cdd8cb;}
      rechten Abschnitts-Punkten liegt. Der nötige Versatz skaliert mit der
      Fensterbreite (an calc() mit vw-Anteil angenähert, kalibriert anhand
      gängiger Desktop-Breiten). */
-  .ph-hero .hero-photo-wrap{transform:translateX(calc(-25.292vw + 282.5px));}
+  .ph-hero .hero-photo-wrap{transform:translateX(-6px);}
 }
 
 /* Abschnitt 2: Einleitungstext + FAQ-Akkordeon in voller Breite. Am Desktop
    sitzt der Text nah am oberen Rand (mehr Platz für das Aufklappen der
    Fragen), die Fragenliste selbst wird im verbleibenden Raum vertikal
    zentriert dargestellt. */
-.faq-top{margin-bottom:26px;}
+.faq-top{margin-bottom:40px;}
 .faq-eyebrow{color:var(--sage);text-transform:uppercase;letter-spacing:.1em;font-weight:700;font-size:1rem;margin:24px 0 0;}
 .faq-teaser{color:var(--ink);font-size:1.05rem;line-height:1.7;margin:0;max-width:none;}
 .faq-list{display:flex;flex-direction:column;gap:12px;}
@@ -615,14 +615,15 @@ body.on-contact .snap-dots button.is-active{background:#cdd8cb;}
   .ph-offers .s-offers-inner{height:100%;display:flex;flex-direction:column;padding-top:calc(0.625cm + 10px);}
   .faq-top{flex:0 0 auto;}
 
-  /* Der Teaser-Text sitzt (per position:absolute) direkt unter der Überschrift,
-     ohne selbst Platz im Flex-Fluss zu beanspruchen. Dadurch kann die
-     Fragenliste unabhängig davon im GESAMTEN verbleibenden Raum zwischen
-     Überschrift-Unterkante und unterem Seitenrand zentriert werden. */
-  .faq-body{flex:1 1 auto;min-height:0;position:relative;display:flex;flex-direction:column;justify-content:center;}
+  /* Der Teaser-Text steht (im geschlossenen Zustand) direkt unter der
+     Überschrift. Die Liste wird per Grid (Zeilen: Text / 1fr / Liste / 1fr)
+     exakt mittig zwischen der Text-Unterkante und dem unteren Rand des
+     Bildschirms positioniert -- die beiden 1fr-Zeilen sind durch das
+     Grid-Layout immer exakt gleich groß, unabhängig von der Fensterhöhe. */
+  .faq-body{flex:1 1 auto;min-height:0;position:relative;display:grid;grid-template-rows:auto 1fr auto 1fr;}
   .faq-teaser{
-    position:absolute;top:0;left:0;right:0;
-    display:grid;grid-template-rows:1fr;opacity:1;overflow:hidden;
+    grid-row:1;
+    display:grid;grid-template-rows:1fr;opacity:1;overflow:hidden;margin:0;
     transition:grid-template-rows .5s cubic-bezier(.16,1,.3,1), opacity .4s ease-out;
   }
   /* Ohne dies dürfen sich die FAQ-Kacheln als Flex-Kinder unterhalb ihrer
@@ -630,23 +631,17 @@ body.on-contact .snap-dots button.is-active{background:#cdd8cb;}
      konnte Inhalt abgeschnitten werden, statt dass die Liste bei echtem
      Platzmangel zuverlässig scrollbar wird. */
   .faq-item{flex-shrink:0;}
-  /* margin-top zwischen Teaser-Ende und Liste (zentriert per Flex, siehe
-     .faq-body) -- etwas großzügiger im geschlossenen Zustand, im geöffneten
-     Zustand kleiner, damit möglichst viel Platz für die Antwort frei bleibt.
-     Der Positionswechsel selbst wird per JS (FLIP-Technik, siehe main.js)
-     smooth über "transform" animiert, da "justify-content" selbst nicht
-     animierbar ist. */
-  .faq-list{flex:0 1 auto;min-height:0;overflow-y:auto;margin-top:24px;transition:transform .55s cubic-bezier(.16,1,.3,1);}
+  /* Der Positionswechsel beim Auf-/Zuklappen wird per JS (FLIP-Technik, siehe
+     main.js) smooth über "transform" animiert, da Grid-Zeilenänderungen
+     selbst nicht animierbar sind. */
+  .faq-list{grid-row:3;min-height:0;overflow-y:auto;margin-top:0;transition:transform .55s cubic-bezier(.16,1,.3,1);}
 
   /* Ist ein FAQ-Punkt geöffnet, blendet der Einleitungstext aus (die
      Überschrift bleibt als Orientierung stehen) und die Liste rückt dicht
-     unter die Überschrift (ca. 1cm Abstand), damit für die aufgeklappte
+     unter die Überschrift (12px Abstand), damit für die aufgeklappte
      Antwort möglichst viel Platz nach unten frei wird. */
-  .s-offers.has-open .faq-body{justify-content:flex-start;}
+  .s-offers.has-open .faq-body{grid-template-rows:auto 12px minmax(0,1fr);}
   .s-offers.has-open .faq-teaser{grid-template-rows:0fr;opacity:0;pointer-events:none;}
-  /* 12px zusätzlich zur festen Überschrift-Text-Distanz (26px) ergeben in
-     Summe knapp 1cm Abstand zwischen Überschrift-Unterkante und Listenanfang. */
-  .s-offers.has-open .faq-list{margin-top:12px;}
 }
 
 /* Abschnitt 3: Rahmen-Übersicht (links, Spalten/Schriftgrößen wie im
