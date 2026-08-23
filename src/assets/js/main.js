@@ -169,6 +169,7 @@
   // stehen, damit die Nachbarfelder nicht verrutschen.
   var faqColumns = document.querySelector('.faq-columns');
   var spotlight = document.querySelector('.faq-spotlight');
+  var sectionInner = document.querySelector('.ph-faq .s-offers-inner');
   var items = Array.prototype.slice.call(document.querySelectorAll('.faq-item'));
   if(!items.length || !faqColumns || !spotlight) return;
 
@@ -178,7 +179,8 @@
 
   function restore(entry){
     var btn = entry.item.querySelector('.faq-summary');
-    entry.item.classList.remove('is-open', 'is-spotlight-visible');
+    entry.item.classList.remove('is-open', 'is-spotlight-visible', 'has-scroll-cap');
+    entry.item.style.maxHeight = '';
     btn.setAttribute('aria-expanded', 'false');
     setTimeout(function(){
       if(entry.placeholder.parentNode){
@@ -197,6 +199,26 @@
     spotlight.appendChild(item);
     item.classList.add('is-spotlight', 'is-open');
     btn.setAttribute('aria-expanded', 'true');
+
+    // Sicherheitsnetz für sehr schmale/niedrige Desktop-Fenster: reicht der
+    // verfügbare Platz im Abschnitt trotz natürlicher (voller) Höhe des
+    // geöffneten Feldes nicht aus, würde der Abschnitt über seine feste
+    // Höhe hinauswachsen -- dort nicht erreichbar, weil der Viewport dieses
+    // Overflow versteckt (kein echtes Seiten-Scrollen im Desktop-Modus).
+    // Der exakt fehlende Betrag wird gemessen und nur dann als
+    // Scroll-Grenze auf das Feld selbst gesetzt (statt pauschal per CSS),
+    // damit der häufige Fall (genug Platz) seine volle, natürliche Höhe
+    // behält.
+    if(sectionInner && window.innerWidth > 1024){
+      var shortfall = sectionInner.scrollHeight - sectionInner.clientHeight;
+      if(shortfall > 0){
+        var cap = item.offsetHeight - shortfall - 16;
+        if(cap > 120){
+          item.style.maxHeight = cap + 'px';
+          item.classList.add('has-scroll-cap');
+        }
+      }
+    }
 
     // Sichtbarkeits-Klasse erst im übernächsten Frame setzen, damit der
     // Browser die Ausgangsposition (eingefügt, aber noch unsichtbar) zuerst

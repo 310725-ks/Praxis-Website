@@ -607,7 +607,7 @@ body.on-contact .snap-dots button.is-active{background:#cdd8cb;}
 /* Gleiche Farbe/Größe/Schnitt wie die Überschrift "Meine Angebote" auf der
    Startseite (.eyebrow-label) -- wird für beide neuen Abschnitte
    ("Worum es geht" und "Häufig gestellte Fragen") gleich verwendet. */
-.faq-heading{color:var(--navy);text-transform:none;letter-spacing:.015em;font-weight:700;font-size:1.825rem;margin:6px 0 0;}
+.faq-heading{color:var(--navy);text-transform:none;letter-spacing:.015em;font-weight:700;font-size:1.825rem;margin:16px 0 0;}
 .worum-grid{display:grid;grid-template-columns:1fr;gap:32px;}
 /* Farbe wie der Fließtext unter "Über mich" auf der Startseite (.about p). */
 .worum-grid .body-text{color:var(--muted);font-size:1.05rem;line-height:1.75;margin:0;}
@@ -632,9 +632,26 @@ body.on-contact .snap-dots button.is-active{background:#cdd8cb;}
 }
 
 @media(min-width:1025px){
-  .ph-worum .s-offers-inner{height:100%;padding-top:calc(0.625cm + 10px);}
+  .ph-worum .s-offers-inner{height:100%;padding-top:calc(0.625cm + 10px);position:relative;}
   .worum-grid{grid-template-columns:1fr .8fr;gap:64px;align-items:start;}
-  .worum-photo{height:min(64.4vh,529px);}
+  /* Löst sich aus dem Grid-Zeilenfluss und wird stattdessen frei positioniert:
+     vertikal mittig zwischen der Unterkante des Farbverlaufs oben (= exakt
+     der oben per padding-top ausgeglichene Bereich) und der Abschnitts-
+     Unterkante; horizontal mittig zwischen der rechten Kante der Textspalte
+     und den fest positionierten Abschnitts-Punkten (#snapDots) rechts --
+     rechnerisch aus der Spalten-/Container-/Punkte-Geometrie ermittelt, mit
+     eigenem Zweig ab der Breite, bei der der 1220px-Container gedeckelt
+     wird (das lineare vw-Verhältnis ändert sich dort). */
+  .worum-photo{
+    position:absolute;
+    height:min(64.4vh,529px);
+    top:calc(50% + (0.625cm + 10px) / 2 - 5px);
+    left:calc(69.33vw - 33.28px);
+    transform:translate(-50%,-50%);
+  }
+}
+@media(min-width:1453px){
+  .worum-photo{left:calc(25vw + 610.61px);}
 }
 
 /* Abschnitt 3: "Häufig gestellte Fragen" -- FAQ-Akkordeon, ab Desktop
@@ -656,11 +673,21 @@ body.on-contact .snap-dots button.is-active{background:#cdd8cb;}
 .faq-item.is-open .faq-toggle::after{opacity:0;}
 .faq-item.is-open .faq-toggle{transform:rotate(180deg);}
 .faq-a{padding:0 22px 22px 22px;color:var(--muted);}
-.faq-a p{line-height:1.7;font-size:.94rem;margin:0 0 12px;}
+/* Schriftgröße wie der Kartentext der Angebotskarten auf der Startseite
+   (.tile p) -- inkl. dessen Breakpoint-Abstufungen (Basis/Tablet, Mobile,
+   Desktop ab 1025px unten). */
+.faq-a p{line-height:1.6;font-size:1.083rem;margin:0 0 12px;}
 .faq-a p:last-child{margin-bottom:0;}
 .faq-a ul{margin:0 0 12px;}
-.faq-a ul li{list-style:none;padding-left:18px;position:relative;line-height:1.6;font-size:.92rem;margin:0 0 7px;color:var(--muted);}
+.faq-a ul li{list-style:none;padding-left:18px;position:relative;line-height:1.6;font-size:1.083rem;margin:0 0 7px;color:var(--muted);}
 .faq-a ul li::before{content:"";position:absolute;left:0;top:8px;width:5px;height:5px;border-radius:50%;background:var(--gold);}
+
+@media(max-width:640px){
+  .faq-a p, .faq-a ul li{font-size:.92rem;}
+}
+@media(min-width:1025px){
+  .faq-a p, .faq-a ul li{font-size:.98rem;line-height:1.55;}
+}
 
 /* Sanftes Öffnen/Schließen: Grid-Rows-Trick (0fr -> 1fr) statt max-height,
    dadurch butterweich animierbar ohne dass eine feste Zielhöhe im Voraus
@@ -704,6 +731,14 @@ body.on-contact .snap-dots button.is-active{background:#cdd8cb;}
      unberührt sichtbar (statt dass die ganze Liste umbrechen müsste). */
   .faq-columns{flex:1 1 auto;min-height:0;flex-direction:row;gap:0 28px;}
   .faq-columns .faq-list{flex:1 1 0;min-width:0;min-height:0;overflow-y:auto;}
+  /* Sicherheitsnetz für sehr schmale/niedrige Desktop-Fenster: wird das
+     geöffnete Spotlight-Feld per JS (main.js) als zu hoch erkannt, bekommt
+     es eine exakt berechnete Scroll-Grenze -- dieselbe Klasse setzt hier
+     keine feste max-height/overflow, da das (getestet) zu ungewolltem
+     Schrumpfen des Feldes auch in Fällen mit ausreichend Platz führt
+     (Flexbox-Eigenheit von overflow:auto + prozentualer max-height auf
+     einem Flex-Kind). */
+  .faq-item.is-spotlight.has-scroll-cap{overflow-y:auto;}
 }
 
 /* Abschnitt 3: Rahmen-Übersicht (links, Spalten/Schriftgrößen wie im
