@@ -160,26 +160,79 @@
 })();
 
 (function(){
-  // FAQ-Akkordeon (Unterseite Paartherapie): immer nur eine Antwort
-  // gleichzeitig geöffnet -- spaltenübergreifend, da beide FAQ-Spalten
-  // (.faq-list) gemeinsam über alle .faq-item hinweg gesteuert werden. Die
-  // Klasse "is-open" schaltet nur den Zustand um; das eigentliche sanfte
-  // Auf-/Zuklappen (Höhe + Fade/Slide) übernimmt CSS.
+  // FAQ-Akkordeon (Unterseite Paartherapie): das angeklickte Feld wird aus
+  // seiner Spalte in den ".faq-spotlight"-Bereich verschoben, wo es -- ohne
+  // die Breitenbeschränkung der Spalte -- auf seine volle Höhe wachsen kann
+  // (kein internes Scrollen mehr nötig). Die übrigen Felder blenden dabei
+  // per CSS ab (".faq-columns.has-open"). An der ursprünglichen Stelle
+  // bleibt bis zur Rückkehr ein unsichtbarer, gleich hoher Platzhalter
+  // stehen, damit die Nachbarfelder nicht verrutschen.
+  var faqColumns = document.querySelector('.faq-columns');
+  var spotlight = document.querySelector('.faq-spotlight');
   var items = Array.prototype.slice.call(document.querySelectorAll('.faq-item'));
-  if(!items.length) return;
+  if(!items.length || !faqColumns || !spotlight) return;
+
+  var RESTORE_DELAY = 320; // muss zur CSS-Transitionsdauer von .is-spotlight passen
+
+  var current = null; // { item, placeholder }
+
+  function restore(entry){
+    var btn = entry.item.querySelector('.faq-summary');
+    entry.item.classList.remove('is-open', 'is-spotlight-visible');
+    btn.setAttribute('aria-expanded', 'false');
+    setTimeout(function(){
+      if(entry.placeholder.parentNode){
+        entry.placeholder.parentNode.replaceChild(entry.item, entry.placeholder);
+      }
+      entry.item.classList.remove('is-spotlight');
+    }, RESTORE_DELAY);
+  }
+
+  function openInSpotlight(item, btn){
+    var placeholder = document.createElement('div');
+    placeholder.className = 'faq-item-placeholder';
+    placeholder.style.height = item.getBoundingClientRect().height + 'px';
+    item.parentNode.replaceChild(placeholder, item);
+
+    spotlight.appendChild(item);
+    item.classList.add('is-spotlight', 'is-open');
+    btn.setAttribute('aria-expanded', 'true');
+
+    // Sichtbarkeits-Klasse erst im übernächsten Frame setzen, damit der
+    // Browser die Ausgangsposition (eingefügt, aber noch unsichtbar) zuerst
+    // rendert -- sonst gäbe es keinen Übergang zu animieren.
+    requestAnimationFrame(function(){
+      requestAnimationFrame(function(){
+        item.classList.add('is-spotlight-visible');
+        // Nur außerhalb des Desktop-Vollbild-Modus nötig: dort liegt der
+        // gesamte Abschnitt ohnehin schon sichtbar im festen 100vh-Rahmen
+        // (echtes Scrollen findet dort gar nicht statt, der Wechsel läuft
+        // über die eigene Transform-Mechanik weiter oben in dieser Datei).
+        // Im normalen Seitenfluss (Mobile/Tablet) sorgt dies dafür, dass
+        // das aufklappende Feld ins Blickfeld rückt, statt am oberen Rand
+        // der Liste zu erscheinen, während man weiter unten liest.
+        if(window.innerWidth <= 1024){
+          item.scrollIntoView({behavior: 'smooth', block: 'nearest'});
+        }
+      });
+    });
+
+    return {item: item, placeholder: placeholder};
+  }
 
   items.forEach(function(item){
     var btn = item.querySelector('.faq-summary');
     btn.addEventListener('click', function(){
-      var willOpen = !item.classList.contains('is-open');
-      items.forEach(function(other){
-        other.classList.remove('is-open');
-        other.querySelector('.faq-summary').setAttribute('aria-expanded','false');
-      });
-      if(willOpen){
-        item.classList.add('is-open');
-        btn.setAttribute('aria-expanded','true');
+      if(current && current.item === item){
+        restore(current);
+        current = null;
+        faqColumns.classList.remove('has-open');
+        return;
       }
+      var previous = current;
+      current = openInSpotlight(item, btn);
+      faqColumns.classList.add('has-open');
+      if(previous) restore(previous);
     });
   });
 })();

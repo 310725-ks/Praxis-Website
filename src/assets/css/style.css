@@ -664,6 +664,27 @@ body.on-contact .snap-dots button.is-active{background:#cdd8cb;}
 .faq-a{opacity:0;transform:translateY(-8px);transition:opacity .5s ease-out .12s,transform .5s cubic-bezier(.16,1,.3,1) .12s;}
 .faq-item.is-open .faq-a{opacity:1;transform:translateY(0);}
 
+/* Spotlight beim Aufklappen: das angeklickte Feld wird per JS (siehe main.js)
+   aus seiner Spalte in diesen eigenen, volle Breite einnehmenden Bereich
+   verschoben -- so kann es unabhängig von der Spaltenbreite auf die für
+   seinen Inhalt nötige Höhe wachsen, ganz ohne internes Scrollen. An seiner
+   ursprünglichen Stelle bleibt bis zur Rückkehr ein unsichtbarer Platzhalter
+   in gleicher Höhe stehen, damit die übrigen Felder nicht verrutschen. */
+.faq-spotlight:empty{display:none;}
+.faq-spotlight:not(:empty){margin-bottom:24px;}
+.faq-item.is-spotlight{
+  width:100%;
+  box-shadow:0 30px 60px -22px rgba(20,20,20,.42);
+  opacity:0;
+  transform:translateY(-10px) scale(.98);
+  transition:opacity .32s ease, transform .32s cubic-bezier(.16,1,.3,1), box-shadow .32s ease;
+}
+.faq-item.is-spotlight.is-spotlight-visible{opacity:1;transform:none;}
+/* Die übrigen Felder (beide Spalten) blenden ab, damit die Aufmerksamkeit
+   auf dem geöffneten Feld liegt -- bleiben dabei aber anklickbar, damit sich
+   direkt zwischen Fragen wechseln lässt, ohne vorher schließen zu müssen. */
+.faq-columns.has-open .faq-item{opacity:.15;transition:opacity .32s ease;}
+
 @media(min-width:1025px){
   .ph-faq .s-offers-inner{height:100%;display:flex;flex-direction:column;padding-top:calc(0.625cm + 10px);}
   .faq-top{flex:0 0 auto;margin-bottom:32px;}
