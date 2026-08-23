@@ -239,7 +239,7 @@ h1,h2,h3{font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;font-weight:700
 .tiles-cards-1x4{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;}
 .tile.card{padding:40px 30px;min-height:266px;}
 .tile .num{font-size:.86rem;margin-bottom:14px;}
-.tile h3{font-size:1.317rem;margin:0 0 12px;min-height:54px;}
+.tile h3{font-size:1.4rem;margin:0 0 12px;min-height:54px;}
 .tile.card:nth-child(3) h3, .tile.card:nth-child(4) h3{min-height:24px;}
 .tile p{font-size:1.083rem;line-height:1.6;}
 
@@ -365,7 +365,7 @@ body.on-contact .snap-dots button.is-active{background:#cdd8cb;}
     padding:14px 16px;min-height:auto;border-radius:10px;
   }
   .tile .num{display:block;order:0;font-size:.72rem;color:var(--gold);margin:0;}
-  .tile h3{order:1;flex:1;display:flex;align-items:center;justify-content:space-between;gap:10px;margin:0;font-size:1.02rem;min-height:auto;}
+  .tile h3{order:1;flex:1;display:flex;align-items:center;justify-content:space-between;gap:10px;margin:0;font-size:1.103rem;min-height:auto;}
   .tile h3::after{content:"";width:9px;height:9px;border-right:2px solid var(--gold);border-bottom:2px solid var(--gold);transform:rotate(45deg);transition:transform .25s ease;flex-shrink:0;}
   .tile.card.is-open h3::after{transform:rotate(-135deg);}
   .tile p{order:2;flex-basis:100%;max-height:0;overflow:hidden;opacity:0;margin:0;font-size:.92rem;transition:max-height .3s ease,opacity .25s ease,margin .3s ease;}
@@ -471,7 +471,7 @@ body.on-contact .snap-dots button.is-active{background:#cdd8cb;}
   .offers-band{display:block;}
   .tile.card{padding:28px 26px;min-height:210px;}
   .tile .num{margin-bottom:10px;}
-  .tile h3{font-size:1.2rem;margin:0 0 10px;min-height:46px;}
+  .tile h3{font-size:1.283rem;margin:0 0 10px;min-height:46px;}
   .tile p{font-size:.98rem;line-height:1.55;}
 
   /* Abschnitt 2 & 3: Band setzt direkt am unteren Rand der 2. Headerzeile an
@@ -489,6 +489,15 @@ body.on-contact .snap-dots button.is-active{background:#cdd8cb;}
      Band kollidiert. */
   .s-about .about-wrap{padding-top:calc(0.625cm + 24px);}
   .s-offers-inner{padding-top:calc(0.625cm + 24px);}
+  /* Startseite: zusätzlicher Abstand (~1cm) zwischen Farbverlauf-Band und der
+     Überschrift "Meine Angebote" -- Angebotskarten rutschen dadurch entsprechend
+     mit nach unten. Eigene Klasse (statt der Basisregel oben), damit dies gezielt
+     nur die Startseite betrifft und nicht die Unterseite Paartherapie. Da der
+     Inhalt im Abschnitt vertikal zentriert ist, wirkt sich eine Erhöhung von
+     padding-top nur zur Hälfte auf die sichtbare Position aus (die andere Hälfte
+     "verschwindet" durch die Neuzentrierung) -- daher hier 2cm statt 1cm addiert,
+     damit optisch tatsächlich rund 1cm mehr Abstand entsteht. */
+  .hp-offers .s-offers-inner{padding-top:calc(2.625cm + 10px);}
 
   /* Abschnitt 4: Impressum/Datenschutz-Zeile sitzt ganz unten im Abschnitt,
      mit einer Höhe wie die 1. Headerzeile (utility-bar). */
@@ -571,7 +580,7 @@ body.on-contact .snap-dots button.is-active{background:#cdd8cb;}
 .faq-item.is-open .faq-a{opacity:1;transform:translateY(0);}
 
 @media(min-width:1025px){
-  .s-offers-inner{height:100%;display:flex;flex-direction:column;padding-top:calc(0.625cm + 10px);}
+  .ph-offers .s-offers-inner{height:100%;display:flex;flex-direction:column;padding-top:calc(0.625cm + 10px);}
   .faq-top{flex:0 0 auto;}
 
   /* Der Teaser-Text sitzt (per position:absolute) direkt unter der Überschrift,
@@ -620,10 +629,9 @@ body.on-contact .snap-dots button.is-active{background:#cdd8cb;}
    unverändert bleibt. */
 .ph-contact .kb-right .kb-eyebrow{font-size:.9rem;margin:0 0 14px;}
 .ph-contact .kb-right .kb-text{font-size:1.05rem;max-width:none;margin:0 0 18px;}
-.s-contact .kb-buttons a{font-size:.84rem;padding:11px 20px;}
-/* Buttons nur auf der Paartherapie-Seite größer, auf gleicher Schriftgröße
-   wie der übrige Text (Startseiten-Buttons bleiben unverändert). */
-.ph-contact .kb-buttons a{font-size:1.05rem;padding:13px 24px;}
+/* Einheitliche, größere Kontaktbuttons auf Startseite und Paartherapie-Seite
+   (gleiche Schriftgröße wie der übrige Text im Kontaktfeld). */
+.s-contact .kb-buttons a{font-size:1.05rem;padding:13px 24px;}
 
 /* Zweispaltige Anordnung (Rahmen-Block nach links gerückt, Kontaktfeld
    rechts mit Trennstrich) gilt nur ab Desktop-Breite – darunter bleibt es
