@@ -574,6 +574,11 @@ body.on-contact .snap-dots button.is-active{background:#cdd8cb;}
    Foto im eigenen, natürlichen Querformat unbeschnitten dargestellt: die Box
    bekommt eine Breite vorgegeben, die Höhe ergibt sich automatisch daraus.
    Darunter steht klein, schwach und kursiv der Quellennachweis. */
+/* Zweiter Absatz ("Alle sind willkommen ...") steht mit kleinem, bewusstem
+   Abstand unter dem ersten -- nur auf dieser Seite (.ph-hero), damit die
+   Startseite mit ihrem einzelnen Hero-Absatz unverändert bleibt. */
+.ph-hero .hero-text p{margin:0;}
+.ph-hero .hero-text p.hero-welcome{margin-top:14px;}
 .ph-hero .hero-photo-wrap{display:flex;flex-direction:column;width:100%;}
 .ph-hero .hero-photo{width:100%;height:auto;aspect-ratio:auto;position:static;left:auto;}
 .ph-hero .hero-photo img{width:100%;height:auto;object-fit:contain;object-position:center;}
@@ -592,21 +597,41 @@ body.on-contact .snap-dots button.is-active{background:#cdd8cb;}
   .ph-hero .hero-photo-wrap{transform:translateX(calc(-24.11vw + 261.9px));}
 }
 
-/* Abschnitt 2: Einleitungstext + FAQ-Akkordeon in voller Breite. Am Desktop
-   sitzt der Text nah am oberen Rand (mehr Platz für das Aufklappen der
-   Fragen), die Fragenliste selbst wird im verbleibenden Raum vertikal
-   zentriert dargestellt. */
+/* Abschnitt 2: "Worum es geht" -- Einleitungstext + Zitat in der linken
+   Spalte, Foto rechts. Eigene Klasse (.ph-worum) statt .s-offers, damit der
+   Abschnitt die helle Grundfarbe der Seite behält (Kontrast zum folgenden,
+   getönten FAQ-Abschnitt). */
+.ph-worum{padding:0 8vw;position:relative;background:var(--bg);}
 .faq-top{margin-bottom:26px;}
 .faq-eyebrow{color:var(--sage);text-transform:uppercase;letter-spacing:.1em;font-weight:700;font-size:1rem;margin:24px 0 0;}
-/* Der Zeilenumbruch nach dem Bindestrich ist nur auf sehr schmalen Screens
-   gewünscht (dort wirkt der Umbruch mitten im Wort sonst ungünstig) -- am
-   Desktop/Tablet bleibt die Überschrift einzeilig wie bisher. */
-.eyebrow-break{display:none;}
-/* Unterhalb von Desktop-Breite bekommt der Teaser denselben Abstand nach
-   unten wie oberhalb (.faq-top) zur Überschrift -- am Desktop wird das
-   weiter unten wieder auf 0 zurückgesetzt (dort übernimmt das Grid-Layout
-   die Abstände). */
-.faq-teaser{color:var(--ink);font-size:1.05rem;line-height:1.7;margin:0 0 26px;max-width:none;}
+/* Gleiche Farbe/Größe/Schnitt wie die Überschrift "Meine Angebote" auf der
+   Startseite (.eyebrow-label) -- wird für beide neuen Abschnitte
+   ("Worum es geht" und "Häufig gestellte Fragen") gleich verwendet. */
+.faq-heading{color:var(--navy);text-transform:none;letter-spacing:.015em;font-weight:700;font-size:1.825rem;margin:6px 0 0;}
+.worum-grid{display:grid;grid-template-columns:1fr;gap:32px;}
+/* Farbe wie der Fließtext unter "Über mich" auf der Startseite (.about p). */
+.worum-grid .body-text{color:var(--muted);font-size:1.05rem;line-height:1.75;margin:0;}
+.worum-grid .about-quote{margin-top:24px;}
+/* Platzhalter, bis ein echtes Foto eingesetzt wird. */
+.photo-placeholder{
+  aspect-ratio:4/5;border-radius:16px;overflow:hidden;
+  background:repeating-linear-gradient(135deg,#ded6c3,#ded6c3 10px,#d4cbb2 10px,#d4cbb2 20px);
+  border:2px dashed #b8a97e;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;
+  color:#8a7f61;font-size:.92rem;text-align:center;padding:20px;
+}
+.photo-placeholder svg{width:44px;height:44px;opacity:.6;}
+
+@media(min-width:1025px){
+  .ph-worum .s-offers-inner{height:100%;padding-top:calc(0.625cm + 10px);}
+  .worum-grid{grid-template-columns:1fr .8fr;gap:64px;align-items:start;}
+}
+
+/* Abschnitt 3: "Häufig gestellte Fragen" -- FAQ-Akkordeon, ab Desktop
+   zweispaltig (2 x 4 Kacheln). Jede Spalte ist eine eigenständige .faq-list,
+   dadurch bleiben Farbfolge (siehe nth-of-type unten) und Auf-/Zuklapp-
+   verhalten je Spalte unabhängig voneinander. */
+.faq-columns{display:flex;flex-direction:column;gap:24px;}
 .faq-list{display:flex;flex-direction:column;gap:12px;}
 .faq-item{background:#fff;border-radius:14px;border-left:5px solid var(--navy);box-shadow:0 14px 30px -24px rgba(20,20,20,.3);overflow:hidden;}
 .faq-item:nth-of-type(2){border-left-color:var(--sage);}
@@ -640,42 +665,14 @@ body.on-contact .snap-dots button.is-active{background:#cdd8cb;}
 .faq-item.is-open .faq-a{opacity:1;transform:translateY(0);}
 
 @media(min-width:1025px){
-  .ph-offers .s-offers-inner{height:100%;display:flex;flex-direction:column;padding-top:calc(0.625cm + 10px);}
-  .faq-top{flex:0 0 auto;margin-bottom:40px;}
-
-  /* Der Teaser-Text steht (im geschlossenen Zustand) direkt unter der
-     Überschrift. Die Liste wird per Grid (Zeilen: Text / 1fr / Liste / 1fr)
-     exakt mittig zwischen der Text-Unterkante und dem unteren Rand des
-     Bildschirms positioniert -- die beiden 1fr-Zeilen sind durch das
-     Grid-Layout immer exakt gleich groß, unabhängig von der Fensterhöhe. */
-  .faq-body{flex:1 1 auto;min-height:0;position:relative;display:grid;grid-template-rows:auto 1fr auto 1fr;}
-  /* Kollabiert über max-height statt grid-template-rows: der Teaser ist ein
-     einzelnes <p> ohne inneres Wrapper-Element, dessen (anonyme) Textbox bei
-     "grid-template-rows:0fr" nicht wirklich auf 0 schrumpft (Browser lassen
-     dabei die vom Inhalt vorgegebene Mindesthöhe stehen) -- max-height
-     funktioniert unabhängig davon zuverlässig. 260px liegt komfortabel über
-     der größten vorkommenden Teaser-Höhe (max. ca. 200px bei 1025px Breite). */
-  .faq-teaser{
-    grid-row:1;
-    max-height:260px;opacity:1;overflow:hidden;margin:0;
-    transition:max-height .5s cubic-bezier(.16,1,.3,1), opacity .4s ease-out;
-  }
-  /* Ohne dies dürfen sich die FAQ-Kacheln als Flex-Kinder unterhalb ihrer
-     Inhaltshöhe zusammenquetschen (Standardverhalten von Flexbox) -- dadurch
-     konnte Inhalt abgeschnitten werden, statt dass die Liste bei echtem
-     Platzmangel zuverlässig scrollbar wird. */
-  .faq-item{flex-shrink:0;}
-  /* Der Positionswechsel beim Auf-/Zuklappen wird per JS (FLIP-Technik, siehe
-     main.js) smooth über "transform" animiert, da Grid-Zeilenänderungen
-     selbst nicht animierbar sind. */
-  .faq-list{grid-row:3;min-height:0;overflow-y:auto;margin-top:0;transition:transform .55s cubic-bezier(.16,1,.3,1);}
-
-  /* Ist ein FAQ-Punkt geöffnet, blendet der Einleitungstext aus (die
-     Überschrift bleibt als Orientierung stehen) und die Liste rückt dicht
-     unter die Überschrift (12px Abstand), damit für die aufgeklappte
-     Antwort möglichst viel Platz nach unten frei wird. */
-  .s-offers.has-open .faq-body{grid-template-rows:auto 12px minmax(0,1fr);}
-  .s-offers.has-open .faq-teaser{max-height:0;opacity:0;pointer-events:none;}
+  .ph-faq .s-offers-inner{height:100%;display:flex;flex-direction:column;padding-top:calc(0.625cm + 10px);}
+  .faq-top{flex:0 0 auto;margin-bottom:32px;}
+  /* Jede Spalte bekommt den verbleibenden Raum unterhalb der Überschrift und
+     scrollt bei Bedarf unabhängig von der anderen -- öffnet sich z.B. die
+     lange Antwort in der linken Spalte, bleibt die rechte Spalte davon
+     unberührt sichtbar (statt dass die ganze Liste umbrechen müsste). */
+  .faq-columns{flex:1 1 auto;min-height:0;flex-direction:row;gap:0 28px;}
+  .faq-columns .faq-list{flex:1 1 0;min-width:0;min-height:0;overflow-y:auto;}
 }
 
 /* Abschnitt 3: Rahmen-Übersicht (links, Spalten/Schriftgrößen wie im
@@ -683,7 +680,7 @@ body.on-contact .snap-dots button.is-active{background:#cdd8cb;}
    abgesetzt durch einen schmalen vertikalen Trennstrich) */
 .rahmen-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;padding-top:24px;border-top:1px solid rgba(255,255,255,.2);margin-top:24px;}
 .rahmen-grid h3{font-size:1rem;margin:0 0 8px;color:#fff;}
-/* Gleiche Schriftgröße wie der Fließtext in Abschnitt 2 (.faq-teaser). */
+/* Gleiche Schriftgröße wie der Fließtext im "Worum es geht"-Abschnitt (.body-text). */
 .rahmen-grid p{margin:0;color:#c9cfd6;font-size:1.05rem;line-height:1.6;}
 /* Diese beiden nur für die Paartherapie-Seite (.ph-contact) skaliert, damit
    der geteilte Kontaktabschnitt der Startseite (.s-contact ohne .ph-contact)
@@ -720,5 +717,5 @@ body.on-contact .snap-dots button.is-active{background:#cdd8cb;}
 @media(max-width:640px){
   .rahmen-grid{grid-template-columns:1fr;gap:18px;}
   .faq-eyebrow{font-size:.8rem;}
-  .eyebrow-break{display:inline;}
+  .faq-heading{font-size:1.35rem;}
 }
