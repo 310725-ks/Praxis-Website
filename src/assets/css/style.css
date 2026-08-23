@@ -603,6 +603,10 @@ body.on-contact .snap-dots button.is-active{background:#cdd8cb;}
    getönten FAQ-Abschnitt). */
 .ph-worum{padding:0 8vw;position:relative;background:var(--bg);}
 .faq-top{margin-bottom:26px;}
+/* Gleicher Abstand zur Überschrift zum Text darunter wie zwischen Eyebrow
+   und Überschrift (16px) -- nur in diesem Abschnitt, die generische
+   .faq-top-Regel (auch für Abschnitt 3 genutzt) bleibt unangetastet. */
+.ph-worum .faq-top{margin-bottom:16px;}
 .faq-eyebrow{color:var(--sage);text-transform:uppercase;letter-spacing:.1em;font-weight:700;font-size:1rem;margin:24px 0 0;}
 /* Gleiche Farbe/Größe/Schnitt wie die Überschrift "Meine Angebote" auf der
    Startseite (.eyebrow-label) -- wird für beide neuen Abschnitte
@@ -611,7 +615,14 @@ body.on-contact .snap-dots button.is-active{background:#cdd8cb;}
 .worum-grid{display:grid;grid-template-columns:1fr;gap:32px;}
 /* Farbe wie der Fließtext unter "Über mich" auf der Startseite (.about p). */
 .worum-grid .body-text{color:var(--muted);font-size:1.05rem;line-height:1.75;margin:0;}
-.worum-grid .about-quote{margin-top:24px;}
+/* Etwas schmaler als der Fließtext darüber, damit sich die
+   Formatierungsbreite der beiden Blöcke sichtbar unterscheidet (Zitat
+   bleibt linksbündig an der Farbleiste, nur die rechte Kante rückt ein). */
+.worum-grid .about-quote{margin-top:24px;max-width:88%;}
+/* Gleiche Schriftgröße wie das Zitat unter "Über mich" auf der Startseite
+   (dort per .s-about .about p auf 1.167rem angehoben -- hier direkt
+   gesetzt, da .ph-worum kein Äquivalent dieser Regel hat). */
+.worum-grid .about-quote p{font-size:1.167rem;}
 /* Foto rechte Spalte: gleiche Größen-/Positionslogik wie das Hero-Foto der
    Startseite (.hero-photo) -- viewport-höhenbasierte Größe je Breakpoint,
    4:5-Format, abgerundete Ecken, Schatten -- an die schmalere .8fr-Spalte
@@ -626,9 +637,11 @@ body.on-contact .snap-dots button.is-active{background:#cdd8cb;}
 
 @media(max-width:640px){
   .worum-photo{display:block;height:min(40vh,300px);justify-self:center;margin:0 auto;border-radius:16px;box-shadow:0 20px 40px -18px rgba(20,20,20,.35);}
+  .worum-grid .about-quote p{font-size:1rem;}
 }
 @media(min-width:641px) and (max-width:1024px){
   .worum-photo{height:min(46vh,340px);justify-self:center;margin:0 auto;}
+  .worum-grid .about-quote p{font-size:1.05rem;}
 }
 
 @media(min-width:1025px){
@@ -725,12 +738,23 @@ body.on-contact .snap-dots button.is-active{background:#cdd8cb;}
 @media(min-width:1025px){
   .ph-faq .s-offers-inner{height:100%;display:flex;flex-direction:column;padding-top:calc(0.625cm + 10px);}
   .faq-top{flex:0 0 auto;margin-bottom:32px;}
+  /* Kein zusätzlicher Abstand hier: die 8 Felder sollen exakt mittig
+     zwischen der Unterkante der Überschrift und der Abschnitts-Unterkante
+     sitzen (siehe .faq-columns .faq-list{justify-content:center} unten) --
+     der Freiraum entsteht durch die Zentrierung selbst, nicht durch einen
+     festen Vorab-Abstand. */
+  .ph-faq .faq-top{margin-bottom:0;}
   /* Jede Spalte bekommt den verbleibenden Raum unterhalb der Überschrift und
      scrollt bei Bedarf unabhängig von der anderen -- öffnet sich z.B. die
      lange Antwort in der linken Spalte, bleibt die rechte Spalte davon
      unberührt sichtbar (statt dass die ganze Liste umbrechen müsste). */
   .faq-columns{flex:1 1 auto;min-height:0;flex-direction:row;gap:0 28px;}
-  .faq-columns .faq-list{flex:1 1 0;min-width:0;min-height:0;overflow-y:auto;}
+  /* Die 8 Felder (4 je Spalte) mittig im verfügbaren Raum unterhalb der
+     Überschrift statt oben ausgerichtet -- jede Spalte ist bereits über
+     ihre volle Höhe gestreckt (align-items:stretch, Standardwert), daher
+     zentriert justify-content den eigenen Inhalt exakt zwischen
+     Überschriften-Unterkante und Abschnitts-Unterkante. */
+  .faq-columns .faq-list{flex:1 1 0;min-width:0;min-height:0;overflow-y:auto;justify-content:center;}
   /* Sicherheitsnetz für sehr schmale/niedrige Desktop-Fenster: wird das
      geöffnete Spotlight-Feld per JS (main.js) als zu hoch erkannt, bekommt
      es eine exakt berechnete Scroll-Grenze -- dieselbe Klasse setzt hier
