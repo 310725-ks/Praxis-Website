@@ -489,15 +489,22 @@ body.on-contact .snap-dots button.is-active{background:#cdd8cb;}
      Band kollidiert. */
   .s-about .about-wrap{padding-top:calc(0.625cm + 24px);}
   .s-offers-inner{padding-top:calc(0.625cm + 24px);}
-  /* Startseite: zusätzlicher Abstand (~1cm) zwischen Farbverlauf-Band und der
-     Überschrift "Meine Angebote" -- Angebotskarten rutschen dadurch entsprechend
-     mit nach unten. Eigene Klasse (statt der Basisregel oben), damit dies gezielt
-     nur die Startseite betrifft und nicht die Unterseite Paartherapie. Da der
-     Inhalt im Abschnitt vertikal zentriert ist, wirkt sich eine Erhöhung von
-     padding-top nur zur Hälfte auf die sichtbare Position aus (die andere Hälfte
-     "verschwindet" durch die Neuzentrierung) -- daher hier 2cm statt 1cm addiert,
-     damit optisch tatsächlich rund 1cm mehr Abstand entsteht. */
-  .hp-offers .s-offers-inner{padding-top:calc(2.625cm + 10px);}
+  /* Startseite: Angebotskarten mittig in der hellen Fläche unterhalb des
+     Farbverlauf-Bands positionieren, und die Überschrift "Meine Angebote"
+     mittig zwischen Band und Karten. Gelöst über ein 3-zeiliges Grid
+     (1fr/auto/Karten/1fr): die beiden 1fr-Zeilen sind per Definition immer
+     gleich groß, wodurch die mittlere (Karten-)Zeile automatisch vertikal
+     zentriert in der hellen Fläche liegt. Die Überschrift sitzt in der oberen
+     1fr-Zeile und wird dort selbst zentriert -- dadurch liegt sie automatisch
+     mittig zwischen Band und Karten, unabhängig von der Bildschirmhöhe. */
+  .hp-offers .s-offers-inner{
+    height:100%;
+    padding-top:0.625cm;
+    display:grid;
+    grid-template-rows:1fr auto 1fr;
+  }
+  .hp-offers .eyebrow-label{grid-row:1;align-self:center;margin:0;}
+  .hp-offers .tiles-cards-1x4{grid-row:2;}
 
   /* Abschnitt 4: Impressum/Datenschutz-Zeile sitzt ganz unten im Abschnitt,
      mit einer Höhe wie die 1. Headerzeile (utility-bar). */
@@ -539,6 +546,22 @@ body.on-contact .snap-dots button.is-active{background:#cdd8cb;}
    per Vollbild-Einrasten. Damit trotzdem auch lange FAQ-Antworten ohne
    internes Scrollen lesbar sind, bleiben beim Öffnen alle Fragen sichtbar
    und die Antwort wird sanft eingeblendet (siehe FAQ-Akkordeon weiter unten). */
+
+/* Abschnitt 1: Hero-Foto im Querformat statt Hochformat -- eigene Klasse
+   (.ph-hero), damit dies gezielt nur die Paartherapie-Seite betrifft und
+   nicht das (weiterhin hochformatige) Porträtfoto auf der Startseite. Statt
+   eines festen Seitenverhältnisses mit Beschnitt (object-fit:cover) wird das
+   Foto im eigenen, natürlichen Querformat unbeschnitten dargestellt: die Box
+   bekommt eine Breite vorgegeben, die Höhe ergibt sich automatisch daraus.
+   Darunter steht klein, schwach und kursiv der Quellennachweis. */
+.ph-hero .hero-photo-wrap{display:flex;flex-direction:column;width:100%;}
+.ph-hero .hero-photo{width:100%;height:auto;aspect-ratio:auto;position:static;left:auto;}
+.ph-hero .hero-photo img{width:100%;height:auto;object-fit:contain;object-position:center;}
+.ph-hero .photo-credit{margin:10px 0 0;font-size:.78rem;font-style:italic;color:var(--muted);opacity:.8;text-align:center;}
+
+@media(min-width:641px){
+  .ph-hero .hero-photo-wrap{max-width:520px;justify-self:center;margin:0 auto;}
+}
 
 /* Abschnitt 2: Einleitungstext + FAQ-Akkordeon in voller Breite. Am Desktop
    sitzt der Text nah am oberen Rand (mehr Platz für das Aufklappen der
