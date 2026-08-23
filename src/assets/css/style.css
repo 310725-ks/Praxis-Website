@@ -563,6 +563,15 @@ body.on-contact .snap-dots button.is-active{background:#cdd8cb;}
   .ph-hero .hero-photo-wrap{max-width:520px;justify-self:center;margin:0 auto;}
 }
 
+@media(min-width:1025px){
+  /* Bild etwas weiter nach links rücken, damit es (statt in der eigenen
+     Spalte zentriert) näher an der Bildmitte zwischen Text-Ende und den
+     rechten Abschnitts-Punkten liegt. Der nötige Versatz skaliert mit der
+     Fensterbreite (an calc() mit vw-Anteil angenähert, kalibriert anhand
+     gängiger Desktop-Breiten). */
+  .ph-hero .hero-photo-wrap{transform:translateX(calc(-25.292vw + 282.5px));}
+}
+
 /* Abschnitt 2: Einleitungstext + FAQ-Akkordeon in voller Breite. Am Desktop
    sitzt der Text nah am oberen Rand (mehr Platz für das Aufklappen der
    Fragen), die Fragenliste selbst wird im verbleibenden Raum vertikal
