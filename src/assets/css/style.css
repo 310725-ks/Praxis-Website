@@ -5,6 +5,11 @@
 }
 *{box-sizing:border-box;}
 html{-webkit-text-size-adjust:100%;text-size-adjust:100%;}
+/* Sicherheitsnetz gegen horizontales Verrutschen/Überlaufen einzelner
+   Elemente (z.B. randlose Bild-/Bandbereiche) auf schmalen Bildschirmen --
+   verhindert, dass so etwas eine horizontale Scrollmöglichkeit der ganzen
+   Seite erzeugt. */
+html,body{overflow-x:hidden;}
 body{margin:0;background:var(--bg);color:var(--ink);font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;}
 a{text-decoration:none;color:inherit;}
 ul{list-style:none;margin:0;padding:0;}
@@ -338,7 +343,7 @@ body.on-contact .snap-dots button.is-active{background:#cdd8cb;}
 
   .snap-section.s-hero .hero-split{grid-template-columns:1fr;gap:4px;}
   .snap-section.s-hero .hero .eyebrow{font-size:.8rem;}
-  .snap-section.s-hero .hero h1{font-size:1.9rem;margin:10px 0 14px;}
+  .snap-section.s-hero .hero h1{font-size:1.9rem;margin:10px 0 14px;overflow-wrap:break-word;word-break:break-word;hyphens:auto;}
   .snap-section.s-hero .hero p{font-size:1rem;max-width:100%;}
   .hero-wrap{display:block;}
   .hero.hero-split{position:static;padding:0;}
@@ -591,9 +596,17 @@ body.on-contact .snap-dots button.is-active{background:#cdd8cb;}
    sitzt der Text nah am oberen Rand (mehr Platz für das Aufklappen der
    Fragen), die Fragenliste selbst wird im verbleibenden Raum vertikal
    zentriert dargestellt. */
-.faq-top{margin-bottom:40px;}
+.faq-top{margin-bottom:26px;}
 .faq-eyebrow{color:var(--sage);text-transform:uppercase;letter-spacing:.1em;font-weight:700;font-size:1rem;margin:24px 0 0;}
-.faq-teaser{color:var(--ink);font-size:1.05rem;line-height:1.7;margin:0;max-width:none;}
+/* Der Zeilenumbruch nach dem Bindestrich ist nur auf sehr schmalen Screens
+   gewünscht (dort wirkt der Umbruch mitten im Wort sonst ungünstig) -- am
+   Desktop/Tablet bleibt die Überschrift einzeilig wie bisher. */
+.eyebrow-break{display:none;}
+/* Unterhalb von Desktop-Breite bekommt der Teaser denselben Abstand nach
+   unten wie oberhalb (.faq-top) zur Überschrift -- am Desktop wird das
+   weiter unten wieder auf 0 zurückgesetzt (dort übernimmt das Grid-Layout
+   die Abstände). */
+.faq-teaser{color:var(--ink);font-size:1.05rem;line-height:1.7;margin:0 0 26px;max-width:none;}
 .faq-list{display:flex;flex-direction:column;gap:12px;}
 .faq-item{background:#fff;border-radius:14px;border-left:5px solid var(--navy);box-shadow:0 14px 30px -24px rgba(20,20,20,.3);overflow:hidden;}
 .faq-item:nth-of-type(2){border-left-color:var(--sage);}
@@ -628,7 +641,7 @@ body.on-contact .snap-dots button.is-active{background:#cdd8cb;}
 
 @media(min-width:1025px){
   .ph-offers .s-offers-inner{height:100%;display:flex;flex-direction:column;padding-top:calc(0.625cm + 10px);}
-  .faq-top{flex:0 0 auto;}
+  .faq-top{flex:0 0 auto;margin-bottom:40px;}
 
   /* Der Teaser-Text steht (im geschlossenen Zustand) direkt unter der
      Überschrift. Die Liste wird per Grid (Zeilen: Text / 1fr / Liste / 1fr)
@@ -707,4 +720,5 @@ body.on-contact .snap-dots button.is-active{background:#cdd8cb;}
 @media(max-width:640px){
   .rahmen-grid{grid-template-columns:1fr;gap:18px;}
   .faq-eyebrow{font-size:.8rem;}
+  .eyebrow-break{display:inline;}
 }
