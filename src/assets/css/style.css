@@ -640,8 +640,15 @@ body.on-contact .snap-dots button.is-active{background:#cdd8cb;}
   height:min(50vh,420px);width:auto;justify-self:end;
   border-radius:20px;overflow:hidden;aspect-ratio:4/5;
   box-shadow:0 30px 54px -22px rgba(20,20,20,.4);
+  position:relative;
 }
 .worum-photo img{width:100%;height:100%;object-fit:cover;object-position:50% 35%;display:block;}
+.worum-credit{
+  position:absolute;bottom:8px;right:8px;
+  font-size:calc(.78rem - 1.7pt);font-style:italic;color:var(--muted);
+  background:#fff;border:1px solid rgba(107,106,102,.32);border-radius:6px;
+  padding:3px 10px;
+}
 
 @media(max-width:640px){
   .worum-photo{display:block;height:min(40vh,300px);justify-self:center;margin:0 auto;border-radius:16px;box-shadow:0 20px 40px -18px rgba(20,20,20,.35);}
