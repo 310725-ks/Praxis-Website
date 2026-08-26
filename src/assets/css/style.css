@@ -638,13 +638,17 @@ body.on-contact .snap-dots button.is-active{background:#cdd8cb;}
    Zentrierungs-Sonderlogik mit Linksversatz). */
 .worum-photo{
   height:min(50vh,420px);width:auto;justify-self:end;
-  border-radius:20px;overflow:hidden;aspect-ratio:4/5;
+  border-radius:20px;aspect-ratio:4/5;
   box-shadow:0 30px 54px -22px rgba(20,20,20,.4);
   position:relative;
 }
-.worum-photo img{width:100%;height:100%;object-fit:cover;object-position:50% 35%;display:block;}
+.worum-photo img{width:100%;height:100%;object-fit:cover;object-position:50% 35%;display:block;border-radius:inherit;}
+/* Gleiche Überlapp-Position wie die Bildquelle beim Hero-Foto "Damen in
+   Blau" (.photo-credit: margin-top:-13px/margin-right:2px in dessen
+   Flex-Kontext) -- hier per bottom/right nachgebildet, da .worum-photo
+   kein Flex-Layout ist, sondern absolut/grid-positioniert. */
 .worum-credit{
-  position:absolute;bottom:8px;right:8px;
+  position:absolute;bottom:-6px;right:2px;
   font-size:calc(.78rem - 1.7pt);font-style:italic;color:var(--muted);
   background:#fff;border:1px solid rgba(107,106,102,.32);border-radius:6px;
   padding:3px 10px;
