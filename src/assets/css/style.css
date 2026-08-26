@@ -657,6 +657,17 @@ body.on-contact .snap-dots button.is-active{background:#cdd8cb;}
 @media(max-width:640px){
   .worum-photo{display:block;height:min(40vh,300px);justify-self:center;margin:0 auto;border-radius:16px;box-shadow:0 20px 40px -18px rgba(20,20,20,.35);}
   .worum-grid .about-quote p{font-size:1rem;}
+  /* Gleicher Abstand des Fotos zum Zitatfeld darüber wie der Abstand des
+     Zitatfelds zum Fließtext darüber (24px, siehe .worum-grid .about-quote). */
+  .ph-worum .worum-photo{margin-top:24px;}
+  /* Die Farbverlauf-Bänder am Abschnittsbeginn (Mobile) ragten mit dem
+     pauschalen -68px-Versatz der Startseiten-Regel (.offers-band) zu weit
+     nach oben in das jeweils vorangehende Foto hinein. Hier auf Paartherapie
+     eigens so berechnet, dass der Abstand nach oben zur Bildunterschrift des
+     vorherigen Fotos genauso groß ist wie der Abstand nach unten zur
+     nächsten Eyebrow (53px). */
+  .ph-worum .about-band{margin-top:8.8px;}
+  .ph-faq .about-band{margin-top:-9px;}
 }
 @media(min-width:641px) and (max-width:1024px){
   .worum-photo{height:min(46vh,340px);justify-self:center;margin:0 auto;}
@@ -696,6 +707,13 @@ body.on-contact .snap-dots button.is-active{background:#cdd8cb;}
 .faq-item:nth-of-type(2){border-left-color:var(--sage);}
 .faq-item:nth-of-type(3){border-left-color:var(--gold);}
 .faq-item:nth-of-type(4){border-left-color:var(--navy);}
+/* Rechte Spalte: setzt die Farbfolge der linken Spalte fort (die unten mit
+   Blau/Navy endet), statt wieder bei Navy zu beginnen -- Salbei, Gold,
+   Navy, Salbei. */
+.faq-columns .faq-list:nth-of-type(2) .faq-item:nth-of-type(1){border-left-color:var(--sage);}
+.faq-columns .faq-list:nth-of-type(2) .faq-item:nth-of-type(2){border-left-color:var(--gold);}
+.faq-columns .faq-list:nth-of-type(2) .faq-item:nth-of-type(3){border-left-color:var(--navy);}
+.faq-columns .faq-list:nth-of-type(2) .faq-item:nth-of-type(4){border-left-color:var(--sage);}
 .faq-summary{all:unset;box-sizing:border-box;width:100%;cursor:pointer;display:flex;align-items:center;gap:16px;padding:18px 22px;}
 .faq-q{flex:1;color:var(--navy);font-weight:700;font-size:1.02rem;}
 .faq-toggle{width:26px;height:26px;border-radius:50%;background:var(--grad);flex-shrink:0;position:relative;transition:transform .35s cubic-bezier(.4,0,.2,1);}
