@@ -590,7 +590,7 @@ body.on-contact .snap-dots button.is-active{background:#cdd8cb;}
 .ph-hero .hero-photo-wrap{display:flex;flex-direction:column;width:100%;}
 .ph-hero .hero-photo{width:100%;height:auto;aspect-ratio:auto;position:static;left:auto;}
 .ph-hero .hero-photo img{width:100%;height:auto;object-fit:contain;object-position:center;}
-.ph-hero .hero-photo-wrap p.photo-credit{margin:8px 0 0;font-size:calc(.78rem - 2pt);font-style:italic;color:var(--muted);opacity:.8;text-align:right;align-self:flex-end;border:1px solid rgba(107,106,102,.32);border-radius:0;padding:3px 10px;max-width:none;}
+.ph-hero .hero-photo-wrap p.photo-credit{margin-top:-13px;margin-right:2px;font-size:calc(.78rem - 1.7pt);font-style:italic;color:var(--muted);text-align:right;align-self:flex-end;border:1px solid rgba(107,106,102,.32);border-radius:6px;padding:3px 10px;max-width:none;background:#fff;position:relative;z-index:1;}
 
 @media(min-width:641px){
   .ph-hero .hero-photo-wrap{max-width:598px;justify-self:center;margin:0 auto;}
