@@ -144,8 +144,11 @@
   document.querySelectorAll('.tile.card').forEach(function(card){
     card.addEventListener('click', function(e){
       // Mobil (Akkordeon-Ansicht): Klick klappt Beschreibung auf/zu statt zu navigieren.
+      // Ausnahme: Klick auf den "Mehr erfahren"-Link am Ende des Beschreibungstexts
+      // -- dort soll die normale Link-Navigation zur Angebots-Seite greifen.
       // Desktop/Tablet: normaler Link-Klick, führt zur Unterseite.
       if(window.innerWidth <= 640){
+        if(e.target.closest('.tile-cta')) return;
         e.preventDefault();
         card.classList.toggle('is-open');
       }
