@@ -668,6 +668,17 @@ body.on-contact .snap-dots button.is-active{background:#cdd8cb;}
      nächsten Eyebrow (53px). */
   .ph-worum .about-band{margin-top:8.8px;}
   .ph-faq .about-band{margin-top:-9px;}
+  /* Farbverlauf zwischen Abschnitt 1 und 2: bisher nur calc(100% + 10vw)
+     breit (kompensiert die 8vw-Innenabstände von .ph-worum nicht ganz) --
+     jetzt echte volle Seitenbreite unabhängig vom Padding des Containers. */
+  .ph-worum .about-band{width:100vw;margin-left:calc(50% - 50vw);margin-right:calc(50% - 50vw);}
+  /* Der Bereich zwischen dem Europeana-Foto und dem Farbverlauf darunter
+     lag im oberen Padding von .ph-faq (das die dunklere .s-offers-Fläche
+     erbt) und zeigte dadurch fälschlich die dunklere Hintergrundfarbe.
+     Per Verlauf mit hartem Farbwechsel bleibt dieser Übergangsbereich
+     (= Padding-Top von 68px) hell, die eigentliche FAQ-Fläche darunter
+     bleibt in der gewohnten dunkleren Farbe. */
+  .snap-section.ph-faq{background:linear-gradient(to bottom, var(--bg) 0, var(--bg) 68px, #F4EDE2 68px, #F4EDE2 100%);}
 }
 @media(min-width:641px) and (max-width:1024px){
   .worum-photo{height:min(46vh,340px);justify-self:center;margin:0 auto;}
