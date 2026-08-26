@@ -590,7 +590,12 @@ body.on-contact .snap-dots button.is-active{background:#cdd8cb;}
 .ph-hero .hero-photo-wrap{display:flex;flex-direction:column;width:100%;}
 .ph-hero .hero-photo{width:100%;height:auto;aspect-ratio:auto;position:static;left:auto;}
 .ph-hero .hero-photo img{width:100%;height:auto;object-fit:contain;object-position:center;}
-.ph-hero .hero-photo-wrap p.photo-credit{margin-top:-13px;margin-right:2px;font-size:calc(.78rem - 1.7pt);font-style:italic;color:var(--muted);text-align:right;align-self:flex-end;border:1px solid rgba(107,106,102,.32);border-radius:6px;padding:3px 10px;max-width:none;background:#fff;position:relative;z-index:1;}
+/* Überlappt den unteren Bildrand exakt zur Hälfte (gleiches Prinzip wie
+   .worum-credit): margin-top:0 lässt die Bildunterschrift zunächst bündig
+   unter dem Foto beginnen, transform:translateY(-50%) schiebt sie dann um
+   die Hälfte ihrer EIGENEN Höhe nach oben -- unabhängig von der
+   tatsächlichen Boxhöhe robust exakt hälftig. */
+.ph-hero .hero-photo-wrap p.photo-credit{margin-top:0;margin-right:2px;font-size:calc(.78rem - 1.7pt);font-style:italic;color:var(--muted);text-align:right;align-self:flex-end;border:1px solid rgba(107,106,102,.32);border-radius:6px;padding:3px 10px;max-width:none;background:#fff;position:relative;z-index:1;transform:translateY(-50%);}
 
 @media(min-width:641px){
   .ph-hero .hero-photo-wrap{max-width:598px;justify-self:center;margin:0 auto;}
@@ -643,12 +648,14 @@ body.on-contact .snap-dots button.is-active{background:#cdd8cb;}
   position:relative;
 }
 .worum-photo img{width:100%;height:100%;object-fit:cover;object-position:50% 35%;display:block;border-radius:inherit;}
-/* Gleiche Überlapp-Position wie die Bildquelle beim Hero-Foto "Damen in
-   Blau" (.photo-credit: margin-top:-13px/margin-right:2px in dessen
-   Flex-Kontext) -- hier per bottom/right nachgebildet, da .worum-photo
-   kein Flex-Layout ist, sondern absolut/grid-positioniert. */
+/* Überlappt den unteren Bildrand exakt zur Hälfte: bottom:0 setzt die
+   Unterkante der Bildunterschrift zunächst bündig auf den Bildrand, die
+   Verschiebung um 50% der EIGENEN Höhe (translateY) schiebt sie dann genau
+   zur Hälfte nach unten -- unabhängig von der tatsächlichen Boxhöhe robust
+   exakt hälftig, statt einen festen Pixelwert zu erraten. */
 .worum-credit{
-  position:absolute;bottom:-6px;right:2px;
+  position:absolute;bottom:0;right:2px;
+  transform:translateY(50%);
   font-size:calc(.78rem - 1.7pt);font-style:italic;color:var(--muted);
   background:#fff;border:1px solid rgba(107,106,102,.32);border-radius:6px;
   padding:3px 10px;
