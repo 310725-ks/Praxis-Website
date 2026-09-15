@@ -864,3 +864,99 @@ body.on-contact .snap-dots button.is-active{background:#cdd8cb;}
   .faq-eyebrow{font-size:.8rem;}
   .faq-heading{font-size:1.35rem;}
 }
+
+/* =====================================================================
+   Unterseite Über mich: eigene, salbeigrüne Eyebrow (wie durchgängig auf
+   der ganzen Website -- .faq-eyebrow/.kb-eyebrow/.member-eyebrow nutzen
+   alle var(--sage), auch auf dunklem Grund), Hero im hellen Foto+Text-
+   Layout ohne Farbverlaufs-Band, zwei inhaltliche Abschnitte mit
+   zweispaltigem Aufbau (dünne goldene Trennlinie zwischen den Spalten),
+   und ein zweigeteilter Abschluss-Abschnitt (Mitgliedschaften hell /
+   Kontakt dunkelblau), dessen beide Hälften unabhängig vom Anzeigegerät
+   exakt gleich hoch sind (je 50% der Abschnittshöhe). ---- */
+
+.um-eyebrow{color:var(--sage);text-transform:uppercase;letter-spacing:.1em;font-weight:700;font-size:1rem;margin:0;}
+
+.um-platzhalter{border:1.5px dashed rgba(184,135,63,.55);border-radius:10px;background:rgba(184,135,63,.07);padding:14px 16px;font-style:italic;color:var(--muted);font-size:.95rem;line-height:1.55;}
+.um-platzhalter .um-ph-tag{display:block;font-style:normal;font-size:.68rem;text-transform:uppercase;letter-spacing:.08em;color:var(--gold);font-weight:700;margin-bottom:6px;}
+
+/* ---- Abschnitt 1: Kurzvita (Hero) -- eigenes, helles Foto+Text-Layout ---- */
+.snap-section.um-hero-section{padding:0 8vw;}
+.um-hero-inner{width:100%;max-width:1180px;margin:0 auto;display:grid;grid-template-columns:.85fr 1.15fr;gap:56px;align-items:center;}
+.um-hero-photo{border-radius:20px;overflow:hidden;box-shadow:0 30px 54px -22px rgba(20,20,20,.4);height:min(50vh,420px);width:auto;aspect-ratio:4/5;}
+.um-hero-photo img{width:100%;height:100%;object-fit:cover;object-position:50% 15%;display:block;}
+.um-hero-text h1{color:var(--navy);font-size:2.4rem;margin:12px 0 0;line-height:1.08;}
+.um-hero-text .um-platzhalter{margin-top:16px;}
+
+/* ---- Abschnitte 2 & 3: gemeinsamer zweispaltiger Aufbau ---- */
+.um-two-col{display:grid;grid-template-columns:1fr 1fr;gap:64px;margin-top:28px;position:relative;}
+.um-two-col::before{content:"";position:absolute;left:50%;top:4px;bottom:4px;width:1px;background:rgba(184,135,63,.35);}
+.um-col-heading{color:var(--navy);font-size:1.3rem;font-weight:700;margin:0 0 18px;}
+
+/* Abschnitt 2: Beruflicher Werdegang -- eigene Klasse zusätzlich zu
+   .s-offers, damit der Abschnitt dessen helleren #F4EDE2-Hintergrund und
+   Container (.s-offers-inner) sowie die Mobile-Anpassungen erbt, genau wie
+   bei .ph-faq. */
+.um-werdegang .um-timeline{position:relative;padding-left:30px;}
+.um-timeline::before{content:"";position:absolute;left:6px;top:6px;bottom:6px;width:2px;background:linear-gradient(var(--gold),var(--sage));}
+.um-tl-item{position:relative;margin-bottom:24px;}
+.um-tl-item:last-child{margin-bottom:0;}
+.um-tl-item::before{content:"";position:absolute;left:-30px;top:3px;width:13px;height:13px;border-radius:50%;background:#fff;border:2.5px solid var(--gold);}
+.um-tl-year{color:var(--gold);font-weight:700;font-size:.82rem;display:block;}
+.um-tl-item p{color:var(--ink);font-size:.96rem;line-height:1.5;margin:2px 0 0;}
+
+.um-cert-list{display:flex;flex-direction:column;gap:14px;}
+.um-cert-list li{position:relative;padding-left:22px;color:var(--ink);font-size:.98rem;line-height:1.5;}
+.um-cert-list li::before{content:"";position:absolute;left:0;top:7px;width:8px;height:8px;background:var(--gold);}
+
+/* Abschnitt 3: Berufserfahrungen -- helle Grundfarbe wie .ph-worum, damit
+   sich der Abschnitt vom vorangehenden, getönten Werdegang-Abschnitt
+   abhebt. */
+.snap-section.um-berufserf{padding:0 8vw;background:var(--bg);position:relative;}
+.um-ab-row{display:flex;align-items:flex-start;gap:16px;padding:16px 0;border-bottom:1px solid rgba(107,106,102,.18);}
+.um-ab-row:last-child{border-bottom:none;}
+.um-ab-icon{width:38px;height:38px;border-radius:50%;background:var(--grad);flex-shrink:0;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:.95rem;}
+.um-ab-row h4{color:var(--navy);margin:0 0 4px;font-size:1rem;}
+.um-ab-row p{color:var(--muted);margin:0;font-size:.9rem;line-height:1.5;}
+
+/* Abschnitt 4: Mitgliedschaften (hell) + Kontakt (dunkelblau) -- zusätzlich
+   zu .s-contact (für die geerbte Impressum/Datenschutz-Zeile), aber mit
+   eigenem Hintergrund/Layout: zwei übereinanderliegende, exakt gleich hohe
+   Hälften über die volle Breite statt des zentrierten kb-grid. */
+.snap-section.um-abschluss{padding:0;background:none;align-items:stretch;justify-content:flex-start;}
+.um-abschluss-half{height:50%;width:100%;display:flex;flex-direction:column;justify-content:center;padding:0 8vw;box-sizing:border-box;}
+.um-abschluss-top{background:#F4EDE2;}
+.um-abschluss-bottom{background:var(--navy);}
+.um-logo-row{display:flex;align-items:center;gap:40px;flex-wrap:wrap;margin-top:18px;}
+.um-kb-row{display:flex;flex-direction:row;gap:16px;flex-wrap:wrap;margin-top:18px;}
+
+@media(min-width:1025px){
+  .snap-section.um-abschluss{padding-bottom:calc(var(--header1-h,38px) + 14px);}
+}
+
+@media(max-width:1024px){
+  .um-hero-inner{grid-template-columns:1fr;gap:28px;}
+  .um-hero-photo{justify-self:center;height:min(42vh,340px);}
+  .um-two-col{grid-template-columns:1fr;gap:36px;}
+  .um-two-col::before{display:none;}
+  .snap-section.um-berufserf{padding:56px 6vw;}
+
+  /* Der 50/50-Höhenaufteilung von Abschnitt 4 soll unabhängig vom
+     Anzeigegerät gelten -- auch dort, wo Abschnitte sonst ab hier auf
+     normale, inhaltsgetriebene Höhe umschalten (siehe generische
+     .snap-section-Regel weiter oben), bekommt dieser Abschnitt daher
+     weiterhin eine feste Höhe (eine volle Bildschirmhöhe), damit die
+     beiden Hälften bei jeder Bildschirmbreite exakt gleich groß bleiben. */
+  .snap-section.um-abschluss{height:100vh !important;padding-bottom:0;}
+  .um-abschluss-half{padding:28px 6vw;}
+}
+
+@media(max-width:640px){
+  .snap-section.um-hero-section{padding:40px 5vw 34px;}
+  .um-hero-photo{height:min(38vh,300px);}
+  .um-hero-text h1{font-size:1.9rem;margin:10px 0 0;}
+  .um-col-heading{font-size:1.15rem;}
+  .um-abschluss-half{padding:24px 5vw;}
+  .um-logo-row{gap:24px;}
+  .um-kb-row{flex-direction:column;align-items:flex-start;}
+}
