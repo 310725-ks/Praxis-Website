@@ -869,11 +869,16 @@ body.on-contact .snap-dots button.is-active{background:#cdd8cb;}
    Unterseite Über mich: eigene, salbeigrüne Eyebrow (wie durchgängig auf
    der ganzen Website -- .faq-eyebrow/.kb-eyebrow/.member-eyebrow nutzen
    alle var(--sage), auch auf dunklem Grund), Hero im hellen Foto+Text-
-   Layout ohne Farbverlaufs-Band, zwei inhaltliche Abschnitte mit
-   zweispaltigem Aufbau (dünne goldene Trennlinie zwischen den Spalten),
-   und ein zweigeteilter Abschluss-Abschnitt (Mitgliedschaften hell /
-   Kontakt dunkelblau), dessen beide Hälften unabhängig vom Anzeigegerät
-   exakt gleich hoch sind (je 50% der Abschnittshöhe). ---- */
+   Layout, zwei inhaltliche Abschnitte mit zweispaltigem Aufbau (dünne
+   goldene Trennlinie zwischen den Spalten) -- Abschnitt 2 trägt zusätzlich
+   den Mitgliedschaften-Block unterhalb der Spalten. Die drei hellen
+   Abschnitte (1-3) erhalten je ein dünnes Farbverlaufs-Band am oberen Rand
+   wie auf der Paartherapie-Seite (.about-band/.offers-band). Abschnitt 4
+   ist ein 1:1-Duplikat des Kontaktabschnitts der Startseite (.s-contact,
+   ohne Zusatzklasse/-anpassung). Schriftgrößen in Abschnitt 2 & 3 sind an
+   die entsprechenden Paartherapie-Größen angeglichen (Eyebrow/.faq-eyebrow,
+   Spalten-Überschriften/.faq-heading, Fließtext/.body-text, die drei
+   nummerierten Zeilen/.rahmen-grid). ---- */
 
 .um-eyebrow{color:var(--sage);text-transform:uppercase;letter-spacing:.1em;font-weight:700;font-size:1rem;margin:0;}
 
@@ -881,7 +886,7 @@ body.on-contact .snap-dots button.is-active{background:#cdd8cb;}
 .um-platzhalter .um-ph-tag{display:block;font-style:normal;font-size:.68rem;text-transform:uppercase;letter-spacing:.08em;color:var(--gold);font-weight:700;margin-bottom:6px;}
 
 /* ---- Abschnitt 1: Kurzvita (Hero) -- eigenes, helles Foto+Text-Layout ---- */
-.snap-section.um-hero-section{padding:0 8vw;}
+.snap-section.um-hero-section{padding:0 8vw;position:relative;}
 .um-hero-inner{width:100%;max-width:1180px;margin:0 auto;display:grid;grid-template-columns:.85fr 1.15fr;gap:56px;align-items:center;}
 .um-hero-photo{border-radius:20px;overflow:hidden;box-shadow:0 30px 54px -22px rgba(20,20,20,.4);height:min(50vh,420px);width:auto;aspect-ratio:4/5;}
 .um-hero-photo img{width:100%;height:100%;object-fit:cover;object-position:50% 15%;display:block;}
@@ -891,7 +896,9 @@ body.on-contact .snap-dots button.is-active{background:#cdd8cb;}
 /* ---- Abschnitte 2 & 3: gemeinsamer zweispaltiger Aufbau ---- */
 .um-two-col{display:grid;grid-template-columns:1fr 1fr;gap:64px;margin-top:28px;position:relative;}
 .um-two-col::before{content:"";position:absolute;left:50%;top:4px;bottom:4px;width:1px;background:rgba(184,135,63,.35);}
-.um-col-heading{color:var(--navy);font-size:1.3rem;font-weight:700;margin:0 0 18px;}
+/* Gleiche Größe wie die blaue Abschnittsüberschrift .faq-heading auf der
+   Paartherapie-Seite (1.825rem Desktop / 1.35rem Mobile, siehe unten). */
+.um-col-heading{color:var(--navy);font-size:1.825rem;font-weight:700;margin:0 0 18px;}
 
 /* Abschnitt 2: Beruflicher Werdegang -- eigene Klasse zusätzlich zu
    .s-offers, damit der Abschnitt dessen helleren #F4EDE2-Hintergrund und
@@ -903,11 +910,20 @@ body.on-contact .snap-dots button.is-active{background:#cdd8cb;}
 .um-tl-item:last-child{margin-bottom:0;}
 .um-tl-item::before{content:"";position:absolute;left:-30px;top:3px;width:13px;height:13px;border-radius:50%;background:#fff;border:2.5px solid var(--gold);}
 .um-tl-year{color:var(--gold);font-weight:700;font-size:.82rem;display:block;}
-.um-tl-item p{color:var(--ink);font-size:.96rem;line-height:1.5;margin:2px 0 0;}
+/* Gleiche Größe wie der allgemeine Fließtext .body-text auf der
+   Paartherapie-Seite (1.05rem, Zeilenhöhe 1.75). */
+.um-tl-item p{color:var(--ink);font-size:1.05rem;line-height:1.75;margin:2px 0 0;}
 
 .um-cert-list{display:flex;flex-direction:column;gap:14px;}
-.um-cert-list li{position:relative;padding-left:22px;color:var(--ink);font-size:.98rem;line-height:1.5;}
+.um-cert-list li{position:relative;padding-left:22px;color:var(--ink);font-size:1.05rem;line-height:1.75;}
 .um-cert-list li::before{content:"";position:absolute;left:0;top:7px;width:8px;height:8px;background:var(--gold);}
+
+/* Mitgliedschaften-Block: aus Abschnitt 4 hierher verschoben, als eigener
+   Block über die volle Breite unterhalb der zwei Spalten (die Trennlinie
+   .um-two-col::before endet oberhalb davon, da dieser Block ein Geschwister-
+   Element von .um-two-col ist, nicht darin verschachtelt). */
+.um-mitglied-block{margin-top:48px;}
+.um-logo-row{display:flex;align-items:center;gap:40px;flex-wrap:wrap;margin-top:18px;}
 
 /* Abschnitt 3: Berufserfahrungen -- helle Grundfarbe wie .ph-worum, damit
    sich der Abschnitt vom vorangehenden, getönten Werdegang-Abschnitt
@@ -916,23 +932,10 @@ body.on-contact .snap-dots button.is-active{background:#cdd8cb;}
 .um-ab-row{display:flex;align-items:flex-start;gap:16px;padding:16px 0;border-bottom:1px solid rgba(107,106,102,.18);}
 .um-ab-row:last-child{border-bottom:none;}
 .um-ab-icon{width:38px;height:38px;border-radius:50%;background:var(--grad);flex-shrink:0;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:.95rem;}
+/* Überschrift/Text der drei nummerierten Zeilen an das "Rahmen"-Raster im
+   Kontaktbereich der Paartherapie-Seite angeglichen (.rahmen-grid h3/p). */
 .um-ab-row h4{color:var(--navy);margin:0 0 4px;font-size:1rem;}
-.um-ab-row p{color:var(--muted);margin:0;font-size:.9rem;line-height:1.5;}
-
-/* Abschnitt 4: Mitgliedschaften (hell) + Kontakt (dunkelblau) -- zusätzlich
-   zu .s-contact (für die geerbte Impressum/Datenschutz-Zeile), aber mit
-   eigenem Hintergrund/Layout: zwei übereinanderliegende, exakt gleich hohe
-   Hälften über die volle Breite statt des zentrierten kb-grid. */
-.snap-section.um-abschluss{padding:0;background:none;align-items:stretch;justify-content:flex-start;}
-.um-abschluss-half{height:50%;width:100%;display:flex;flex-direction:column;justify-content:center;padding:0 8vw;box-sizing:border-box;}
-.um-abschluss-top{background:#F4EDE2;}
-.um-abschluss-bottom{background:var(--navy);}
-.um-logo-row{display:flex;align-items:center;gap:40px;flex-wrap:wrap;margin-top:18px;}
-.um-kb-row{display:flex;flex-direction:row;gap:16px;flex-wrap:wrap;margin-top:18px;}
-
-@media(min-width:1025px){
-  .snap-section.um-abschluss{padding-bottom:calc(var(--header1-h,38px) + 14px);}
-}
+.um-ab-row p{color:var(--muted);margin:0;font-size:1.05rem;line-height:1.6;}
 
 @media(max-width:1024px){
   .um-hero-inner{grid-template-columns:1fr;gap:28px;}
@@ -940,23 +943,16 @@ body.on-contact .snap-dots button.is-active{background:#cdd8cb;}
   .um-two-col{grid-template-columns:1fr;gap:36px;}
   .um-two-col::before{display:none;}
   .snap-section.um-berufserf{padding:56px 6vw;}
-
-  /* Der 50/50-Höhenaufteilung von Abschnitt 4 soll unabhängig vom
-     Anzeigegerät gelten -- auch dort, wo Abschnitte sonst ab hier auf
-     normale, inhaltsgetriebene Höhe umschalten (siehe generische
-     .snap-section-Regel weiter oben), bekommt dieser Abschnitt daher
-     weiterhin eine feste Höhe (eine volle Bildschirmhöhe), damit die
-     beiden Hälften bei jeder Bildschirmbreite exakt gleich groß bleiben. */
-  .snap-section.um-abschluss{height:100vh !important;padding-bottom:0;}
-  .um-abschluss-half{padding:28px 6vw;}
 }
 
 @media(max-width:640px){
   .snap-section.um-hero-section{padding:40px 5vw 34px;}
   .um-hero-photo{height:min(38vh,300px);}
   .um-hero-text h1{font-size:1.9rem;margin:10px 0 0;}
-  .um-col-heading{font-size:1.15rem;}
-  .um-abschluss-half{padding:24px 5vw;}
+  /* Gleiche mobile Verkleinerung wie .faq-eyebrow/.faq-heading auf der
+     Paartherapie-Seite. */
+  .um-eyebrow{font-size:.8rem;}
+  .um-col-heading{font-size:1.35rem;}
+  .um-mitglied-block{margin-top:36px;}
   .um-logo-row{gap:24px;}
-  .um-kb-row{flex-direction:column;align-items:flex-start;}
 }
