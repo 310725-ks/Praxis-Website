@@ -921,12 +921,14 @@ body.on-contact .snap-dots button.is-active{background:#cdd8cb;}
 .um-cert-list li{position:relative;padding-left:22px;color:var(--ink);font-size:1.05rem;line-height:1.75;}
 .um-cert-list li::before{content:"";position:absolute;left:0;top:7px;width:8px;height:8px;background:var(--gold);}
 
-/* Mitgliedschaften-Block: aus Abschnitt 4 hierher verschoben, als eigener
-   Block über die volle Breite unterhalb der zwei Spalten (die Trennlinie
-   .um-two-col::before endet oberhalb davon, da dieser Block ein Geschwister-
-   Element von .um-two-col ist, nicht darin verschachtelt). */
-.um-mitglied-block{margin-top:48px;}
-.um-logo-row{display:flex;align-items:center;gap:40px;flex-wrap:wrap;margin-top:18px;}
+/* Mitgliedschaften-Logos: aus Abschnitt 4 hierher verschoben, in die rechte
+   Spalte unterhalb der Zertifizierungsliste (ohne eigene Überschrift) --
+   bei den gleich breiten Spalten (.um-two-col{grid-template-columns:1fr 1fr})
+   gleicht sich die Höhe der rechten Spalte damit von selbst fast genau an
+   die der linken (Zeitstrahl) an, ohne dass die Spaltenbreiten verändert
+   werden müssten. */
+.um-mitglied-block{margin-top:28px;}
+.um-logo-row{display:flex;align-items:center;gap:40px;flex-wrap:wrap;}
 
 /* Abschnitt 3: Berufserfahrungen -- helle Grundfarbe wie .ph-worum, damit
    sich der Abschnitt vom vorangehenden, getönten Werdegang-Abschnitt
@@ -956,6 +958,6 @@ body.on-contact .snap-dots button.is-active{background:#cdd8cb;}
      Paartherapie-Seite. */
   .um-eyebrow{font-size:.8rem;}
   .um-col-heading{font-size:1.35rem;}
-  .um-mitglied-block{margin-top:36px;}
+  .um-mitglied-block{margin-top:24px;}
   .um-logo-row{gap:24px;}
 }
