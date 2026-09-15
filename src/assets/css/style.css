@@ -266,6 +266,7 @@ h1,h2,h3{font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;font-weight:700
 .s-contact .kb-headline{font-size:2.3rem;margin:14px 0 18px;}
 .s-contact .kb-left .kb-text{font-size:1.167rem;max-width:420px;margin:0 0 20px;}
 .s-contact .kb-right .kb-text{font-size:1.167rem;margin:0 0 22px;}
+.s-contact .kb-text strong{color:#fff;font-weight:600;}
 .s-contact .kb-address{font-size:1.167rem;color:#dfe3e8;font-style:normal;margin:0 0 18px;}
 .s-contact .kb-address strong{color:#fff;font-weight:600;}
 .s-contact .kb-online{font-size:1.167rem;color:#dfe3e8;}
