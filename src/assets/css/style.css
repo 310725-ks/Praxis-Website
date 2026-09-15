@@ -928,7 +928,7 @@ body.on-contact .snap-dots button.is-active{background:#cdd8cb;}
    gleicht sich die Höhe der rechten Spalte damit von selbst fast genau an
    die der linken (Zeitstrahl) an, ohne dass die Spaltenbreiten verändert
    werden müssten. */
-.um-mitglied-block{margin-top:28px;}
+.um-mitglied-block{margin-top:59px;}
 .um-logo-row{display:flex;align-items:center;gap:40px;flex-wrap:wrap;}
 
 /* Abschnitt 3: Berufserfahrungen -- helle Grundfarbe wie .ph-worum, damit
