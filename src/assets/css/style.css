@@ -899,7 +899,15 @@ body.on-contact .snap-dots button.is-active{background:#cdd8cb;}
 
 /* ---- Abschnitte 2 & 3: gemeinsamer zweispaltiger Aufbau ---- */
 .um-two-col{display:grid;grid-template-columns:1fr 1fr;gap:64px;margin-top:28px;position:relative;}
-.um-two-col::before{content:"";position:absolute;left:50%;top:4px;bottom:4px;width:1px;background:rgba(184,135,63,.35);}
+.um-two-col::before{content:"";position:absolute;left:50%;bottom:4px;width:1px;background:rgba(184,135,63,.35);}
+/* Trennlinie beginnt jeweils mittig in der Lücke zwischen Überschriften-
+   Unterkante und dem oberen Rand des ersten Stichpunkts -- diese Lücke ist
+   in Abschnitt 2 (18px) und Abschnitt 3 (34px, wegen der Ausrichtungs-
+   Korrektur der ersten Zeile) unterschiedlich groß, daher zwei eigene Werte
+   statt einer gemeinsamen top-Angabe (per Messung ermittelt: Mitte der
+   Lücke liegt bei top:42px bzw. top:50px relativ zu .um-two-col). */
+.um-werdegang .um-two-col::before{top:42px;}
+.um-berufserf .um-two-col::before{top:50px;}
 /* Gleiche Größe wie die blaue Abschnittsüberschrift .faq-heading auf der
    Paartherapie-Seite (1.825rem Desktop / 1.35rem Mobile, siehe unten). */
 .um-col-heading{color:var(--navy);font-size:1.825rem;font-weight:700;margin:0 0 18px;}
@@ -909,7 +917,14 @@ body.on-contact .snap-dots button.is-active{background:#cdd8cb;}
    Container (.s-offers-inner) sowie die Mobile-Anpassungen erbt, genau wie
    bei .ph-faq. */
 .um-werdegang .um-timeline{position:relative;padding-left:30px;}
-.um-timeline::before{content:"";position:absolute;left:6px;top:6px;bottom:6px;width:2px;background:linear-gradient(var(--gold),var(--sage));}
+/* Linie ragt oben und unten bewusst über den ersten/letzten Zeitstrahl-Punkt
+   hinaus (kein Punkt am Linienende) -- symbolisiert, dass der Werdegang vor
+   dem ersten und nach dem letzten Eintrag weitergeht. top:-14px reicht bis
+   kurz unter die Überschrift (18px Lücke, 4px Puffer bleibt), bottom:40px
+   endet ca. 20px unterhalb des untersten Punktes (statt am unteren Rand des
+   Containers, der durch die zweizeilige letzte Eintragszeile sonst deutlich
+   weiter unten läge). */
+.um-timeline::before{content:"";position:absolute;left:6px;top:-14px;bottom:40px;width:2px;background:linear-gradient(var(--gold),var(--sage));}
 .um-tl-item{position:relative;margin-bottom:24px;}
 .um-tl-item:last-child{margin-bottom:0;}
 .um-tl-item::before{content:"";position:absolute;left:-30px;top:3px;width:13px;height:13px;border-radius:50%;background:#fff;border:2.5px solid var(--gold);}
