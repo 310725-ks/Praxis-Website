@@ -899,15 +899,22 @@ body.on-contact .snap-dots button.is-active{background:#cdd8cb;}
 
 /* ---- Abschnitte 2 & 3: gemeinsamer zweispaltiger Aufbau ---- */
 .um-two-col{display:grid;grid-template-columns:1fr 1fr;gap:64px;margin-top:28px;position:relative;}
-.um-two-col::before{content:"";position:absolute;left:50%;bottom:4px;width:1px;background:rgba(184,135,63,.35);}
+.um-two-col::before{content:"";position:absolute;left:50%;width:1px;background:rgba(184,135,63,.35);}
 /* Trennlinie beginnt jeweils mittig in der Lücke zwischen Überschriften-
    Unterkante und dem oberen Rand des ersten Stichpunkts -- diese Lücke ist
    in Abschnitt 2 (18px) und Abschnitt 3 (34px, wegen der Ausrichtungs-
    Korrektur der ersten Zeile) unterschiedlich groß, daher zwei eigene Werte
    statt einer gemeinsamen top-Angabe (per Messung ermittelt: Mitte der
-   Lücke liegt bei top:42px bzw. top:50px relativ zu .um-two-col). */
-.um-werdegang .um-two-col::before{top:42px;}
-.um-berufserf .um-two-col::before{top:50px;}
+   Lücke liegt bei top:42px bzw. top:50px relativ zu .um-two-col).
+   Am unteren Ende gilt der gleiche Abstand wie oben (Überschriften-Oberkante
+   bis Trennstrich-Oberkante), gemessen vom unteren Rand der jeweiligen
+   unteren Bezugslinie -- in Abschnitt 2 der untere Rand der Mitgliedschafts-
+   Logos (die mit dem Spaltenende zusammenfallen, daher bottom:42px = top-
+   Wert), in Abschnitt 3 der untere Rand der letzten Textzeile in der linken
+   Spalte (die 16px oberhalb des Spaltenendes liegt, daher bottom:66px =
+   50px + 16px). */
+.um-werdegang .um-two-col::before{top:42px;bottom:42px;}
+.um-berufserf .um-two-col::before{top:50px;bottom:66px;}
 /* Gleiche Größe wie die blaue Abschnittsüberschrift .faq-heading auf der
    Paartherapie-Seite (1.825rem Desktop / 1.35rem Mobile, siehe unten). */
 .um-col-heading{color:var(--navy);font-size:1.825rem;font-weight:700;margin:0 0 18px;}
