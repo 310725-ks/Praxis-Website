@@ -994,3 +994,89 @@ body.on-contact .snap-dots button.is-active{background:#cdd8cb;}
   .um-mitglied-block{margin-top:24px;}
   .um-logo-row{gap:24px;}
 }
+
+/* ============================================================
+   Supervision-Seite -- Grunddesign von der Über-mich-Seite übernommen
+   (Farbverlauf-Band, .um-eyebrow, .s-offers-Hintergrund), eigene .sv-*
+   Klassen für die Abweichungen: Abschnitt 1 gespiegelt (Text links, Bild
+   rechts statt Foto links/Text rechts), Abschnitt 2 Fließtext+Bild,
+   Abschnitt 3 Formate-Kacheln im Stil der Startseiten-Angebotskacheln
+   (.tile.card) statt der Werdegang-Zweispaltigkeit, Abschnitt 4 Rahmen-
+   Struktur von der Paartherapie-Seite (.rahmen-grid) übernommen. ---- */
+
+/* ---- Abschnitt 1: Hero, gespiegelt zu .um-hero-inner (Text/Bild
+   vertauscht) -- Bildseite/Textseite tauschen die Spaltenbreiten. */
+.snap-section.sv-hero-section{padding:0 8vw;position:relative;}
+.sv-hero-text p{color:var(--muted);font-size:1.05rem;line-height:1.75;max-width:520px;margin:20px 0 0;}
+/* Gleiche Größe wie Paartherapies H1 (.snap-section.s-hero .hero h1,
+   2.6rem Desktop / 1.9rem Mobile), Farbe wie alle Überschriften navy. */
+.sv-hero-h1{color:var(--navy);font-size:2.6rem;margin:12px 0 0;line-height:1.08;}
+@media(min-width:1025px){
+  .sv-hero-inner{grid-template-columns:1.15fr .85fr;}
+}
+
+/* ---- Abschnitt 2: Worum es geht -- Fließtext + Bild nebeneinander. */
+.snap-section.sv-worum{padding:0 8vw;position:relative;}
+.sv-worum-a p{color:var(--muted);font-size:1.05rem;line-height:1.75;margin:0;}
+.sv-haus-card{
+  background:var(--card);border-radius:16px;padding:18px;
+  box-shadow:0 20px 40px -22px rgba(20,20,20,.35);
+  height:min(46vh,380px);display:flex;align-items:center;justify-content:center;
+}
+.sv-haus-card img{max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain;display:block;}
+@media(min-width:1025px){
+  .sv-worum-a{display:grid;grid-template-columns:1.3fr 1fr;gap:56px;align-items:center;}
+}
+
+/* ---- Abschnitt 3: Formate (Kacheln im Stil der Startseiten-
+   Angebotskacheln .tile.card, inkl. deren Akkordeon-Verhalten auf Mobil)
+   + Inhalte und Themen (Punktliste, eigener Eyebrow-Block darunter). */
+.snap-section.sv-formate{padding:0 8vw;background:var(--bg);position:relative;}
+.sv-formate-row{display:grid;grid-template-columns:1fr;gap:20px;margin-top:24px;}
+.sv-format-card{padding:32px 28px;}
+.sv-format-icon{width:44px;height:44px;border-radius:50%;background:var(--grad);display:flex;align-items:center;justify-content:center;margin-bottom:16px;}
+.sv-format-icon svg{width:22px;height:22px;stroke:#fff;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;}
+.sv-format-card h3{font-size:1.2rem;margin:0 0 8px;}
+.sv-format-card p em{color:var(--gold);font-style:italic;}
+.sv-themen-block{margin-top:56px;}
+.sv-themen-block .um-eyebrow{margin-bottom:14px;}
+.sv-themen-list{display:flex;flex-direction:column;gap:12px;max-width:640px;}
+.sv-themen-list li{position:relative;padding-left:22px;color:var(--ink);font-size:1.05rem;line-height:1.6;}
+.sv-themen-list li::before{content:"";position:absolute;left:0;top:8px;width:8px;height:8px;background:var(--gold);}
+@media(min-width:1025px){
+  .sv-formate-row{grid-template-columns:repeat(3,1fr);}
+}
+
+/* ---- Abschnitt 4: Rahmen -- Struktur/Verhältnisse wie bei der
+   Paartherapie-Seite (.ph-contact), da dort ebenfalls der .rahmen-grid
+   innerhalb der linken Spalte zusätzlichen Platz braucht. */
+@media(min-width:1025px){
+  .sv-contact .kb-grid{max-width:1300px;grid-template-columns:1.3fr .7fr;}
+  .sv-contact .kb-right{margin-top:0;align-self:center;}
+  .sv-contact .kb-left{margin-top:0;}
+  .sv-contact .kb-right .kb-eyebrow{font-size:.9rem;margin:0 0 14px;}
+  .sv-contact .kb-right .kb-text{font-size:1.05rem;max-width:none;margin:0 0 18px;}
+}
+.sv-contact .rahmen-grid p em{color:#c9cfd6;font-style:italic;}
+
+@media(max-width:1024px){
+  .sv-worum-a{display:block;}
+  .sv-worum-a .sv-haus-card{margin-top:24px;height:min(40vh,300px);}
+}
+
+/* .sv-format-card teilt sich die .tile.card-Optik mit den Angebots-Kacheln
+   der Startseite, aber nicht deren Akkordeon-Verhalten: die Kacheln dort
+   verlinken auf eigene Unterseiten und blenden den Beschreibungstext auf
+   Mobil standardmäßig aus (nur per Tap sichtbar, mit Pfeil-Symbol). Die
+   Formate-Kacheln verlinken nirgendwohin, daher bleibt der Text hier auf
+   allen Breiten sichtbar statt einzuklappen. */
+@media(max-width:640px){
+  .sv-format-card{cursor:default;}
+  .sv-format-card p{max-height:none;opacity:1;margin:8px 0 0;}
+}
+
+@media(max-width:640px){
+  .snap-section.sv-hero-section{padding:40px 5vw 34px;}
+  .sv-hero-h1{font-size:1.9rem;margin:10px 0 0;}
+  .sv-haus-card{height:min(34vh,260px);}
+}
