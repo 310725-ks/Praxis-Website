@@ -1024,9 +1024,12 @@ body.on-contact .snap-dots button.is-active{background:#cdd8cb;}
   .sv-hero-photo{height:min(64.4vh,529px);}
 }
 
-/* ---- Abschnitt 2: Worum es geht -- Fließtext + Bild nebeneinander. */
+/* ---- Abschnitt 2: Worum es geht -- Fließtext + Bild nebeneinander.
+   Überschrift nutzt .sv-hero-h1 (identische Größe wie die H1 in
+   Abschnitt 1), Fließtext-Schriftgröße/Zeilenhöhe an Abschnitt 1
+   angeglichen (1.167rem/1.65 Desktop, 1rem Mobil). */
 .snap-section.sv-worum{padding:0 8vw;position:relative;}
-.sv-worum-a p{color:var(--muted);font-size:1.05rem;line-height:1.75;margin:0;}
+.sv-worum-a p{color:var(--muted);font-size:1.167rem;line-height:1.65;margin:0;}
 /* Kleiner weißer Rahmen in der Rechteckform des Fotos (statt einer
    größeren Kartenfläche mit Hintergrund) -- die Box umschließt das Bild
    eng (display:inline-block, justify-self:center), die Bildgröße steuert
@@ -1101,4 +1104,5 @@ body.on-contact .snap-dots button.is-active{background:#cdd8cb;}
   .sv-hero-text p{font-size:1rem;}
   .sv-hero-photo{height:min(40vh,300px);}
   .sv-haus-card img{max-height:min(40vh,300px);}
+  .sv-worum-a p{font-size:1rem;}
 }
