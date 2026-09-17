@@ -1007,12 +1007,21 @@ body.on-contact .snap-dots button.is-active{background:#cdd8cb;}
 /* ---- Abschnitt 1: Hero, gespiegelt zu .um-hero-inner (Text/Bild
    vertauscht) -- Bildseite/Textseite tauschen die Spaltenbreiten. */
 .snap-section.sv-hero-section{padding:0 8vw;position:relative;}
-.sv-hero-text p{color:var(--muted);font-size:1.05rem;line-height:1.75;max-width:520px;margin:20px 0 0;}
+/* Schriftgröße/Zeilenhöhe wie im Startseiten-Hero (.snap-section.s-hero
+   .hero p, 1.167rem/1.65 Desktop). */
+.sv-hero-text p{color:var(--muted);font-size:1.167rem;line-height:1.65;max-width:520px;margin:20px 0 0;}
 /* Gleiche Größe wie Paartherapies H1 (.snap-section.s-hero .hero h1,
-   2.6rem Desktop / 1.9rem Mobile), Farbe wie alle Überschriften navy. */
-.sv-hero-h1{color:var(--navy);font-size:2.6rem;margin:12px 0 0;line-height:1.08;}
+   2.6rem Desktop / 1.9rem Mobile), Farbe wie alle Überschriften navy;
+   Abstand zur Eyebrow/zum Fließtext wie im Startseiten-Hero (16px/20px). */
+.sv-hero-h1{color:var(--navy);font-size:2.6rem;margin:16px 0 20px;line-height:1.08;}
+/* Foto in gleicher Größe wie das Startseiten-Hero-Foto (.hero-photo):
+   Basiswert bereits identisch zu .um-hero-photo (min(50vh,420px)), eigene
+   Klasse nur für die vom Startseiten-Foto abweichenden Zwischengrößen
+   (Tablet/Mobil) und die große Desktop-Vergrößerung ab 1025px. */
+.sv-hero-photo{height:min(50vh,420px);}
 @media(min-width:1025px){
   .sv-hero-inner{grid-template-columns:1.15fr .85fr;}
+  .sv-hero-photo{height:min(64.4vh,529px);}
 }
 
 /* ---- Abschnitt 2: Worum es geht -- Fließtext + Bild nebeneinander. */
@@ -1027,9 +1036,14 @@ body.on-contact .snap-dots button.is-active{background:#cdd8cb;}
   background:var(--card);border-radius:14px;padding:8px;
   box-shadow:0 20px 40px -22px rgba(20,20,20,.35);
 }
-.sv-haus-card img{display:block;max-width:100%;width:auto;height:auto;max-height:min(46vh,380px);border-radius:8px;}
+/* Gleiche Zielgröße wie das Startseiten-Hero-Foto (min(50vh,420px) Basis,
+   min(64.4vh,529px) ab 1025px) -- da das Bild intrinsisch skaliert
+   (kein object-fit:cover), wirkt der Wert als Obergrenze und die Grafik
+   verkleinert sich automatisch, wenn die Spalte schmaler ist. */
+.sv-haus-card img{display:block;max-width:100%;width:auto;height:auto;max-height:min(50vh,420px);border-radius:8px;}
 @media(min-width:1025px){
   .sv-worum-a{display:grid;grid-template-columns:1.3fr 1fr;gap:56px;align-items:center;}
+  .sv-haus-card img{max-height:min(64.4vh,529px);}
 }
 
 /* ---- Abschnitt 3: Formate (Kacheln im Stil der Startseiten-
@@ -1066,7 +1080,8 @@ body.on-contact .snap-dots button.is-active{background:#cdd8cb;}
 @media(max-width:1024px){
   .sv-worum-a{display:block;}
   .sv-worum-a .sv-haus-card{margin-top:24px;}
-  .sv-worum-a .sv-haus-card img{max-height:min(40vh,300px);}
+  .sv-worum-a .sv-haus-card img{max-height:min(46vh,340px);}
+  .sv-hero-photo{height:min(46vh,340px);}
 }
 
 /* .sv-format-card teilt sich die .tile.card-Optik mit den Angebots-Kacheln
@@ -1082,6 +1097,8 @@ body.on-contact .snap-dots button.is-active{background:#cdd8cb;}
 
 @media(max-width:640px){
   .snap-section.sv-hero-section{padding:40px 5vw 34px;}
-  .sv-hero-h1{font-size:1.9rem;margin:10px 0 0;}
-  .sv-haus-card img{max-height:min(34vh,260px);}
+  .sv-hero-h1{font-size:1.9rem;margin:10px 0 14px;}
+  .sv-hero-text p{font-size:1rem;}
+  .sv-hero-photo{height:min(40vh,300px);}
+  .sv-haus-card img{max-height:min(40vh,300px);}
 }
