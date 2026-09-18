@@ -1055,8 +1055,8 @@ body.on-contact .snap-dots button.is-active{background:#cdd8cb;}
 .snap-section.sv-formate{padding:0 8vw;background:var(--bg);position:relative;}
 .sv-formate-row{display:grid;grid-template-columns:1fr;gap:20px;margin-top:24px;}
 .sv-format-card{padding:32px 28px;}
-.sv-format-icon{width:44px;height:44px;border-radius:50%;background:var(--grad);display:flex;align-items:center;justify-content:center;margin-bottom:16px;}
-.sv-format-icon svg{width:22px;height:22px;stroke:#fff;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;}
+.sv-format-icon{width:55px;height:55px;border-radius:50%;background:var(--grad);display:flex;align-items:center;justify-content:center;margin-bottom:16px;}
+.sv-format-icon svg{width:27.5px;height:27.5px;stroke:#fff;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;}
 .sv-format-card h3{font-size:1.2rem;margin:0 0 8px;}
 .sv-format-card p em{color:var(--gold);font-style:italic;}
 .sv-themen-block{margin-top:56px;}
