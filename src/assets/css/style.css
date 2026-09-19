@@ -1023,6 +1023,21 @@ body.on-contact .snap-dots button.is-active{background:#cdd8cb;}
   .sv-hero-inner{grid-template-columns:1.15fr .85fr;}
   .sv-hero-photo{height:min(64.4vh,529px);}
 }
+/* Bildunterschrift im Stil von .photo-credit auf der Paartherapie-Seite
+   (kleine, kursive Box mit dünnem Rahmen), hier per Überlapp-Technik wie
+   .worum-credit positioniert: .sv-hero-photo bleibt eigentlich die
+   überflow:hidden-Bildbox, wird hier aber sichtbar geschaltet, damit die
+   halb über den unteren Bildrand hinausragende Bildunterschrift nicht
+   abgeschnitten wird; die Rundung der Ecken übernimmt stattdessen direkt
+   das img selbst. */
+.sv-hero-photo{overflow:visible;position:relative;}
+.sv-hero-photo img{border-radius:20px;}
+.sv-hero-photo p.sv-photo-credit{
+  position:absolute;bottom:0;right:2px;transform:translateY(50%);
+  margin:0;font-size:calc(.78rem - 1.7pt);font-style:italic;color:var(--muted);
+  background:#fff;border:1px solid rgba(107,106,102,.32);border-radius:6px;
+  padding:3px 10px;z-index:1;
+}
 
 /* ---- Abschnitt 2: Worum es geht -- Fließtext + Bild nebeneinander.
    Überschrift nutzt .sv-hero-h1 (identische Größe wie die H1 in
@@ -1030,6 +1045,18 @@ body.on-contact .snap-dots button.is-active{background:#cdd8cb;}
    angeglichen (1.167rem/1.65 Desktop, 1rem Mobil). */
 .snap-section.sv-worum{padding:0 8vw;position:relative;}
 .sv-worum-a p{color:var(--muted);font-size:1.167rem;line-height:1.65;margin:0;}
+/* Blaue Überschrift auf die gleiche Größe wie .faq-heading auf der
+   Paartherapie-Seite gebracht (1.825rem Desktop / 1.35rem Mobil, siehe
+   unten), statt der größeren Hero-H1-Größe -- gleiche Selektor-Technik
+   (Eyebrow direkt gefolgt von .sv-hero-h1) wie in Abschnitt 3 (.sv-formate),
+   damit die Regel unabhängig von der Reihenfolge auch die spätere
+   Mobil-Regel für .sv-hero-h1 zuverlässig überstimmt. */
+.sv-worum-text .um-eyebrow + .sv-hero-h1{font-size:1.825rem;}
+/* Letzter Satz als eigener, abgesetzter Absatz -- kein neuer Text, nur ein
+   Zeilenumbruch mit etwas zusätzlichem Abstand zum Absatz davor. Gleiche
+   Spezifität wie .sv-worum-a p, daher zusätzlich über die Klasse selbst
+   qualifiziert, damit margin-top zuverlässig greift. */
+.sv-worum-a p.sv-worum-last{margin-top:18px;}
 /* Kleiner weißer Rahmen in der Rechteckform des Fotos (statt einer
    größeren Kartenfläche mit Hintergrund) -- die Box umschließt das Bild
    eng (display:inline-block, justify-self:center), die Bildgröße steuert
@@ -1063,7 +1090,7 @@ body.on-contact .snap-dots button.is-active{background:#cdd8cb;}
 .sv-themen-block{margin-top:56px;}
 .sv-themen-block .um-eyebrow{margin-bottom:14px;}
 .sv-themen-list{display:flex;flex-direction:column;gap:12px;max-width:640px;}
-.sv-themen-list li{position:relative;padding-left:22px;color:var(--ink);font-size:1.05rem;line-height:1.6;}
+.sv-themen-list li{position:relative;padding-left:22px;color:var(--muted);font-size:1.05rem;line-height:1.6;}
 .sv-themen-list li::before{content:"";position:absolute;left:0;top:8px;width:8px;height:8px;background:var(--gold);}
 @media(min-width:1025px){
   .sv-formate-row{grid-template-columns:repeat(3,1fr);}
@@ -1109,36 +1136,40 @@ body.on-contact .snap-dots button.is-active{background:#cdd8cb;}
 }
 
 /* ---- Abschnitt 3 (Formate): Blaue Zwischenüberschrift "Formate" nach dem
-   Eyebrow, sowie erweiterter Abschlussblock mit verschachtelter Liste und
-   Schlussabsatz (ersetzt den bisherigen Platzhalter-Text). ---- */
-.sv-formate .um-eyebrow + .sv-hero-h1{margin:10px 0 0;font-size:2rem;}
+   Eyebrow -- auf die gleiche Größe wie .faq-heading auf der Paartherapie-
+   Seite gebracht (1.825rem Desktop / 1.35rem Mobil) -- sowie flacher
+   Abschlussblock mit drei Stichpunkten (ersetzt die vorherige
+   verschachtelte Liste mit Schlussabsatz). ---- */
+.sv-formate .um-eyebrow + .sv-hero-h1{margin:10px 0 0;font-size:1.825rem;}
 .sv-themen-block{margin-top:40px;}
 .sv-themen-block>p{color:var(--muted);font-size:1.05rem;line-height:1.6;margin:0 0 16px;max-width:760px;}
-.sv-themen-block>p:last-child{margin-top:16px;margin-bottom:0;}
-.sv-themen-list li ul{list-style:none;margin:8px 0 0;padding:0;display:flex;flex-direction:column;gap:8px;}
-.sv-themen-list li ul li{padding-left:20px;font-size:.98rem;}
-.sv-themen-list li ul li::before{width:6px;height:6px;top:9px;background:var(--sage);}
 @media(max-width:640px){
-  .sv-formate .um-eyebrow + .sv-hero-h1{font-size:1.6rem;}
+  .sv-formate .um-eyebrow + .sv-hero-h1{font-size:1.35rem;}
+  .sv-worum-text .um-eyebrow + .sv-hero-h1{font-size:1.35rem;}
 }
 
 /* ---- Abschnitt 4 (neu): Bearbeitungsebenen und übliche Inhalte --
-   gespiegelt zu .sv-worum-a (Bild links/schmaler, Text rechts/breiter),
-   da hier die Grafik zuerst im Markup steht. ---- */
+   gespiegelt zu .sv-worum-a (Bild links/schmaler, Text rechts/breiter).
+   Eyebrow und blaue Überschrift sitzen jetzt in der linken Spalte
+   oberhalb der Grafik (.sv-ebenen-img-col), statt wie zuvor in der
+   rechten Textspalte. ---- */
 .snap-section.sv-ebenen{padding:0 8vw;position:relative;}
 .sv-ebenen-a{display:block;}
+.sv-ebenen-img-col{display:flex;flex-direction:column;}
+.sv-ebenen-img-col .sv-hero-h1{font-size:2rem;margin:14px 0 24px;}
 .sv-ebenen-img{display:flex;justify-content:center;margin-bottom:24px;}
-.sv-ebenen-img img{width:100%;max-width:320px;height:auto;filter:drop-shadow(0 20px 36px rgba(20,20,20,.28));}
-.sv-ebenen-text .sv-hero-h1{font-size:2rem;margin:14px 0 0;}
-.sv-ebenen-text p{color:var(--muted);font-size:1.1rem;line-height:1.6;margin:14px 0 0;max-width:640px;}
+/* Grafik um 25% verkleinert: Basiswert (100% der Spalte ab 1025px bzw.
+   320px Obergrenze darunter) jeweils auf 75% reduziert. */
+.sv-ebenen-img img{width:100%;max-width:240px;height:auto;filter:drop-shadow(0 20px 36px rgba(20,20,20,.28));}
+.sv-ebenen-text p{color:var(--muted);font-size:1.1rem;line-height:1.6;margin:0;max-width:640px;}
 .sv-ebenen-text .um-eyebrow.sv-ebenen-sub{margin:22px 0 12px;}
 .sv-ebenen-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px;}
-.sv-ebenen-list li{position:relative;padding-left:20px;color:var(--ink);font-size:.98rem;line-height:1.5;}
+.sv-ebenen-list li{position:relative;padding-left:20px;color:var(--muted);font-size:.98rem;line-height:1.5;}
 .sv-ebenen-list li::before{content:"";position:absolute;left:0;top:7px;width:7px;height:7px;background:var(--gold);}
 @media(min-width:1025px){
   .sv-ebenen-a{display:grid;grid-template-columns:1fr 1.3fr;gap:56px;align-items:center;}
   .sv-ebenen-img{margin-bottom:0;}
-  .sv-ebenen-img img{max-width:100%;}
+  .sv-ebenen-img img{max-width:75%;}
 }
 @media(max-width:640px){
   .sv-ebenen-text p{font-size:1rem;}
