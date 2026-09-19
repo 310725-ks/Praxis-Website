@@ -1014,29 +1014,34 @@ body.on-contact .snap-dots button.is-active{background:#cdd8cb;}
    2.6rem Desktop / 1.9rem Mobile), Farbe wie alle Überschriften navy;
    Abstand zur Eyebrow/zum Fließtext wie im Startseiten-Hero (16px/20px). */
 .sv-hero-h1{color:var(--navy);font-size:2.6rem;margin:16px 0 20px;line-height:1.08;}
-/* Foto in gleicher Größe wie das Startseiten-Hero-Foto (.hero-photo):
-   Basiswert bereits identisch zu .um-hero-photo (min(50vh,420px)), eigene
-   Klasse nur für die vom Startseiten-Foto abweichenden Zwischengrößen
-   (Tablet/Mobil) und die große Desktop-Vergrößerung ab 1025px. */
-.sv-hero-photo{height:min(50vh,420px);}
+/* Foto im ursprünglichen Querformat, unbeschnitten -- wie das Hero-Foto auf
+   der Paartherapie-Seite (.ph-hero .hero-photo-wrap/.hero-photo): äußerer
+   Flex-Spalten-Wrapper (.sv-hero-photo-wrap) über die volle Spaltenbreite,
+   darin die eigentliche Bildbox (.sv-hero-photo, behält Rundung/Schatten
+   von .um-hero-photo) mit automatischer Höhe nach Bildseitenverhältnis,
+   statt des festen 4:5-Zuschnitts der anderen Unterseiten-Hero-Fotos. */
+.sv-hero-photo-wrap{display:flex;flex-direction:column;width:100%;}
+.sv-hero-photo{width:100%;height:auto;aspect-ratio:auto;}
+.sv-hero-photo img{width:100%;height:auto;object-fit:contain;object-position:center;display:block;}
 @media(min-width:1025px){
   .sv-hero-inner{grid-template-columns:1.15fr .85fr;}
-  .sv-hero-photo{height:min(64.4vh,529px);}
+}
+@media(min-width:641px) and (max-width:1024px){
+  .sv-hero-photo-wrap{max-width:598px;justify-self:center;margin:0 auto;}
 }
 /* Bildunterschrift im Stil von .photo-credit auf der Paartherapie-Seite
-   (kleine, kursive Box mit dünnem Rahmen), hier per Überlapp-Technik wie
-   .worum-credit positioniert: .sv-hero-photo bleibt eigentlich die
-   überflow:hidden-Bildbox, wird hier aber sichtbar geschaltet, damit die
-   halb über den unteren Bildrand hinausragende Bildunterschrift nicht
-   abgeschnitten wird; die Rundung der Ecken übernimmt stattdessen direkt
-   das img selbst. */
-.sv-hero-photo{overflow:visible;position:relative;}
-.sv-hero-photo img{border-radius:20px;}
-.sv-hero-photo p.sv-photo-credit{
-  position:absolute;bottom:0;right:2px;transform:translateY(50%);
-  margin:0;font-size:calc(.78rem - 1.7pt);font-style:italic;color:var(--muted);
+   (kleine, kursive Box mit dünnem Rahmen, gleiche Überlapp-Technik): steht
+   als zweites Element in der Flex-Spalte (align-self:flex-end setzt sie
+   rechtsbündig, ohne die Spaltenbreite zu füllen) und wird per
+   translateY(-50%) um die Hälfte ihrer eigenen Höhe nach oben geschoben,
+   sodass sie den unteren Bildrand exakt hälftig überlappt -- als eigenes
+   Element außerhalb von .sv-hero-photo, damit dessen Schlagschatten weiter
+   nur das Bild selbst umgibt. */
+.sv-hero-photo-wrap p.sv-photo-credit{
+  margin:0;margin-right:2px;font-size:calc(.78rem - 1.7pt);font-style:italic;color:var(--muted);
+  text-align:right;align-self:flex-end;max-width:none;
   background:#fff;border:1px solid rgba(107,106,102,.32);border-radius:6px;
-  padding:3px 10px;z-index:1;
+  padding:3px 10px;position:relative;z-index:1;transform:translateY(-50%);
 }
 
 /* ---- Abschnitt 2: Worum es geht -- Fließtext + Bild nebeneinander.
@@ -1089,8 +1094,13 @@ body.on-contact .snap-dots button.is-active{background:#cdd8cb;}
 .sv-format-card p em{color:var(--gold);font-style:italic;}
 .sv-themen-block{margin-top:56px;}
 .sv-themen-block .um-eyebrow{margin-bottom:14px;}
-.sv-themen-list{display:flex;flex-direction:column;gap:12px;max-width:640px;}
-.sv-themen-list li{position:relative;padding-left:22px;color:var(--muted);font-size:1.05rem;line-height:1.6;}
+.sv-themen-list{display:flex;flex-direction:column;gap:12px;}
+.sv-themen-list li{position:relative;padding-left:22px;color:var(--muted);font-size:1.05rem;line-height:1.6;max-width:640px;}
+/* Letzter Stichpunkt nutzt die gesamte Breite der Formate-Kachelreihe
+   darüber (.sv-formate-row, volle Breite von .s-offers-inner), statt der
+   640px-Begrenzung der ersten beiden Punkte -- der Zeilenumbruch setzt
+   dadurch exakt dort an, wo die 3. Formatskarte rechts endet. */
+.sv-themen-list li:last-child{max-width:none;}
 .sv-themen-list li::before{content:"";position:absolute;left:0;top:8px;width:8px;height:8px;background:var(--gold);}
 @media(min-width:1025px){
   .sv-formate-row{grid-template-columns:repeat(3,1fr);}
@@ -1112,7 +1122,6 @@ body.on-contact .snap-dots button.is-active{background:#cdd8cb;}
   .sv-worum-a{display:block;}
   .sv-worum-a .sv-haus-card{margin-top:24px;}
   .sv-worum-a .sv-haus-card img{max-height:min(46vh,340px);}
-  .sv-hero-photo{height:min(46vh,340px);}
 }
 
 /* .sv-format-card teilt sich die .tile.card-Optik mit den Angebots-Kacheln
@@ -1130,7 +1139,6 @@ body.on-contact .snap-dots button.is-active{background:#cdd8cb;}
   .snap-section.sv-hero-section{padding:40px 5vw 34px;}
   .sv-hero-h1{font-size:1.9rem;margin:10px 0 14px;}
   .sv-hero-text p{font-size:1rem;}
-  .sv-hero-photo{height:min(40vh,300px);}
   .sv-haus-card img{max-height:min(40vh,300px);}
   .sv-worum-a p{font-size:1rem;}
 }
