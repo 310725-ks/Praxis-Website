@@ -1157,20 +1157,21 @@ body.on-contact .snap-dots button.is-active{background:#cdd8cb;}
 }
 
 /* ---- Abschnitt 4 (neu): Bearbeitungsebenen und übliche Inhalte --
-   gespiegelt zu .sv-worum-a (Bild links/schmaler, Text rechts/breiter).
-   Eyebrow und blaue Überschrift sitzen jetzt in der linken Spalte
-   oberhalb der Grafik (.sv-ebenen-img-col), statt wie zuvor in der
-   rechten Textspalte. ---- */
+   Eyebrow + blaue Überschrift stehen als eigener, seitenbreiter Block
+   oberhalb der zweispaltigen Reihe (Grafik links/schmaler, Liste
+   rechts/breiter, wie .sv-worum-a gespiegelt) -- möglich geworden durch
+   den Wegfall des Einleitungssatzes und der "Übliche Themen"-Zwischen-
+   überschrift in der rechten Spalte. ---- */
 .snap-section.sv-ebenen{padding:0 8vw;position:relative;}
+/* Gleiche Selektor-Technik wie in Abschnitt 2/3 (Eyebrow direkt gefolgt
+   von .sv-hero-h1), damit die Größe unabhängig von der späteren
+   Mobil-Regel für .sv-hero-h1 zuverlässig greift. */
+.sv-ebenen .um-eyebrow + .sv-hero-h1{font-size:2rem;margin:14px 0 32px;}
 .sv-ebenen-a{display:block;}
-.sv-ebenen-img-col{display:flex;flex-direction:column;}
-.sv-ebenen-img-col .sv-hero-h1{font-size:2rem;margin:14px 0 24px;}
 .sv-ebenen-img{display:flex;justify-content:center;margin-bottom:24px;}
 /* Grafik um 25% verkleinert: Basiswert (100% der Spalte ab 1025px bzw.
    320px Obergrenze darunter) jeweils auf 75% reduziert. */
 .sv-ebenen-img img{width:100%;max-width:240px;height:auto;filter:drop-shadow(0 20px 36px rgba(20,20,20,.28));}
-.sv-ebenen-text p{color:var(--muted);font-size:1.1rem;line-height:1.6;margin:0;max-width:640px;}
-.sv-ebenen-text .um-eyebrow.sv-ebenen-sub{margin:22px 0 12px;}
 .sv-ebenen-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px;}
 .sv-ebenen-list li{position:relative;padding-left:20px;color:var(--muted);font-size:.98rem;line-height:1.5;}
 .sv-ebenen-list li::before{content:"";position:absolute;left:0;top:7px;width:7px;height:7px;background:var(--gold);}
@@ -1178,7 +1179,4 @@ body.on-contact .snap-dots button.is-active{background:#cdd8cb;}
   .sv-ebenen-a{display:grid;grid-template-columns:1fr 1.3fr;gap:56px;align-items:center;}
   .sv-ebenen-img{margin-bottom:0;}
   .sv-ebenen-img img{max-width:75%;}
-}
-@media(max-width:640px){
-  .sv-ebenen-text p{font-size:1rem;}
 }
