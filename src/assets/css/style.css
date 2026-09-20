@@ -1061,6 +1061,17 @@ body.on-contact .snap-dots button.is-active{background:#cdd8cb;}
      1,1fr/.9fr-Spalten und damit das Foto schmaler als auf der
      Paartherapie-Seite. */
   .snap-section.sv-hero-section{padding-right:64px;}
+  /* Foto wie auf der Startseite/Paartherapie-Seite zusätzlich nach links
+     versetzen, statt einfach die Spalte bis zum rechten Rand (nahe den
+     Abschnitts-Punkten) auszufüllen. Wert empirisch anhand der
+     tatsächlichen Text-Textzeilen (nicht der Spaltenbreite) und der
+     Punkte-Position kalibriert, damit das Foto bei jeder Breite mittig
+     zwischen dem sichtbaren Textende links und den Punkten rechts sitzt
+     -- gleiches Prinzip wie .hero-photo/.ph-hero .hero-photo-wrap, eigener
+     Wert wegen des kürzeren Fließtexts auf dieser Seite. min(0px, ...)
+     verhindert eine (falsche) Rechtsverschiebung knapp oberhalb von
+     1025px, wo rechnerisch noch kein Linksversatz nötig wäre. */
+  .sv-hero-photo-wrap{position:relative;left:min(0px, calc(-25.3vw + 276.4px));}
 }
 /* Bildunterschrift im Stil von .photo-credit auf der Paartherapie-Seite
    (kleine, kursive Box mit dünnem Rahmen, gleiche Überlapp-Technik): steht
@@ -1108,20 +1119,22 @@ body.on-contact .snap-dots button.is-active{background:#cdd8cb;}
    (Hero, Querformat) ist jetzt auf jeder Breite calc(37.8vw - 18px) breit
    (0,9fr-Spaltenanteil des 1,1fr/.9fr-Grids mit 40px Abstand, siehe oben),
    bei ≤1024px zusätzlich auf 598px gedeckelt, bei ≤640px 100% der
-   (einspaltigen) Inhaltsbreite (90vw). Hier wird exakt dieser Wert als
-   HÖHE angesetzt (statt Breite) und die Breite über aspect-ratio:5/8 (die
-   gespiegelte 8:5-Bildproportion) daraus abgeleitet. object-fit:contain
-   (statt cover) -- die Haus-Grafik ist deutlich breiter/gedrungener als
-   5:8 und trägt rechts wichtige Beschriftungen (Reflexionsebene,
-   gläserner Boden, Alltagsebene); ein Zuschnitt (cover) würde genau diese
-   Beschriftungen abschneiden. Da die Grafik und die Kartenfläche
-   (.sv-haus-card, --card:#fff) beide weiß sind, fügt sich das
-   Einpassen ohne Beschneidung (mit etwas Weißraum oben/unten) nahtlos
-   ein. */
-.sv-haus-card img{display:block;width:auto;aspect-ratio:5/8;object-fit:contain;height:90vw;border-radius:8px;}
+   (einspaltigen) Inhaltsbreite (90vw). Ursprünglich wurde dieser Wert als
+   HÖHE angesetzt und die Breite über aspect-ratio:5/8 abgeleitet -- das
+   erzeugte bei object-fit:contain aber viel weißen Rand oben/unten, weil
+   die Haus-Grafik im Original deutlich gedrungener ist (Seitenverhältnis
+   ca. 1125:1398, nicht 5:8). Jetzt wird derselbe Wert stattdessen als
+   BREITE angesetzt (das Haus bleibt dadurch exakt gleich groß) und die
+   Höhe über aspect-ratio:1125/1398 (das tatsächliche Bildformat)
+   abgeleitet -- object-fit:contain hat dadurch fast nichts mehr zu tun,
+   übrig bleiben nur die im Originalbild bereits vorhandenen kleinen
+   Ränder oben/unten, ähnlich knapp wie links/rechts. Die Beschriftungen
+   (Reflexionsebene, gläserner Boden, Alltagsebene) rechts im Bild bleiben
+   dadurch weiterhin unbeschnitten sichtbar. */
+.sv-haus-card img{display:block;width:56.25vw;height:auto;aspect-ratio:1125/1398;object-fit:contain;border-radius:8px;}
 @media(min-width:1025px){
   .sv-worum-a{display:grid;grid-template-columns:1.3fr 1fr;gap:56px;align-items:center;}
-  .sv-haus-card img{height:calc(37.8vw - 18px);}
+  .sv-haus-card img{width:calc(23.625vw - 11.25px);}
 }
 
 /* ---- Abschnitt 3: Formate (Kacheln im Stil der Startseiten-
@@ -1167,7 +1180,7 @@ body.on-contact .snap-dots button.is-active{background:#cdd8cb;}
 @media(max-width:1024px){
   .sv-worum-a{display:block;}
   .sv-worum-a .sv-haus-card{margin-top:24px;}
-  .sv-worum-a .sv-haus-card img{height:min(calc(37.8vw - 18px),598px);}
+  .sv-worum-a .sv-haus-card img{width:min(calc(23.625vw - 11.25px),373.75px);}
 }
 
 /* .sv-format-card teilt sich die .tile.card-Optik mit den Angebots-Kacheln
