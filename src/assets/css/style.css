@@ -1154,6 +1154,16 @@ body.on-contact .snap-dots button.is-active{background:#cdd8cb;}
 .sv-themen-list li{position:relative;padding-left:22px;color:var(--muted);font-size:1.05rem;line-height:1.6;}
 .sv-themen-list li::before{content:"";position:absolute;left:0;top:8px;width:8px;height:8px;background:var(--gold);}
 @media(min-width:1025px){
+  /* Überschrift ("Formate") ein Stück höher: oberer Innenabstand um 15px
+     verringert (nur für diesen Abschnitt, .s-offers-inner wird auch von
+     anderen Abschnitten/Seiten geteilt). Zusätzlich der Abstand zwischen
+     Überschrift und Kartenreihe von 24px auf 35px vergrößert, damit auch
+     im angehobenen/vergrößerten Hover-Zustand der 1. Karte (translateY
+     -20px + scale 1.06, siehe .tile.card:hover weiter oben) noch ein
+     sichtbarer Abstand zur blauen Überschrift bleibt -- vorher überlappte
+     die Karte im Hover die Überschrift um ca. 5px. */
+  .sv-formate .s-offers-inner{padding-top:calc(0.625cm + 9px);}
+  .sv-formate-row{margin-top:50px;}
   .sv-formate-row{grid-template-columns:repeat(3,1fr);}
   /* Die ersten beiden Stichpunkte stehen nebeneinander in 2 Spalten, der
      3. rutscht dadurch automatisch eine Zeile nach oben (auf die Höhe, wo
