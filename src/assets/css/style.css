@@ -944,10 +944,10 @@ body.on-contact .snap-dots button.is-active{background:#cdd8cb;}
 .um-tl-year{color:var(--gold);font-weight:700;font-size:.82rem;display:block;}
 /* Gleiche Größe wie der allgemeine Fließtext .body-text auf der
    Paartherapie-Seite (1.05rem, Zeilenhöhe 1.75). */
-.um-tl-item p{color:var(--ink);font-size:1.05rem;line-height:1.75;margin:2px 0 0;}
+.um-tl-item p{color:var(--muted);font-size:1.05rem;line-height:1.75;margin:2px 0 0;}
 
 .um-cert-list{display:flex;flex-direction:column;gap:14px;}
-.um-cert-list li{position:relative;padding-left:22px;color:var(--ink);font-size:1.05rem;line-height:1.75;}
+.um-cert-list li{position:relative;padding-left:22px;color:var(--muted);font-size:1.05rem;line-height:1.75;}
 .um-cert-list li::before{content:"";position:absolute;left:0;top:7px;width:8px;height:8px;background:var(--gold);}
 
 /* Mitgliedschaften-Logos: aus Abschnitt 4 hierher verschoben, in die rechte
@@ -1242,7 +1242,7 @@ body.on-contact .snap-dots button.is-active{background:#cdd8cb;}
    320px Obergrenze darunter) jeweils auf 75% reduziert. */
 .sv-ebenen-img img{width:100%;max-width:240px;height:auto;}
 .sv-ebenen-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px;}
-.sv-ebenen-list li{position:relative;padding-left:20px;color:var(--muted);font-size:1.05rem;line-height:1.5;}
+.sv-ebenen-list li{position:relative;padding-left:20px;color:var(--muted);font-size:1.15rem;line-height:1.5;}
 .sv-ebenen-list li::before{content:"";position:absolute;left:0;top:7px;width:7px;height:7px;background:var(--gold);}
 @media(min-width:1025px){
   .sv-ebenen-a{display:grid;grid-template-columns:1fr 1.3fr;gap:56px;align-items:center;}
