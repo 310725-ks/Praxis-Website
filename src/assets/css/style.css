@@ -1268,13 +1268,15 @@ body.on-contact .snap-dots button.is-active{background:#cdd8cb;}
      den Kreis-Icon + Toggle daneben auf manchen Geräten/Schriftarten über
      den Bildschirmrand hinausragen (auf einem echten iPhone beobachtet,
      in dieser Test-Umgebung mit Schriftart-Fallback nicht reproduzierbar).
-     Fix: min-width:0 erlaubt echtes Schrumpfen, hyphens:auto/overflow-wrap
-     als Sicherheitsnetz erlauben nötigenfalls einen Wortumbruch, und die
-     Schriftgröße wurde auf die gleiche Größe wie bei den Angebotskacheln
-     der Startseite (.tile h3, mobil 1.103rem) verkleinert. */
+     Fix: min-width:0 erlaubt echtes Schrumpfen, die Schriftgröße wurde auf
+     die gleiche Größe wie bei den Angebotskacheln der Startseite (.tile h3,
+     mobil 1.103rem) verkleinert. hyphens:manual (statt :auto) sorgt dafür,
+     dass der Zeilenumbruch nur an der im Markup gesetzten Stelle (weiches
+     Trennzeichen direkt vor "supervision") stattfindet, statt an einer vom
+     Wörterbuch gewählten Stelle mitten im Wortteil. */
   .sv-format-card h3{
     flex:1;min-width:0;display:flex;align-items:center;justify-content:space-between;gap:10px;
-    font-size:1.103rem;hyphens:auto;overflow-wrap:break-word;
+    font-size:1.103rem;hyphens:manual;overflow-wrap:break-word;
   }
 }
 
