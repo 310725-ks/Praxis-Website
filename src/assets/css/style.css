@@ -390,6 +390,19 @@ body.on-contact .snap-dots button.is-active{background:#cdd8cb;}
     display:block;width:calc(100% + 10vw);
     margin:-68px -5vw 53px;height:15px;
   }
+  /* Die obigen Bänder gehen von 5vw Section-Padding aus (wie auf der
+     Startseite). Supervision-Abschnitt 2-4 (8vw) und Über-mich "Berufs-
+     erfahrungen" (6vw) haben davon abweichendes Padding, wodurch das Band
+     nicht bis an den echten Bildschirmrand reichte. Echtes "full-bleed"
+     unabhängig vom jeweiligen Section-Padding (wie bereits bei .ph-worum
+     verwendet); die höhere Spezifität (zwei Klassen) gewinnt zuverlässig
+     über .about-band/.offers-band, unabhängig von der Reihenfolge hier. */
+  .sv-worum .about-band,
+  .sv-formate .about-band,
+  .sv-ebenen .about-band,
+  .um-berufserf .about-band{
+    width:100vw;margin-left:calc(50% - 50vw);margin-right:calc(50% - 50vw);
+  }
   .s-about .about{grid-template-columns:1fr;gap:22px;max-width:100%;}
   .s-about .about h2{font-size:1.5rem;}
   .s-about .about p{font-size:1rem;}
@@ -1247,11 +1260,6 @@ body.on-contact .snap-dots button.is-active{background:#cdd8cb;}
   .snap-section.sv-worum{padding-top:68px;padding-bottom:53px;}
   .snap-section.sv-formate{padding-top:68px;padding-bottom:53px;}
   .snap-section.sv-ebenen{padding-top:68px;padding-bottom:53px;}
-
-  /* "Bearbeitungsebenen und übliche Inhalte" war als einzige
-     Abschnittsüberschrift der Seite auf Mobile nicht verkleinert (blieb bei
-     2rem statt wie die Nachbarn bei 1,35rem) -- an die anderen angeglichen. */
-  .sv-ebenen .um-eyebrow + .sv-hero-h1{font-size:1.35rem;margin:10px 0 20px;}
 }
 
 /* ---- Abschnitt 3 (Formate): Blaue Zwischenüberschrift "Formate" nach dem
@@ -1285,6 +1293,14 @@ body.on-contact .snap-dots button.is-active{background:#cdd8cb;}
    von .sv-hero-h1), damit die Größe unabhängig von der späteren
    Mobil-Regel für .sv-hero-h1 zuverlässig greift. */
 .sv-ebenen .um-eyebrow + .sv-hero-h1{font-size:2rem;margin:14px 0 32px;}
+/* Die Mobil-Verkleinerung dieser Überschrift stand vorher weiter oben im
+   Stylesheet und wurde dadurch von der (gleich spezifischen, aber später
+   stehenden) Regel hier unconditional wieder auf 2rem zurückgesetzt --
+   deshalb blieb die Überschrift auf dem Gerät trotz Fix unverändert groß.
+   Jetzt direkt danach platziert, damit sie zuverlässig gewinnt. */
+@media(max-width:640px){
+  .sv-ebenen .um-eyebrow + .sv-hero-h1{font-size:1.35rem;margin:10px 0 20px;}
+}
 .sv-ebenen-a{display:block;}
 .sv-ebenen-img{display:flex;justify-content:center;margin-bottom:24px;}
 /* Grafik um 25% verkleinert: Basiswert (100% der Spalte ab 1025px bzw.
@@ -1293,6 +1309,15 @@ body.on-contact .snap-dots button.is-active{background:#cdd8cb;}
 .sv-ebenen-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px;}
 .sv-ebenen-list li{position:relative;padding-left:20px;color:var(--muted);font-size:1.15rem;line-height:1.5;}
 .sv-ebenen-list li::before{content:"";position:absolute;left:0;top:7px;width:7px;height:7px;background:var(--gold);}
+/* Auf Mobile auf die gleiche Textgröße wie der Fließtext in Abschnitt 1/2
+   gebracht (1rem); die größere Desktop-Größe (1.15rem, gezielt in einer
+   früheren Runde vergrößert) bleibt dort unverändert. Muss nach der
+   Basisregel stehen, sonst gewinnt diese (gleiche Spezifität, später in der
+   Kaskade) unconditional auch auf Mobile -- derselbe Fehler wie eben bei der
+   Überschrift. */
+@media(max-width:640px){
+  .sv-ebenen-list li{font-size:1rem;}
+}
 @media(min-width:1025px){
   .sv-ebenen-a{display:grid;grid-template-columns:1fr 1.3fr;gap:56px;align-items:center;}
   .sv-ebenen-img{margin-bottom:0;}
