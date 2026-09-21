@@ -1209,6 +1209,20 @@ body.on-contact .snap-dots button.is-active{background:#cdd8cb;}
   .sv-hero-h1{font-size:1.9rem;margin:10px 0 14px;}
   .sv-hero-text p{font-size:1rem;}
   .sv-worum-a p{font-size:1rem;}
+
+  /* Die Farbverlauf-Bänder am Abschnittsbeginn (Mobile) rissen mit dem
+     pauschalen -68px-Versatz der Startseiten-Regel (.offers-band) bis zu
+     68px in den jeweils vorangehenden Abschnitt hinein und überlagerten
+     dort Text bzw. Bilder (z.B. die Bildunterschrift des Hero-Fotos, den
+     Gruppensupervision-Text, die Haus-der-Supervision-Grafik). Gleiche
+     Ursache und gleiche Lösung wie zuvor bei .ph-worum/.ph-faq auf der
+     Paartherapie-Seite: Abstand nach oben zum vorherigen Abschnittsinhalt
+     auf denselben Wert wie der Abstand nach unten zur nächsten Eyebrow
+     (53px) kalibriert. Der allererste Abschnitt (Hero) braucht keine
+     Korrektur, da sein Band vollständig hinter dem Header verschwindet. */
+  .sv-worum .about-band{margin-top:19px;}
+  .sv-formate .about-band{margin-top:53px;}
+  .sv-ebenen .about-band{margin-top:53px;}
 }
 
 /* ---- Abschnitt 3 (Formate): Blaue Zwischenüberschrift "Formate" nach dem
