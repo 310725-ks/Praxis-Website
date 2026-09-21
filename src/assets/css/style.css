@@ -1173,11 +1173,20 @@ body.on-contact .snap-dots button.is-active{background:#cdd8cb;}
    + Inhalte und Themen (Punktliste, eigener Eyebrow-Block darunter). */
 .snap-section.sv-formate{padding:0 8vw;background:var(--bg);position:relative;}
 .sv-formate-row{display:grid;grid-template-columns:1fr;gap:20px;margin-top:24px;}
-.sv-format-card{padding:32px 28px;}
+/* min-width:0 nötig, da Grid-/Flex-Kinder sonst standardmäßig nie schmaler
+   werden als der Inhalt es "will" (min-width:auto) -- ohne das kann die
+   Karte mit dem längsten, nicht trennbaren Formatnamen ("Gruppensupervision")
+   ihre Spalte/Zeile sprengen (auf 1025px-Breite minimal beobachtet, auf
+   Mobile mit der iOS-Systemschrift Helvetica Neue stärker). */
+.sv-format-card{padding:32px 28px;min-width:0;}
 .sv-format-head{display:flex;align-items:center;gap:16px;margin-bottom:12px;}
 .sv-format-icon{width:55px;height:55px;flex-shrink:0;border-radius:50%;background:var(--grad);display:flex;align-items:center;justify-content:center;}
 .sv-format-icon svg{width:27.5px;height:27.5px;stroke:#fff;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;}
-.sv-format-card h3{font-size:1.2rem;margin:0;}
+/* hyphens/overflow-wrap als generelles Sicherheitsnetz auf allen
+   Breakpoints, nicht nur mobil -- falls der lange Formatname trotz
+   min-width:0 keinen Platz findet, darf der Browser ihn nötigenfalls
+   trennen statt die Karte zu sprengen. */
+.sv-format-card h3{font-size:1.2rem;margin:0;hyphens:auto;overflow-wrap:break-word;}
 .sv-format-card p em{color:var(--gold);font-style:italic;}
 .sv-themen-block{margin-top:56px;}
 .sv-themen-block .um-eyebrow{margin-bottom:14px;}
@@ -1227,8 +1236,12 @@ body.on-contact .snap-dots button.is-active{background:#cdd8cb;}
   /* Bild steht (Punkt c) im Markup jetzt zwischen Überschrift und erstem
      Absatz und soll dort horizontal zentriert erscheinen. display:table
      behält die Shrink-to-fit-Breite von .sv-haus-card (wie zuvor
-     inline-block) bei, erlaubt aber zusätzlich margin:auto-Zentrierung. */
-  .sv-worum-a .sv-haus-card{display:table;margin:24px auto 0;}
+     inline-block) bei, erlaubt aber zusätzlich margin:auto-Zentrierung.
+     Abstand oben (zur Überschrift) und unten (zum folgenden Text) auf
+     43,5px gesetzt -- exakt der gleiche Abstand wie vor/hinter dem Foto in
+     Abschnitt 1 (.sv-hero-inner{gap:43.5px} bzw. der Abstand von der
+     Bildunterschrift zum Abschnittsende). */
+  .sv-worum-a .sv-haus-card{display:table;margin:43.5px auto;}
 }
 /* Die Tablet-Formel für die Haus-Grafik lief bisher unter max-width:1024px
    (ohne untere Grenze) und griff dadurch fälschlich auch auf Mobile, wo sie
@@ -1249,7 +1262,20 @@ body.on-contact .snap-dots button.is-active{background:#cdd8cb;}
    keine seitenspezifische Regel sie mehr überschreibt. */
 @media(max-width:640px){
   .sv-format-head{width:100%;}
-  .sv-format-card h3{flex:1;display:flex;align-items:center;justify-content:space-between;gap:10px;}
+  /* Die Formatnamen ("Einzelsupervision" usw.) sind lange, nicht trennbare
+     zusammengesetzte Wörter. Als Flex-Kind hat h3 sonst eine automatische
+     Mindestbreite in Höhe des ganzen Wortes (min-width:auto) und kann durch
+     den Kreis-Icon + Toggle daneben auf manchen Geräten/Schriftarten über
+     den Bildschirmrand hinausragen (auf einem echten iPhone beobachtet,
+     in dieser Test-Umgebung mit Schriftart-Fallback nicht reproduzierbar).
+     Fix: min-width:0 erlaubt echtes Schrumpfen, hyphens:auto/overflow-wrap
+     als Sicherheitsnetz erlauben nötigenfalls einen Wortumbruch, und die
+     Schriftgröße wurde auf die gleiche Größe wie bei den Angebotskacheln
+     der Startseite (.tile h3, mobil 1.103rem) verkleinert. */
+  .sv-format-card h3{
+    flex:1;min-width:0;display:flex;align-items:center;justify-content:space-between;gap:10px;
+    font-size:1.103rem;hyphens:auto;overflow-wrap:break-word;
+  }
 }
 
 @media(max-width:640px){
