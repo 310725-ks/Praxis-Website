@@ -1003,7 +1003,12 @@ body.on-contact .snap-dots button.is-active{background:#cdd8cb;}
 }
 
 @media(max-width:640px){
-  .snap-section.um-hero-section{padding:40px 5vw 34px;}
+  /* padding-top von 40px auf 68px erhöht (Punkt a): der -68px-Versatz des
+     Bandes (.offers-band, siehe oben) zieht das Band dadurch nicht mehr
+     hinter den fixierten Header, sondern lässt es direkt darunter
+     erscheinen. Verschiebt die Überschrift um genau die Differenz (28px)
+     nach unten -- mit Screenshot geprüft und vom Nutzer bestätigt. */
+  .snap-section.um-hero-section{padding:68px 5vw 34px;}
   .um-hero-photo{height:min(38vh,300px);}
   .um-hero-text h1{font-size:1.9rem;margin:10px 0 0;}
   /* Gleiche mobile Verkleinerung wie .faq-eyebrow/.faq-heading auf der
@@ -1145,8 +1150,21 @@ body.on-contact .snap-dots button.is-active{background:#cdd8cb;}
    (Reflexionsebene, gläserner Boden, Alltagsebene) rechts im Bild bleiben
    dadurch weiterhin unbeschnitten sichtbar. */
 .sv-haus-card img{display:block;width:56.25vw;height:auto;aspect-ratio:1125/1398;object-fit:contain;border-radius:8px;}
+/* Für Punkt (c) wurde das Bild im Markup zwischen Überschrift und ersten
+   Absatz verschoben (steht dort auf Mobile/Tablet in normaler Block-
+   Reihenfolge zentriert zwischen beiden). Damit der Desktop-Zweispalter
+   davon unberührt bleibt, wird die Position hier explizit per
+   grid-template-areas gesetzt statt sich auf die (jetzt andere)
+   DOM-Reihenfolge zu verlassen: linke Spalte = Überschrift oben + Text
+   unten (übereinander), rechte Spalte = Bild (über beide Zeilen). */
 @media(min-width:1025px){
-  .sv-worum-a{display:grid;grid-template-columns:1.3fr 1fr;gap:56px;align-items:center;}
+  .sv-worum-a{
+    display:grid;grid-template-columns:1.3fr 1fr;gap:56px;align-items:center;
+    grid-template-areas:"top img" "bottom img";
+  }
+  .sv-worum-text-top{grid-area:top;}
+  .sv-haus-card{grid-area:img;}
+  .sv-worum-text-bottom{grid-area:bottom;}
   .sv-haus-card img{width:calc(23.625vw - 11.25px);}
 }
 
@@ -1206,7 +1224,11 @@ body.on-contact .snap-dots button.is-active{background:#cdd8cb;}
 
 @media(max-width:1024px){
   .sv-worum-a{display:block;}
-  .sv-worum-a .sv-haus-card{margin-top:24px;}
+  /* Bild steht (Punkt c) im Markup jetzt zwischen Überschrift und erstem
+     Absatz und soll dort horizontal zentriert erscheinen. display:table
+     behält die Shrink-to-fit-Breite von .sv-haus-card (wie zuvor
+     inline-block) bei, erlaubt aber zusätzlich margin:auto-Zentrierung. */
+  .sv-worum-a .sv-haus-card{display:table;margin:24px auto 0;}
 }
 /* Die Tablet-Formel für die Haus-Grafik lief bisher unter max-width:1024px
    (ohne untere Grenze) und griff dadurch fälschlich auch auf Mobile, wo sie
@@ -1231,7 +1253,12 @@ body.on-contact .snap-dots button.is-active{background:#cdd8cb;}
 }
 
 @media(max-width:640px){
-  .snap-section.sv-hero-section{padding:40px 5vw 34px;}
+  /* padding-top von 40px auf 68px erhöht (Punkt a): der -68px-Versatz des
+     Bandes (.offers-band, siehe oben) zieht das Band dadurch nicht mehr
+     hinter den fixierten Header, sondern lässt es direkt darunter
+     erscheinen. Verschiebt die Überschrift um genau die Differenz (28px)
+     nach unten -- mit Screenshot geprüft und vom Nutzer bestätigt. */
+  .snap-section.sv-hero-section{padding:68px 5vw 34px;}
   .sv-hero-h1{font-size:1.9rem;margin:10px 0 14px;}
   .sv-hero-text p{font-size:1rem;}
   .sv-worum-a p{font-size:1rem;}
