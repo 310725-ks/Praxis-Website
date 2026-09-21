@@ -1027,7 +1027,7 @@ body.on-contact .snap-dots button.is-active{background:#cdd8cb;}
   .um-eyebrow{font-size:.8rem;}
   .um-col-heading{font-size:1.35rem;}
   .um-mitglied-block{margin-top:24px;}
-  .um-logo-row{gap:24px;}
+  .um-logo-row{gap:24px;justify-content:center;}
 }
 
 /* ============================================================
