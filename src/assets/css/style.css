@@ -711,6 +711,17 @@ body.on-contact .snap-dots button.is-active{background:#cdd8cb;}
   .worum-photo{height:min(calc(37.8vw - 18px),598px);justify-self:center;margin:0 auto;}
   .worum-grid .about-quote p{font-size:1.05rem;}
 }
+/* Die Bildunterschrift (.worum-credit) ragt per translateY(50%) zur Hälfte
+   ihrer eigenen Höhe über die Unterkante des Fotos hinaus (gleiche Technik
+   wie bei den anderen Foto-Bildunterschriften). Bei ≤1024px endete der
+   Abschnitt bisher exakt an der Fotounterkante, wodurch der direkt
+   folgende Abschnitt mit seinem eigenen (deckenden) Hintergrund über die
+   untere Hälfte der Bildunterschrift malte -- sie wirkte dadurch
+   abgeschnitten. Fix: unten genug Platz reservieren (etwas mehr als die
+   halbe Bildunterschriften-Höhe von ca. 19px). */
+@media(max-width:1024px){
+  .snap-section.ph-worum{padding-bottom:12px;}
+}
 
 @media(min-width:1025px){
   .ph-worum .s-offers-inner{height:100%;padding-top:calc(0.625cm + 10px);position:relative;}
