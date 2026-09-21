@@ -1182,26 +1182,39 @@ body.on-contact .snap-dots button.is-active{background:#cdd8cb;}
   .sv-contact .kb-grid{max-width:1300px;grid-template-columns:1.3fr .7fr;}
   .sv-contact .kb-right{margin-top:0;align-self:center;}
   .sv-contact .kb-left{margin-top:0;}
-  .sv-contact .kb-right .kb-eyebrow{font-size:.9rem;margin:0 0 14px;}
-  .sv-contact .kb-right .kb-text{font-size:1.05rem;max-width:none;margin:0 0 18px;}
+  /* Schriftgrößen hier bewusst nicht mehr verkleinert (vorher .9rem/1.05rem)
+     -- entsprechen jetzt wieder den unveränderten .s-contact-Basiswerten
+     (1rem/1.167rem), identisch zur Startseite. Nur der Abstand (margin)
+     bleibt an das eigene Layout angepasst. */
+  .sv-contact .kb-right .kb-eyebrow{margin:0 0 14px;}
+  .sv-contact .kb-right .kb-text{max-width:none;margin:0 0 18px;}
 }
 .sv-contact .rahmen-grid p em{color:#c9cfd6;font-style:italic;}
 
 @media(max-width:1024px){
   .sv-worum-a{display:block;}
   .sv-worum-a .sv-haus-card{margin-top:24px;}
+}
+/* Die Tablet-Formel für die Haus-Grafik lief bisher unter max-width:1024px
+   (ohne untere Grenze) und griff dadurch fälschlich auch auf Mobile, wo sie
+   das Bild auf ca. 80px Breite schrumpfte statt der eigentlich vorgesehenen
+   56,25vw (Basisregel oben) -- auf min-width:641px (nur Tablet) eingegrenzt. */
+@media(min-width:641px) and (max-width:1024px){
   .sv-worum-a .sv-haus-card img{width:min(calc(23.625vw - 11.25px),373.75px);}
 }
 
 /* .sv-format-card teilt sich die .tile.card-Optik mit den Angebots-Kacheln
-   der Startseite, aber nicht deren Akkordeon-Verhalten: die Kacheln dort
-   verlinken auf eigene Unterseiten und blenden den Beschreibungstext auf
-   Mobil standardmäßig aus (nur per Tap sichtbar, mit Pfeil-Symbol). Die
-   Formate-Kacheln verlinken nirgendwohin, daher bleibt der Text hier auf
-   allen Breiten sichtbar statt einzuklappen. */
+   der Startseite und übernimmt jetzt auch deren Akkordeon-Verhalten auf
+   Mobil (Klick-Logik über .tile.card ist bereits sitzweit in main.js
+   vorhanden -- war für diese Karten nur per CSS deaktiviert). Der eigene
+   Avatar-Kreis (.sv-format-icon) bleibt erhalten; das Plus/Minus-Symbol
+   (.tile-toggle) sitzt wie bei den Angebotskacheln am Zeilenende der
+   Überschrift. Die generische Klapp-Logik (.tile p{max-height:0;...} /
+   .tile.card.is-open p{max-height:320px;...}) greift automatisch, sobald
+   keine seitenspezifische Regel sie mehr überschreibt. */
 @media(max-width:640px){
-  .sv-format-card{cursor:default;}
-  .sv-format-card p{max-height:none;opacity:1;margin:8px 0 0;}
+  .sv-format-head{width:100%;}
+  .sv-format-card h3{flex:1;display:flex;align-items:center;justify-content:space-between;gap:10px;}
 }
 
 @media(max-width:640px){
@@ -1210,19 +1223,35 @@ body.on-contact .snap-dots button.is-active{background:#cdd8cb;}
   .sv-hero-text p{font-size:1rem;}
   .sv-worum-a p{font-size:1rem;}
 
-  /* Die Farbverlauf-Bänder am Abschnittsbeginn (Mobile) rissen mit dem
-     pauschalen -68px-Versatz der Startseiten-Regel (.offers-band) bis zu
-     68px in den jeweils vorangehenden Abschnitt hinein und überlagerten
-     dort Text bzw. Bilder (z.B. die Bildunterschrift des Hero-Fotos, den
-     Gruppensupervision-Text, die Haus-der-Supervision-Grafik). Gleiche
-     Ursache und gleiche Lösung wie zuvor bei .ph-worum/.ph-faq auf der
-     Paartherapie-Seite: Abstand nach oben zum vorherigen Abschnittsinhalt
-     auf denselben Wert wie der Abstand nach unten zur nächsten Eyebrow
-     (53px) kalibriert. Der allererste Abschnitt (Hero) braucht keine
-     Korrektur, da sein Band vollständig hinter dem Header verschwindet. */
-  .sv-worum .about-band{margin-top:19px;}
-  .sv-formate .about-band{margin-top:53px;}
-  .sv-ebenen .about-band{margin-top:53px;}
+  /* Der Abstand zwischen Hero-Text und Hero-Foto (Grid-Gap) war mit 4px
+     winzig im Vergleich zum Abstand zwischen Foto und Abschnittsende
+     (34px Padding-bottom + Zeilenhöhe der Bildunterschrift ≈ 43,5px).
+     Beide Abstände jetzt gleich groß. */
+  .sv-hero-inner{gap:43.5px;}
+
+  /* Die Farbverlauf-Bänder am Abschnittsbeginn (Mobile) rissen ursprünglich
+     mit dem pauschalen -68px-Versatz der Startseiten-Regel (.offers-band)
+     bis zu 68px in den jeweils vorangehenden Abschnitt hinein und
+     überlagerten dort Text bzw. Bilder. Grundursache: .sv-worum/.sv-formate/
+     .sv-ebenen hatten (per späterer, unbedingter Regel) padding-top/-bottom:0
+     auf Mobile, wodurch der -68px-Versatz nichts mehr zu kompensieren hatte
+     und das Band stattdessen in den vorherigen Abschnitt zog. Ein früherer
+     Korrekturversuch (positiver margin-top je Band) behob zwar die
+     Überlappung, ließ das Band dadurch aber sichtbar unterhalb der
+     eigentlichen Hintergrundfarbgrenze erscheinen. Saubere Lösung: die
+     ursprünglich vorgesehene 68px-Polsterung oben wiederherstellen (die der
+     Standard-Versatz -68px exakt kompensiert, wodurch das Band automatisch
+     wieder genau auf der Farbgrenze sitzt) und unten 53px Polsterung
+     ergänzen, damit der letzte Inhalt (Foto, Karte, Stichpunkte) nicht direkt
+     am Abschnittsende klebt (betrifft auch den Übergang zu Abschnitt 5). */
+  .snap-section.sv-worum{padding-top:68px;padding-bottom:53px;}
+  .snap-section.sv-formate{padding-top:68px;padding-bottom:53px;}
+  .snap-section.sv-ebenen{padding-top:68px;padding-bottom:53px;}
+
+  /* "Bearbeitungsebenen und übliche Inhalte" war als einzige
+     Abschnittsüberschrift der Seite auf Mobile nicht verkleinert (blieb bei
+     2rem statt wie die Nachbarn bei 1,35rem) -- an die anderen angeglichen. */
+  .sv-ebenen .um-eyebrow + .sv-hero-h1{font-size:1.35rem;margin:10px 0 20px;}
 }
 
 /* ---- Abschnitt 3 (Formate): Blaue Zwischenüberschrift "Formate" nach dem
@@ -1245,7 +1274,13 @@ body.on-contact .snap-dots button.is-active{background:#cdd8cb;}
    rechts/breiter, wie .sv-worum-a gespiegelt) -- möglich geworden durch
    den Wegfall des Einleitungssatzes und der "Übliche Themen"-Zwischen-
    überschrift in der rechten Spalte. ---- */
-.snap-section.sv-ebenen{padding:0 8vw;position:relative;}
+/* Abschnitt 3 (Formate) und Abschnitt 4 (Bearbeitungsebenen) nutzten beide
+   dieselbe helle Hintergrundfarbe (var(--bg)), wodurch am Übergang kein
+   Farbwechsel erkennbar war. Abschnitt 4 bekommt daher auf allen
+   Bildschirmgrößen (Mobile, Tablet, Desktop) denselben etwas dunkleren
+   Sandton wie Abschnitt 2 (sv-worum), sodass beide Übergänge (2→3 und 3→4)
+   gleichermaßen sichtbar sind. */
+.snap-section.sv-ebenen{padding-left:8vw;padding-right:8vw;background:#F4EDE2;position:relative;}
 /* Gleiche Selektor-Technik wie in Abschnitt 2/3 (Eyebrow direkt gefolgt
    von .sv-hero-h1), damit die Größe unabhängig von der späteren
    Mobil-Regel für .sv-hero-h1 zuverlässig greift. */
