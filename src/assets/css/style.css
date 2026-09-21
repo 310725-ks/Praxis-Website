@@ -1357,7 +1357,16 @@ body.on-contact .snap-dots button.is-active{background:#cdd8cb;}
   .sv-ebenen .um-eyebrow + .sv-hero-h1{font-size:1.35rem;margin:10px 0 20px;}
 }
 .sv-ebenen-a{display:block;}
-.sv-ebenen-img{display:flex;justify-content:center;margin-bottom:24px;}
+.sv-ebenen-img{display:flex;flex-direction:column;align-items:center;justify-content:center;margin-bottom:24px;}
+/* Bildunterschrift im gleichen Stil wie die Foto-Bildunterschriften
+   (.photo-credit, kleine kursive Box mit dünnem Rahmen) -- hier ohne den
+   Überlapp-Trick (translateY), da die Grafik (anders als die Fotos) selbst
+   schon einen hellen/weißen Hintergrund hat und mittig unter ihr sitzt. */
+.sv-ebenen-img p.sv-ebenen-credit{
+  margin:8px 0 0;font-size:calc(.78rem - 1.7pt);font-style:italic;color:var(--muted);
+  text-align:center;max-width:none;background:#fff;border:1px solid rgba(107,106,102,.32);
+  border-radius:6px;padding:3px 10px;
+}
 /* Grafik um 25% verkleinert: Basiswert (100% der Spalte ab 1025px bzw.
    320px Obergrenze darunter) jeweils auf 75% reduziert. */
 .sv-ebenen-img img{width:100%;max-width:240px;height:auto;}
