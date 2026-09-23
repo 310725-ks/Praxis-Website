@@ -1515,7 +1515,14 @@ body.on-contact .snap-dots button.is-active{background:#cdd8cb;}
 .co-twocol-a{display:block;}
 .co-twocol-img{display:flex;flex-direction:column;align-items:center;justify-content:center;margin-bottom:24px;}
 .co-twocol-img img{width:100%;max-width:240px;height:auto;}
-.co-twocol-caption{margin:8px 0 0;font-size:calc(.78rem - 1.7pt);font-style:italic;color:var(--muted);text-align:center;}
+/* Bildunterschrift im gleichen Stil wie .sv-ebenen-credit auf der
+   Supervisionsseite (kleine kursive Box mit dünnem Rahmen, mittig unter
+   der Grafik). */
+.co-twocol-img p.co-twocol-caption{
+  margin:8px 0 0;font-size:calc(.78rem - 1.7pt);font-style:italic;color:var(--muted);
+  text-align:center;max-width:none;background:#fff;border:1px solid rgba(107,106,102,.32);
+  border-radius:6px;padding:3px 10px;
+}
 .co-twocol-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px;}
 .co-twocol-list li{position:relative;padding-left:20px;color:var(--muted);font-size:1.15rem;line-height:1.5;}
 .co-twocol-list li::before{content:"";position:absolute;left:0;top:7px;width:7px;height:7px;background:var(--gold);}
