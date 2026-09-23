@@ -1,6 +1,6 @@
 :root{
   --ink:#22201c; --muted:#6b6a66;
-  --navy:#20385c; --sage:#8b9a82; --gold:#b8873f; --bg:#faf6ee; --card:#fff;
+  --navy:#20385c; --sage:#8b9a82; --gold:#b8873f; --terracotta:#B5624A; --bg:#faf6ee; --card:#fff;
   --grad: linear-gradient(155deg, var(--navy) 0%, var(--sage) 55%, var(--gold) 100%);
 }
 *{box-sizing:border-box;}
@@ -1508,6 +1508,7 @@ body.on-contact .snap-dots button.is-active{background:#cdd8cb;}
 .co-twocol-a{display:block;}
 .co-twocol-img{display:flex;flex-direction:column;align-items:center;justify-content:center;margin-bottom:24px;}
 .co-twocol-img img{width:100%;max-width:240px;height:auto;}
+.co-twocol-caption{margin:8px 0 0;font-size:calc(.78rem - 1.7pt);font-style:italic;color:var(--muted);text-align:center;}
 .co-twocol-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px;}
 .co-twocol-list li{position:relative;padding-left:20px;color:var(--muted);font-size:1.15rem;line-height:1.5;}
 .co-twocol-list li::before{content:"";position:absolute;left:0;top:7px;width:7px;height:7px;background:var(--gold);}
