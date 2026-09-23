@@ -400,7 +400,10 @@ body.on-contact .snap-dots button.is-active{background:#cdd8cb;}
   .sv-worum .about-band,
   .sv-formate .about-band,
   .sv-ebenen .about-band,
-  .um-berufserf .about-band{
+  .um-berufserf .about-band,
+  .co-worum .about-band,
+  .co-anliegen .about-band,
+  .co-inhalte .about-band{
     width:100vw;margin-left:calc(50% - 50vw);margin-right:calc(50% - 50vw);
   }
   .s-about .about{grid-template-columns:1fr;gap:22px;max-width:100%;}
@@ -1398,3 +1401,134 @@ body.on-contact .snap-dots button.is-active{background:#cdd8cb;}
   .sv-ebenen-img{margin-bottom:0;}
   .sv-ebenen-img img{max-width:75%;}
 }
+
+/* ============================================================
+   Coaching-Seite -- Grunddesign 1:1 von der Supervisionsseite übernommen
+   (gleiche Mechanik/Werte, eigene .co-* Klassen statt .sv-*, damit spätere
+   Anpassungen an einer Seite die andere nicht versehentlich mitverändern).
+   Abschnitt 1 und 2: identischer Aufbau wie sv-hero-section/sv-worum, noch
+   mit den Platzhalterbildern der Supervisionsseite. Abschnitt 3 und 4:
+   beide im Aufbau von Supervision-Abschnitt 4 (sv-ebenen), daher über
+   gemeinsame .co-twocol-* Klassen zusammengefasst; nur Hintergrundfarbe
+   und Überschrift/Liste unterscheiden sich je Abschnitt. Abschnitt 5:
+   Inhalt/Design 1:1 von Supervision-Abschnitt 5 übernommen (Platzhalter-
+   text, wird vom Nutzer später angepasst). ---- */
+
+/* ---- Abschnitt 1: Hero -- exakt wie .sv-hero-section. ---- */
+.snap-section.co-hero-section{padding:0 8vw;position:relative;}
+.co-hero-text p{color:var(--muted);font-size:1.167rem;line-height:1.65;max-width:520px;margin:20px 0 0;}
+.co-hero-h1{color:var(--navy);font-size:2.6rem;margin:16px 0 20px;line-height:1.08;}
+.co-hero-photo-wrap{display:flex;flex-direction:column;width:100%;}
+.co-hero-photo{width:100%;height:auto;aspect-ratio:auto;}
+.co-hero-photo img{width:100%;height:auto;object-fit:contain;object-position:center;display:block;}
+.co-hero-inner{max-width:none;grid-template-columns:1.1fr .9fr;gap:40px;}
+@media(max-width:1024px){
+  .co-hero-inner{grid-template-columns:1.1fr .9fr;gap:40px;}
+}
+@media(max-width:640px){
+  .co-hero-inner{grid-template-columns:1fr;gap:4px;}
+}
+@media(min-width:641px){
+  .co-hero-photo-wrap{max-width:598px;justify-self:center;margin:0 auto;}
+}
+@media(min-width:641px) and (max-width:1024px){
+  .snap-section.co-hero-section{padding-left:6vw;padding-right:6vw;}
+}
+@media(min-width:1025px){
+  .snap-section.co-hero-section{padding-right:64px;}
+  .co-hero-photo-wrap{position:relative;left:min(0px, calc(-25.3vw + 276.4px));}
+}
+.co-hero-photo-wrap p.co-photo-credit{
+  margin:0;margin-right:2px;font-size:calc(.78rem - 1.7pt);font-style:italic;color:var(--muted);
+  text-align:right;align-self:flex-end;max-width:none;
+  background:#fff;border:1px solid rgba(107,106,102,.32);border-radius:6px;
+  padding:3px 10px;position:relative;z-index:1;transform:translateY(-50%);
+}
+@media(max-width:640px){
+  .snap-section.co-hero-section{padding:68px 5vw 34px;}
+  .co-hero-h1{font-size:1.9rem;margin:10px 0 14px;}
+  .co-hero-text p{font-size:1rem;}
+  .co-hero-inner{gap:43.5px;}
+}
+
+/* ---- Abschnitt 2: Worum es geht -- exakt wie .sv-worum, inkl. der
+   zentrierten Platzhalter-Grafik zwischen Überschrift und Text. ---- */
+.snap-section.co-worum{padding:0 8vw;position:relative;}
+.co-worum-a p{color:var(--muted);font-size:1.167rem;line-height:1.65;margin:0;}
+.co-worum-text .um-eyebrow + .co-hero-h1{font-size:1.825rem;}
+.co-haus-card{
+  display:inline-block;justify-self:center;max-width:100%;
+  background:var(--card);border-radius:14px;padding:8px;
+  box-shadow:0 20px 40px -22px rgba(20,20,20,.35);
+}
+.co-haus-card img{display:block;width:56.25vw;height:auto;aspect-ratio:1125/1398;object-fit:contain;border-radius:8px;}
+@media(min-width:1025px){
+  .co-worum-a{
+    display:grid;grid-template-columns:1.3fr 1fr;gap:56px;align-items:center;
+    grid-template-areas:"top img" "bottom img";
+  }
+  .co-worum-text-top{grid-area:top;}
+  .co-haus-card{grid-area:img;}
+  .co-worum-text-bottom{grid-area:bottom;}
+  .co-haus-card img{width:calc(23.625vw - 11.25px);}
+}
+@media(max-width:1024px){
+  .co-worum-a{display:block;}
+  .co-worum-a .co-haus-card{display:table;margin:43.5px auto;}
+}
+@media(min-width:641px) and (max-width:1024px){
+  .co-worum-a .co-haus-card img{width:min(calc(23.625vw - 11.25px),373.75px);}
+}
+@media(max-width:640px){
+  .snap-section.co-worum{padding-top:68px;padding-bottom:53px;}
+  .co-worum-a p{font-size:1rem;}
+  .co-worum-text .um-eyebrow + .co-hero-h1{font-size:1.35rem;}
+}
+
+/* ---- Abschnitt 3 + 4: beide im Aufbau von Supervision-Abschnitt 4
+   (Bild links/schmaler, Liste rechts/breiter), daher gemeinsame
+   .co-twocol-* Klassen. Abschnitt 3 hell (wie sv-formate), Abschnitt 4
+   sandfarben (wie sv-ebenen), damit beide Übergänge sichtbar bleiben. ---- */
+.snap-section.co-anliegen{padding:0 8vw;background:var(--bg);position:relative;}
+.snap-section.co-inhalte{padding-left:8vw;padding-right:8vw;background:#F4EDE2;position:relative;}
+.co-anliegen .um-eyebrow + .co-hero-h1,
+.co-inhalte .um-eyebrow + .co-hero-h1{font-size:2rem;margin:14px 0 32px;}
+@media(max-width:640px){
+  .co-anliegen .um-eyebrow + .co-hero-h1,
+  .co-inhalte .um-eyebrow + .co-hero-h1{font-size:1.35rem;margin:10px 0 20px;}
+}
+/* Die in der Textvorlage fett hervorgehobene Wortgruppe ("berufliche
+   Sphäre im Vordergrund" bzw. "persönlichen Bereich im Vordergrund") wird
+   mit der bestehenden Gold-Akzentfarbe abgesetzt, da die Überschrift
+   ohnehin schon durchgehend fett ist und reines Fett dort keinen sichtbaren
+   Unterschied gemacht hätte. */
+.co-heading-accent{color:var(--gold);}
+.co-twocol-a{display:block;}
+.co-twocol-img{display:flex;flex-direction:column;align-items:center;justify-content:center;margin-bottom:24px;}
+.co-twocol-img img{width:100%;max-width:240px;height:auto;}
+.co-twocol-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px;}
+.co-twocol-list li{position:relative;padding-left:20px;color:var(--muted);font-size:1.15rem;line-height:1.5;}
+.co-twocol-list li::before{content:"";position:absolute;left:0;top:7px;width:7px;height:7px;background:var(--gold);}
+@media(max-width:640px){
+  .co-twocol-list li{font-size:1rem;}
+}
+@media(min-width:1025px){
+  .co-twocol-a{display:grid;grid-template-columns:1fr 1.3fr;gap:56px;align-items:center;}
+  .co-twocol-img{margin-bottom:0;}
+  .co-twocol-img img{max-width:75%;}
+}
+@media(max-width:640px){
+  .snap-section.co-anliegen{padding-top:68px;padding-bottom:53px;}
+  .snap-section.co-inhalte{padding-top:68px;padding-bottom:53px;}
+}
+
+/* ---- Abschnitt 5: Rahmen -- exakt wie .sv-contact, Inhalt vorerst 1:1
+   von der Supervisionsseite übernommen. ---- */
+@media(min-width:1025px){
+  .co-contact .kb-grid{max-width:1300px;grid-template-columns:1.3fr .7fr;}
+  .co-contact .kb-right{margin-top:0;align-self:center;}
+  .co-contact .kb-left{margin-top:0;}
+  .co-contact .kb-right .kb-eyebrow{margin:0 0 14px;}
+  .co-contact .kb-right .kb-text{max-width:none;margin:0 0 18px;}
+}
+.co-contact .rahmen-grid p em{color:#c9cfd6;font-style:italic;}
