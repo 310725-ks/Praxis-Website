@@ -1,3 +1,10 @@
+/* Grundsätzliche 8-Farben-Palette (Variante 3 -- "Im Farbkreis verschoben"),
+   fuer Projekte/Grafiken mit Bedarf an 6-8 Farben (z.B. das Lebensrad).
+   Nur als Referenz dokumentiert, keine aktiven CSS-Variablen, da diese
+   Toene nicht im laufenden Website-Design verwendet werden:
+   Navy #20385C, Navy->Salbei #405567, Salbei #8B9A82, Salbei->Gold #9B936B,
+   Gold #B8873F, Gold->Terrakotta #B77843, Terrakotta #B5624A,
+   Terrakotta->Navy #9A5A4D. */
 :root{
   --ink:#22201c; --muted:#6b6a66;
   --navy:#20385c; --sage:#8b9a82; --gold:#b8873f; --terracotta:#B5624A; --bg:#faf6ee; --card:#fff;
