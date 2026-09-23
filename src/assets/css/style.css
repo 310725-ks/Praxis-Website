@@ -1145,14 +1145,16 @@ body.on-contact .snap-dots button.is-active{background:#cdd8cb;}
    Spezifität wie .sv-worum-a p, daher zusätzlich über die Klasse selbst
    qualifiziert, damit margin-top zuverlässig greift. */
 .sv-worum-a p.sv-worum-last{margin-top:18px;}
-/* Kleiner weißer Rahmen in der Rechteckform des Fotos (statt einer
-   größeren Kartenfläche mit Hintergrund) -- die Box umschließt das Bild
-   eng (display:inline-block, justify-self:center), die Bildgröße steuert
-   allein die Höhe von .sv-haus-card img je Breakpoint. */
+/* Ehemals ein weißer Kartenrahmen (Hintergrund/Padding/Box-Shadow) um das
+   Bild -- passend, solange die Grafik selbst einen undurchsichtigen
+   Hintergrund hatte. Die Haus-Grafik ist jetzt eine freigestellte PNG mit
+   echter Transparenz (wie .sv-ebenen-img in Abschnitt 4), daher entfaellt
+   die Kartenoptik hier bewusst, damit sich das Bild randlos in den
+   Seitenhintergrund einfuegt. Die Box umschliesst das Bild weiterhin eng
+   (display:inline-block, justify-self:center), die Bildgroesse steuert
+   allein die Hoehe von .sv-haus-card img je Breakpoint. */
 .sv-haus-card{
   display:inline-block;justify-self:center;max-width:100%;
-  background:var(--card);border-radius:14px;padding:8px;
-  box-shadow:0 20px 40px -22px rgba(20,20,20,.35);
 }
 /* Bildbox exakt um 90° gedreht auf Abschnitt-1-Größe gebracht: Abschnitt 1
    (Hero, Querformat) ist jetzt auf jeder Breite calc(37.8vw - 18px) breit
@@ -1170,7 +1172,7 @@ body.on-contact .snap-dots button.is-active{background:#cdd8cb;}
    Ränder oben/unten, ähnlich knapp wie links/rechts. Die Beschriftungen
    (Reflexionsebene, gläserner Boden, Alltagsebene) rechts im Bild bleiben
    dadurch weiterhin unbeschnitten sichtbar. */
-.sv-haus-card img{display:block;width:56.25vw;height:auto;aspect-ratio:1125/1398;object-fit:contain;border-radius:8px;}
+.sv-haus-card img{display:block;width:56.25vw;height:auto;aspect-ratio:1125/1398;object-fit:contain;}
 /* Bildunterschrift für die Haus-Grafik, im gleichen Stil wie bei den
    anderen Grafiken (.sv-ebenen-credit, .co-twocol-caption): kleine kursive
    Box mit dünnem Rahmen, mittig unter dem Bild. .sv-haus-card ist (anders
@@ -1194,9 +1196,24 @@ body.on-contact .snap-dots button.is-active{background:#cdd8cb;}
     display:grid;grid-template-columns:1.3fr 1fr;column-gap:56px;row-gap:16px;align-items:center;
     grid-template-areas:"top img" "bottom img";
   }
-  .sv-worum-text-top{grid-area:top;}
+  .sv-worum-text-top{grid-area:top;
+    /* align-items:center (oben) zentriert Grid-Items standardmaessig
+       innerhalb ihrer Zeile. Da die Bildspalte (img) beide Zeilen
+       ueberspannt und hoeher ist als Ueberschrift+Text zusammen, werden
+       Zeile 1 (top) und Zeile 2 (bottom) automatisch aufgebläht, damit
+       beide zusammen die Bildhoehe ergeben -- der zentrierte Text
+       "schwimmt" dadurch mit Luft ueber und unter sich in seiner Zeile,
+       wodurch der eigentlich beabsichtigte 16px-Abstand (row-gap, siehe
+       unten) real auf ca. 49px anwuchs. Fix: dieses Element an den
+       UNTEREN Rand seiner Zeile andocken, damit nur noch der row-gap
+       zaehlt. */
+    align-self:end;
+  }
   .sv-haus-card{grid-area:img;}
-  .sv-worum-text-bottom{grid-area:bottom;}
+  .sv-worum-text-bottom{grid-area:bottom;
+    /* Gegenstueck zu oben: an den OBEREN Rand der Zeile andocken. */
+    align-self:start;
+  }
   .sv-haus-card img{width:calc(23.625vw - 11.25px);}
   /* Abstand Überschrift->Text auf denselben Wert wie Eyebrow->Überschrift
      (16px) verkürzt: der bisherige Abstand kam aus margin-bottom (20px)
@@ -1501,9 +1518,17 @@ body.on-contact .snap-dots button.is-active{background:#cdd8cb;}
     display:grid;grid-template-columns:1.3fr 1fr;column-gap:56px;row-gap:16px;align-items:center;
     grid-template-areas:"top img" "bottom img";
   }
-  .co-worum-text-top{grid-area:top;}
+  .co-worum-text-top{grid-area:top;
+    /* siehe ausfuehrlichen Kommentar bei .sv-worum-text-top: align-items:
+       center blaeht sonst beide Text-Zeilen auf Bildhoehe auf und
+       zentriert den (kuerzeren) Text darin, wodurch der beabsichtigte
+       16px-Abstand zur naechsten Zeile real auf ca. 49px anwaechst. */
+    align-self:end;
+  }
   .co-haus-card{grid-area:img;}
-  .co-worum-text-bottom{grid-area:bottom;}
+  .co-worum-text-bottom{grid-area:bottom;
+    align-self:start;
+  }
   .co-haus-card img,
   .co-haus-card .img-placeholder{width:calc(23.625vw - 11.25px);}
   /* Abstand Überschrift->Text auf denselben Wert wie Eyebrow->Überschrift
