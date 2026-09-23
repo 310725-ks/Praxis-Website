@@ -1503,6 +1503,8 @@ body.on-contact .snap-dots button.is-active{background:#cdd8cb;}
    ohnehin schon durchgehend fett ist und reines Fett dort keinen sichtbaren
    Unterschied gemacht hätte. */
 .co-heading-accent{color:var(--gold);}
+.co-anliegen .co-heading-accent{color:var(--sage);}
+.co-anliegen .co-twocol-list li::before{background:var(--sage);}
 .co-twocol-a{display:block;}
 .co-twocol-img{display:flex;flex-direction:column;align-items:center;justify-content:center;margin-bottom:24px;}
 .co-twocol-img img{width:100%;max-width:240px;height:auto;}
