@@ -1418,8 +1418,6 @@ body.on-contact .snap-dots button.is-active{background:#cdd8cb;}
 .snap-section.co-hero-section{padding:0 8vw;position:relative;}
 .co-hero-text p{color:var(--muted);font-size:1.167rem;line-height:1.65;max-width:520px;margin:20px 0 0;}
 .co-hero-h1{color:var(--navy);font-size:2.6rem;margin:16px 0 20px;line-height:1.08;}
-.co-hero-text p.co-hero-subtitle{color:var(--muted);font-size:1.167rem;line-height:1.65;max-width:520px;margin:4px 0 0;}
-.co-hero-text .co-hero-subtitle + p{margin-top:10px;}
 .co-hero-photo-wrap{display:flex;flex-direction:column;width:100%;}
 .co-hero-photo{width:100%;height:auto;aspect-ratio:auto;}
 .co-hero-photo img{width:100%;height:auto;object-fit:contain;object-position:center;display:block;}
@@ -1450,7 +1448,6 @@ body.on-contact .snap-dots button.is-active{background:#cdd8cb;}
   .snap-section.co-hero-section{padding:68px 5vw 34px;}
   .co-hero-h1{font-size:1.9rem;margin:10px 0 14px;}
   .co-hero-text p{font-size:1rem;}
-  .co-hero-text p.co-hero-subtitle{font-size:1rem;}
   .co-hero-inner{gap:43.5px;}
 }
 
