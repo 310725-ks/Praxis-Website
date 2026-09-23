@@ -1504,6 +1504,14 @@ body.on-contact .snap-dots button.is-active{background:#cdd8cb;}
   .co-anliegen .um-eyebrow + .co-hero-h1,
   .co-inhalte .um-eyebrow + .co-hero-h1{font-size:1.35rem;margin:10px 0 20px;}
 }
+/* Abschnitt 4 (Lebensrad): Abstand zur Grafik/Liste verkleinert, damit die
+   Überschrift innerhalb der vertikal zentrierten snap-section weiter nach
+   oben rückt und die vergrößerte Grafik darunter Platz hat. Nur ab 641px,
+   da die feste Viewport-Höhe (snap-section) erst dort greift -- die
+   Mobile-Regel oben (max-width:640px) bleibt unberührt. */
+@media(min-width:641px){
+  .co-inhalte .um-eyebrow + .co-hero-h1{margin:14px 0 16px;}
+}
 /* Die in der Textvorlage fett hervorgehobene Wortgruppe ("berufliche
    Sphäre im Vordergrund" bzw. "persönlichen Bereich im Vordergrund") wird
    mit der bestehenden Gold-Akzentfarbe abgesetzt, da die Überschrift
@@ -1515,6 +1523,10 @@ body.on-contact .snap-dots button.is-active{background:#cdd8cb;}
 .co-twocol-a{display:block;}
 .co-twocol-img{display:flex;flex-direction:column;align-items:center;justify-content:center;margin-bottom:24px;}
 .co-twocol-img img{width:100%;max-width:240px;height:auto;}
+/* Lebensrad in Abschnitt 4 um ca. 20% größer als das gemeinsame
+   .co-twocol-img-Basismaß (240px -> 288px), ohne das Platzhalterbild in
+   Abschnitt 3 (co-anliegen) zu beeinflussen. */
+.co-inhalte .co-twocol-img img{max-width:288px;}
 /* Bildunterschrift im gleichen Stil wie .sv-ebenen-credit auf der
    Supervisionsseite (kleine kursive Box mit dünnem Rahmen, mittig unter
    der Grafik). */
@@ -1533,6 +1545,8 @@ body.on-contact .snap-dots button.is-active{background:#cdd8cb;}
   .co-twocol-a{display:grid;grid-template-columns:1fr 1.3fr;gap:56px;align-items:center;}
   .co-twocol-img{margin-bottom:0;}
   .co-twocol-img img{max-width:75%;}
+  /* +20% gegenüber den 75% des Platzhalterbilds in Abschnitt 3 */
+  .co-inhalte .co-twocol-img img{max-width:90%;}
 }
 @media(max-width:640px){
   .snap-section.co-anliegen{padding-top:68px;padding-bottom:53px;}
