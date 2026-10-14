@@ -940,6 +940,14 @@ body.on-contact .snap-dots button.is-active{background:#cdd8cb;}
    1.167rem Desktop / 1rem Mobil, Zeilenhöhe 1.65, Farbe muted). */
 .um-hero-text p{color:var(--muted);font-size:1.167rem;line-height:1.65;margin:16px 0 0;}
 .um-hero-text p + p{margin-top:14px;}
+/* Desktop: Abstand Bildschirmrand -> Foto, Foto -> Text und Text -> Abschnittspunkte
+   (.snap-dots: right 26px + 10px Breite = 36px) ist immer gleich groß (space-evenly).
+   Die Textspalte ist höchstens 700px breit und lässt mindestens 56px je Abstand frei. */
+@media(min-width:1025px){
+  .snap-section.um-hero-section{padding-left:0;padding-right:36px;}
+  .um-hero-inner{max-width:none;margin:0;gap:0;justify-content:space-evenly;
+    grid-template-columns:auto minmax(0,min(700px,calc(100vw - 36px - 0.8 * min(64.4vh,529px) - 168px)));}
+}
 /* Niedrige Desktop-Fenster: Text ist länger als die Höhe -> Abstand zum Farbband sichern. */
 @media(min-width:1025px) and (max-height:760px){.snap-section.um-hero-section{padding-top:48px;padding-bottom:24px;}}
 
