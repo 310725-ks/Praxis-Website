@@ -931,11 +931,17 @@ body.on-contact .snap-dots button.is-active{background:#cdd8cb;}
 
 /* ---- Abschnitt 1: Kurzvita (Hero) -- eigenes, helles Foto+Text-Layout ---- */
 .snap-section.um-hero-section{padding:0 8vw;position:relative;}
-.um-hero-inner{width:100%;max-width:1180px;margin:0 auto;display:grid;grid-template-columns:.85fr 1.15fr;gap:56px;align-items:center;}
-.um-hero-photo{border-radius:20px;overflow:hidden;box-shadow:0 30px 54px -22px rgba(20,20,20,.4);height:min(50vh,420px);width:auto;aspect-ratio:4/5;}
+.um-hero-inner{width:100%;max-width:1180px;margin:0 auto;display:grid;grid-template-columns:auto 1fr;gap:56px;align-items:center;}
+.um-hero-photo{border-radius:20px;overflow:hidden;box-shadow:0 30px 54px -22px rgba(20,20,20,.4);height:min(64.4vh,529px);width:auto;aspect-ratio:4/5;}
 .um-hero-photo img{width:100%;height:100%;object-fit:cover;object-position:50% 15%;display:block;}
 .um-hero-text h1{color:var(--navy);font-size:2.4rem;margin:12px 0 0;line-height:1.08;}
-.um-hero-text .um-platzhalter{margin-top:16px;}
+.um-hero-text h1{margin-top:0;}
+/* Fließtext wie im Startseiten-Hero (.snap-section.s-hero .hero p:
+   1.167rem Desktop / 1rem Mobil, Zeilenhöhe 1.65, Farbe muted). */
+.um-hero-text p{color:var(--muted);font-size:1.167rem;line-height:1.65;margin:16px 0 0;}
+.um-hero-text p + p{margin-top:14px;}
+/* Niedrige Desktop-Fenster: Text ist länger als die Höhe -> Abstand zum Farbband sichern. */
+@media(min-width:1025px) and (max-height:760px){.snap-section.um-hero-section{padding-top:48px;padding-bottom:24px;}}
 
 /* ---- Abschnitte 2 & 3: gemeinsamer zweispaltiger Aufbau ---- */
 .um-two-col{display:grid;grid-template-columns:1fr 1fr;gap:64px;margin-top:28px;position:relative;}
@@ -1017,7 +1023,7 @@ body.on-contact .snap-dots button.is-active{background:#cdd8cb;}
 
 @media(max-width:1024px){
   .um-hero-inner{grid-template-columns:1fr;gap:28px;}
-  .um-hero-photo{justify-self:center;height:min(42vh,340px);}
+  .um-hero-photo{justify-self:center;height:min(46vh,340px);}
   .um-two-col{grid-template-columns:1fr;gap:36px;}
   .um-two-col::before{display:none;}
   .snap-section.um-berufserf{padding:56px 6vw;}
@@ -1030,8 +1036,9 @@ body.on-contact .snap-dots button.is-active{background:#cdd8cb;}
      erscheinen. Verschiebt die Überschrift um genau die Differenz (28px)
      nach unten -- mit Screenshot geprüft und vom Nutzer bestätigt. */
   .snap-section.um-hero-section{padding:68px 5vw 34px;}
-  .um-hero-photo{height:min(38vh,300px);}
-  .um-hero-text h1{font-size:1.9rem;margin:10px 0 0;}
+  .um-hero-photo{height:min(40vh,300px);}
+  .um-hero-text h1{font-size:1.9rem;margin:0;}
+  .um-hero-text p{font-size:1rem;}
   /* Gleiche mobile Verkleinerung wie .faq-eyebrow/.faq-heading auf der
      Paartherapie-Seite. */
   .um-eyebrow{font-size:.8rem;}
