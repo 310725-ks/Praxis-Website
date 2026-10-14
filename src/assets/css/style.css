@@ -1599,10 +1599,11 @@ body.on-contact .snap-dots button.is-active{background:#cdd8cb;}
    das ersetzte Bild (Seitenverhältnis des vormaligen Platzhalterfotos),
    berührt Abschnitt 4 (co-inhalte, echtes Lebensrad-Bild) nicht. */
 .co-twocol-img .img-placeholder{width:100%;max-width:240px;aspect-ratio:1125/1398;border-radius:6px;}
-/* Lebensrad in Abschnitt 4 um ca. 20% größer als das gemeinsame
+/* Lebensrad in Abschnitt 4: zuletzt um 20% verkleinert (Mobil/Tablet
+   288px -> 230,4px, Desktop 100% -> 80% der Spalte); zuvor um ca. 20% größer als das gemeinsame
    .co-twocol-img-Basismaß (240px -> 288px), ohne das Platzhalterbild in
    Abschnitt 3 (co-anliegen) zu beeinflussen. */
-.co-inhalte .co-twocol-img img{max-width:288px;}
+.co-inhalte .co-twocol-img img{max-width:230.4px;}
 /* Bildunterschrift im gleichen Stil wie .sv-ebenen-credit auf der
    Supervisionsseite (kleine kursive Box mit dünnem Rahmen, mittig unter
    der Grafik). */
@@ -1629,7 +1630,7 @@ body.on-contact .snap-dots button.is-active{background:#cdd8cb;}
      zentrierte Überschrift weiter nach oben rückt (siehe margin-Regel
      oben) -- Ziel: Höhe der Überschrift auf gleicher Ebene wie Abschnitt 3. */
   .co-inhalte .co-twocol-a{grid-template-columns:1.08fr 1fr;}
-  .co-inhalte .co-twocol-img img{max-width:100%;}
+  .co-inhalte .co-twocol-img img{max-width:80%;}
 }
 @media(max-width:640px){
   .snap-section.co-anliegen{padding-top:68px;padding-bottom:53px;}
