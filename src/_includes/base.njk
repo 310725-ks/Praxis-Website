@@ -1,7 +1,9 @@
 {% set L = {
   de: {
     contact: "Kontakt",
-    navTherapy: "Therapie & Beratung",
+    navTherapy: "Systemische Therapie & Beratung",
+    navOverview: "Überblick",
+    navFamily: "Familientherapie & Beratung",
     navCouples: "Paartherapie & Beziehungsberatung",
     navIndividual: "Einzeltherapie & Beratung",
     navCoaching: "Coaching",
@@ -15,7 +17,9 @@
   },
   en: {
     contact: "Contact",
-    navTherapy: "Therapy & Counseling",
+    navTherapy: "Systemic Therapy & Counseling",
+    navOverview: "Overview",
+    navFamily: "Family Therapy & Counseling",
     navCouples: "Couples Therapy & Relationship Counseling",
     navIndividual: "Individual Therapy & Counseling",
     navCoaching: "Coaching",
@@ -73,10 +77,11 @@
     <nav class="main-nav">
       <ul>
         <li class="has-dropdown">
-          <a href="#">{{ t.navTherapy }}</a>
+          <a href="{{ (prefix + '/systemische-therapie/') | url }}">{{ t.navTherapy }}</a>
           <div class="dropdown">
             <a href="{{ (prefix + '/paartherapie/') | url }}">{{ t.navCouples }}</a>
             <a href="{{ (prefix + '/einzeltherapie/') | url }}">{{ t.navIndividual }}</a>
+            <a href="{{ (prefix + '/familientherapie/') | url }}">{{ t.navFamily }}</a>
           </div>
         </li>
         <li><a href="{{ (prefix + '/coaching/') | url }}">{{ t.navCoaching }}</a></li>
@@ -93,8 +98,10 @@
       <li class="mobile-nav-item">
         <button class="mobile-nav-toggle" aria-expanded="false">{{ t.navTherapy }}<span class="chevron"></span></button>
         <div class="mobile-nav-sub">
+          <a href="{{ (prefix + '/systemische-therapie/') | url }}">{{ t.navOverview }}</a>
           <a href="{{ (prefix + '/paartherapie/') | url }}">{{ t.navCouples }}</a>
           <a href="{{ (prefix + '/einzeltherapie/') | url }}">{{ t.navIndividual }}</a>
+          <a href="{{ (prefix + '/familientherapie/') | url }}">{{ t.navFamily }}</a>
         </div>
       </li>
       <li class="mobile-nav-item">
