@@ -1686,3 +1686,5 @@ body.on-contact .snap-dots button.is-active{background:#cdd8cb;}
   .ez-cols{margin-top:12px;gap:40px;}
   .ph-worum.ez .s-offers-inner{padding-top:calc(0.625cm + 6px);}
 }
+/* Hero mit zwei Textabsätzen (Einzeltherapie): gleicher Abstand wie bei .hero-welcome */
+.ph-hero .hero-text p + p{margin-top:14px;}
