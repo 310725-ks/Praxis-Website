@@ -1655,3 +1655,34 @@ body.on-contact .snap-dots button.is-active{background:#cdd8cb;}
 @media(max-width:1024px){.tiles-cards-1x3{grid-template-columns:1fr;gap:10px;}}
 /* Bildplatzhalter im Hero (bis ein eigenes Bild vorliegt) */
 .hero-photo .img-placeholder.hero-ph{width:100%;aspect-ratio:4/3;border-radius:16px;background:rgba(255,255,255,.16);border-color:rgba(255,255,255,.55);color:rgba(255,255,255,.8);}
+
+/* ---- Einzeltherapie: Textabschnitte 2 und 3 (zweispaltig, ohne Foto) ----
+   Überschrift 1.825rem / Text 1.167rem wie auf der Startseite (Abschnitt 3),
+   farbiger Strich über jeder Spalte (Marineblau / Salbeigrün). */
+.ph-worum.ez{padding:0 8vw;}
+.ph-worum.ez.ez-tint{background:#F4EDE2;}
+.ph-worum.ez .s-offers-inner{height:auto;padding-top:calc(0.625cm + 10px);}
+.ez-h{color:var(--navy);font-weight:700;font-size:1.825rem;letter-spacing:.015em;line-height:1.2;margin:0;}
+.ez p{color:var(--muted);font-size:1.167rem;line-height:1.65;margin:14px 0 0;}
+.ez .faq-eyebrow{margin-top:0;}
+.ez-cols{display:grid;grid-template-columns:1fr 1fr;gap:64px;margin-top:22px;}
+.ez-col{border-top:4px solid var(--navy);padding-top:20px;}
+.ez-col.c2{border-top-color:var(--sage);}
+@media(min-width:1025px){.ez:not(.ez-tint) .ez-col .ez-h{min-height:2.4em;}}
+/* Abschnitt 3: rechte Spalte hat mehr Text und bekommt mehr Breite. */
+@media(min-width:1025px){.ez.ez-tint .ez-cols{grid-template-columns:.94fr 1.06fr;gap:52px;}}
+@media(min-width:1025px) and (max-height:760px){
+  .ez p{line-height:1.5;margin-top:10px;}
+  .ez-cols{margin-top:14px;}
+  .ph-worum.ez .s-offers-inner{padding-top:calc(0.625cm + 22px);}
+  .ph-worum.ez.ez-tint .s-offers-inner{padding-top:calc(0.625cm + 6px);}
+}
+@media(max-width:1024px){
+  .ez-cols{grid-template-columns:1fr;gap:28px;}
+  .ph-worum.ez .s-offers-inner{padding-top:0;}
+}
+@media(min-width:1025px) and (max-width:1180px){
+  .ez p{line-height:1.45;margin-top:8px;}
+  .ez-cols{margin-top:12px;gap:40px;}
+  .ph-worum.ez .s-offers-inner{padding-top:calc(0.625cm + 6px);}
+}
