@@ -16,7 +16,7 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%;}
    Elemente (z.B. randlose Bild-/Bandbereiche) auf schmalen Bildschirmen --
    verhindert, dass so etwas eine horizontale Scrollmöglichkeit der ganzen
    Seite erzeugt. */
-html,body{overflow-x:hidden;}
+html,body{overflow-x:clip;}
 body{margin:0;background:var(--bg);color:var(--ink);font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;}
 a{text-decoration:none;color:inherit;}
 ul{list-style:none;margin:0;padding:0;}
