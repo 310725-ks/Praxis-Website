@@ -1914,3 +1914,28 @@ body.on-contact .snap-dots button.is-active{background:#cdd8cb;}
 /* Lebensrad: Bildunterschrift unter der Grafik statt über deren Rand */
 .rd-photo.rd-plain{display:block;text-align:center;}
 .rd-photo.rd-plain .rd-credit{position:static;transform:none;display:inline-block;margin:12px 0 0;max-width:100%;}
+
+/* ==========================================================================
+   Bildunterschriften (Design-Update): kurzer Goldstrich links, kursiver Text
+   ohne Kasten, linksbündig direkt unter dem Bild.
+   ========================================================================== */
+.ph-hero .hero-photo-wrap p.photo-credit,
+.sv-hero-photo-wrap p.sv-photo-credit,
+.co-hero-photo-wrap p.co-photo-credit,
+.rd-credit,
+.rd-photo.rd-plain .rd-credit{
+  position:static;transform:none;z-index:auto;
+  display:flex;align-items:flex-start;gap:14px;
+  align-self:flex-start;max-width:none;width:auto;
+  margin:16px 0 0;padding:0;border:0;border-radius:0;background:none;box-shadow:none;
+  text-align:left;font-size:.9rem;font-style:italic;line-height:1.5;color:var(--muted);
+}
+.ph-hero .hero-photo-wrap p.photo-credit::before,
+.sv-hero-photo-wrap p.sv-photo-credit::before,
+.co-hero-photo-wrap p.co-photo-credit::before,
+.rd-credit::before{
+  content:"";flex:0 0 30px;height:2px;margin-top:calc(.75em - 1px);background:var(--gold);
+}
+/* Auf dem Farbverlauf-Hero (Paar-, Einzel-, Familientherapie) heller Text */
+.ph-hero .hero-photo-wrap p.photo-credit{color:#fff;}
+.rd-photo.rd-plain{display:block;text-align:left;}
