@@ -2007,3 +2007,29 @@ body.on-contact .snap-dots button.is-active{background:#cdd8cb;}
   .rd-rows2 li{font-size:1rem;grid-template-columns:40px minmax(0,1fr);}
   .rd-tile2{padding:22px 22px 20px;}
 }
+
+
+/* ==========================================================================
+   Freigegebene Entwürfe 14, 15a, 16a (Oktober 2026)
+   15a  .rd-ez-lists  Paartherapie Abschnitt 3: zwei Listen mit goldenen
+                      Quadraten (wie .um-cert-list) und Haarlinien
+   16a  .hero-photo-portrait  Einzeltherapie-Hero unbeschnitten, 482px breit
+   ========================================================================== */
+.rd-ez-lists .rd-col h2{margin-bottom:22px;}
+.rd-bullets{list-style:none;margin:0;padding:0;border-top:1px solid #EDE1CF;}
+.rd-bullets li{position:relative;padding:13px 0 13px 24px;border-bottom:1px solid #EDE1CF;color:var(--navy);font-size:1.03rem;line-height:1.5;}
+.rd-bullets li::before{content:"";position:absolute;left:0;top:calc(13px + .75em - 4px);width:8px;height:8px;background:var(--gold);}
+@media(min-width:1025px) and (max-height:860px){
+  .rd-bullets li{padding:9px 0 9px 24px;font-size:.96rem;}
+  .rd-bullets li::before{top:calc(9px + .75em - 4px);}
+  .rd-ez-lists .rd-col h2{margin-bottom:14px;}
+}
+@media(min-width:641px){
+  .ph-hero .hero-photo-wrap.hero-photo-portrait{max-width:482px;}
+}
+
+/* 13b  Übersicht "Meine Angebote": Bilder 4:3, Ausschnitt je Bild so, dass die Köpfe vollständig sichtbar sind */
+.rd-offers .rd-offer-img,.rd-offers .rd-offer .rd-ph{aspect-ratio:4/3;}
+.rd-offers .rd-offer:nth-child(1) .rd-offer-img img{object-position:50% 8%;}
+.rd-offers .rd-offer:nth-child(2) .rd-offer-img img{object-position:50% 18%;}
+.rd-offers .rd-offer:nth-child(3) .rd-offer-img img{object-position:50% 6%;}
