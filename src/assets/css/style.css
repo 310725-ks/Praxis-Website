@@ -949,7 +949,7 @@ body.on-contact .snap-dots button.is-active{background:#cdd8cb;}
     grid-template-columns:auto minmax(0,min(700px,calc(100vw - 36px - 0.8 * min(64.4vh,529px) - 168px)));}
 }
 /* Niedrige Desktop-Fenster: Text ist länger als die Höhe -> Abstand zum Farbband sichern. */
-@media(min-width:1025px) and (max-height:760px){.snap-section.um-hero-section{padding-top:48px;padding-bottom:24px;}}
+
 
 /* ---- Abschnitte 2 & 3: gemeinsamer zweispaltiger Aufbau ---- */
 .um-two-col{display:grid;grid-template-columns:1fr 1fr;gap:64px;margin-top:28px;position:relative;}
@@ -1671,12 +1671,7 @@ body.on-contact .snap-dots button.is-active{background:#cdd8cb;}
 @media(min-width:1025px){.ez:not(.ez-tint):not(.ez-wide) .ez-col .ez-h{min-height:2.4em;}}
 /* Abschnitt 3: rechte Spalte hat mehr Text und bekommt mehr Breite. */
 @media(min-width:1025px){.ez.ez-tint .ez-cols{grid-template-columns:.94fr 1.06fr;gap:52px;}}
-@media(min-width:1025px) and (max-height:760px){
-  .ez p{line-height:1.5;margin-top:10px;}
-  .ez-cols{margin-top:14px;}
-  .ph-worum.ez .s-offers-inner{padding-top:calc(0.625cm + 22px);}
-  .ph-worum.ez.ez-tint .s-offers-inner{padding-top:calc(0.625cm + 6px);}
-}
+
 @media(max-width:1024px){
   .ez-cols{grid-template-columns:1fr;gap:28px;}
   .ph-worum.ez .s-offers-inner{padding-top:0;}
@@ -1692,14 +1687,7 @@ body.on-contact .snap-dots button.is-active{background:#cdd8cb;}
 .ez ul li{list-style:none;position:relative;padding-left:18px;color:var(--muted);font-size:1rem;line-height:1.45;margin:0 0 4px;}
 .ez ul li::before{content:"";position:absolute;left:0;top:.6em;width:6px;height:6px;border-radius:50%;background:var(--gold);}
 .ez ul + p{margin-top:12px;}
-@media(min-width:1025px) and (max-height:800px){
-  .ez ul{margin-top:6px;}
-  .ez ul li{line-height:1.34;margin-bottom:2px;}
-  .ez ul + p{margin-top:6px;}
-  .ph-worum.ez.ez-wide .s-offers-inner{padding-top:calc(0.625cm + 2px);}
-  .ez-wide .ez-col{padding-top:14px;}
-  .ez-wide .ez-cols{margin-top:10px;}
-}
+
 @media(min-width:1025px) and (max-width:1180px){
   .ez ul li{line-height:1.3;margin-bottom:2px;font-size:.96rem;}
   .ez ul{margin-top:4px;}
@@ -1847,10 +1835,9 @@ body.on-contact .snap-dots button.is-active{background:#cdd8cb;}
 .rd-rows li{display:grid;grid-template-columns:48px minmax(0,1fr);gap:12px;padding:16px 0;border-bottom:1px solid #EDE1CF;color:var(--navy);font-size:1.1rem;line-height:1.55;}
 .rd-rows .rd-num{padding-top:3px;}
 
-/* Desktop: Vollbild-Abschnitte. Reicht die Höhe nicht, scrollt der Inhalt
-   innerhalb des Abschnitts (siehe main.js, isPassthroughScroll). */
+/* Desktop: Abschnitte mindestens Bildschirmhöhe, längere wachsen mit dem Inhalt. */
 @media(min-width:1025px){
-  .rd-inner{max-height:100%;overflow-y:auto;scrollbar-width:thin;padding:calc(0.625cm + 3.4vh) 4px 3.4vh;}
+  .rd-inner{padding:calc(0.625cm + 3.4vh) 4px 3.4vh;}
 }
 @media(min-width:1025px){
   .rd-ez:has(.c2 .rd-list) .rd-cols{grid-template-columns:minmax(0,.86fr) minmax(0,1.14fr);gap:56px;}
@@ -1858,18 +1845,7 @@ body.on-contact .snap-dots button.is-active{background:#cdd8cb;}
 @media(min-width:1025px) and (max-width:1180px){
   .rd-cols,.rd-ez:has(.c2 .rd-list) .rd-cols{gap:44px;} .rd-more-grid,.rd-listeb-grid,.rd-worum-grid{gap:56px;} .rd-offer-grid{gap:28px;}
 }
-@media(min-width:1025px) and (max-height:860px){
-  .rd-text p{font-size:1.02rem;line-height:1.6;margin-top:10px;}
-  .rd-col h2{font-size:1.55rem;} .rd-cols{margin-top:18px;} .rd-col{padding-top:16px;}
-  .rd-list{margin-top:12px;padding:14px 20px;gap:5px;}
-  .rd-list li{font-size:.95rem;line-height:1.42;}
-  .rd-h2{font-size:1.8rem;}
-  .rd-faq-q{padding:12px 16px;} .rd-faq-detail-body{padding:28px 38px 30px;} .rd-faq-detail-body p{font-size:1rem;line-height:1.62;}
-  .rd-offer .rd-bar{margin:18px 0 10px;} .rd-offer-grid{margin-top:24px;}
-  .rd-tile{padding:12px 16px 14px;font-size:.95rem;} .rd-tiles{gap:12px;}
-  .rd-rows li{padding:11px 0;font-size:1rem;}
-  .rd-fcard{padding:24px 26px 26px;} .rd-fcard p{font-size:.98rem;line-height:1.6;}
-}
+
 
 /* Tablet und Mobil: normaler Seitenfluss */
 @media(max-width:1024px){
@@ -1913,4 +1889,22 @@ body.on-contact .snap-dots button.is-active{background:#cdd8cb;}
   .rd-faq-q{grid-template-columns:28px minmax(0,1fr) 26px;padding:14px 14px;}
   .rd-faq-a-inner{padding:0 14px 0 14px;}
   .rd-fcard{padding:22px 20px 24px;}
+}
+
+
+/* ==========================================================================
+   Fließender Seitenfluss (Desktop)
+   Kein Abschnittswechsel per Mausrad mehr: Die Seite scrollt normal. Jeder
+   Abschnitt ist mindestens so hoch wie der Bildschirm (abzüglich Kopfzeile)
+   und wächst bei mehr Inhalt. Tablet/Mobil sind bereits Seitenfluss (s. o.).
+   ========================================================================== */
+@media(min-width:1025px){
+  .snap-viewport{height:auto;overflow:visible;}
+  .snap-track{height:auto;transform:none;transition:none;}
+  .snap-section{flex:0 0 auto;height:auto;min-height:calc(100vh - var(--header-h,90px));}
+  /* Luft oben/unten, damit längere Inhalte nicht an den Abschnittsrand stoßen */
+  section.snap-section[data-index]:not(.s-contact){padding-top:36px;padding-bottom:36px;}
+  section.snap-section[id]{scroll-margin-top:calc(var(--header-h,90px) - 1px);}
+  /* Die Rechtszeile sitzt im Kontaktabschnitt; der globale Footer wäre doppelt. */
+  body:has(.s-contact .legal-strip) .site-footer{display:none;}
 }

@@ -1,57 +1,72 @@
 (function(){
-  // Wechsel-Mechanik der Startseite: 4 Vollbild-Abschnitte auf Desktop-Breite
-  // (>1024px), normaler durchgehender Scroll auf Tablet/Mobile darunter.
-  // Auf Seiten ohne diese Struktur (Unterseiten) bricht die Funktion früh ab.
-  var track = document.getElementById('snapTrack');
+  // Seitenfluss: Alle Abschnitte scrollen normal und durchgehend (Desktop, Tablet,
+  // Mobil). Dieses Skript hält nur die Kopfzeilen-Maße als CSS-Variablen bereit,
+  // lässt die Punkte rechts der Scroll-Position folgen (Klick = sanft zum
+  // Abschnitt scrollen) und springt bei Sprungmarken (z.B. #faq) zum Abschnitt.
   var sections = Array.prototype.slice.call(document.querySelectorAll('.snap-section'));
-  if(!track || !sections.length) return;
-
-  var SNAP_BP = 1024; // oberhalb dieser Breite bleibt der Bildschirmseiten-Wechsel aktiv;
-                       // darunter (Mobile + Tablet) wird normal durchgescrollt.
-  function isDesktopMode(){ return window.innerWidth > SNAP_BP; }
+  if(!sections.length) return;
 
   var header = document.querySelector('.header-sticky-group');
   var utilityBar = document.querySelector('.utility-bar');
   var siteHeader = document.querySelector('.site-header');
   var dots = Array.prototype.slice.call(document.querySelectorAll('#snapDots button'));
-  var index = 0, animating = false, sectionH = 0;
+  var current = -1, ticking = false;
 
+  function headerH(){ return header ? header.offsetHeight : 0; }
   function setHeaderH(){
-    var h = header.offsetHeight;
-    document.documentElement.style.setProperty('--header-h', h + 'px');
+    document.documentElement.style.setProperty('--header-h', headerH() + 'px');
     // Einzelhöhen der beiden Headerzeilen (1. Zeile: utility-bar, 2. Zeile: site-header)
-    // werden separat als CSS-Variablen bereitgestellt, damit Abschnitte ihre
-    // Farbverlaufs-Bänder/Legal-Strip exakt an diesen Maßen ausrichten können.
+    // für Farbverlaufs-Bänder und Legal-Strip.
     if(utilityBar) document.documentElement.style.setProperty('--header1-h', utilityBar.offsetHeight + 'px');
     if(siteHeader) document.documentElement.style.setProperty('--header2-h', siteHeader.offsetHeight + 'px');
-    sectionH = window.innerHeight - h;
-    if(isDesktopMode()) goTo(index, true);
   }
   function setActive(i){
+    if(i === current) return;
+    current = i;
     dots.forEach(function(d,idx){ d.classList.toggle('is-active', idx===i); });
     document.body.classList.toggle('on-contact', i===sections.length-1);
   }
-  function goTo(i, instant){
-    if(!isDesktopMode()) return;
-    i = Math.max(0, Math.min(sections.length-1, i));
-    index = i;
-    track.style.transition = instant ? 'none' : '';
-    track.style.transform = 'translateY(-' + (i*sectionH) + 'px)';
-    setActive(i);
+  function update(){
+    ticking = false;
+    var h = headerH();
+    var line = h + (window.innerHeight - h) * 0.4;
+    var idx = 0;
+    for(var i=0;i<sections.length;i++){
+      if(sections[i].getBoundingClientRect().top <= line) idx = i;
+    }
+    // Ganz unten angekommen: letzter Abschnitt aktiv
+    if(window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 2) idx = sections.length-1;
+    setActive(idx);
   }
-  setHeaderH();
-  window.addEventListener('resize', setHeaderH);
+  function requestUpdate(){
+    if(ticking) return;
+    ticking = true;
+    window.requestAnimationFrame(update);
+  }
+  function scrollToSection(sec, instant){
+    var top = sec.getBoundingClientRect().top + window.scrollY - headerH() + 1;
+    window.scrollTo({top: Math.max(0, top), behavior: instant ? 'auto' : 'smooth'});
+  }
 
-  // Sprungmarken (z.B. /systemische-therapie/#faq): springt zum Abschnitt mit der
-  // passenden id. Desktop: Abschnittswechsel, Tablet/Mobile: normales Scrollen.
+  setHeaderH(); update();
+  window.addEventListener('resize', function(){ setHeaderH(); requestUpdate(); });
+  window.addEventListener('scroll', requestUpdate, {passive:true});
+  window.addEventListener('load', function(){ setHeaderH(); update(); goToHash(true); });
+
+  dots.forEach(function(d){
+    d.addEventListener('click', function(){
+      var sec = sections[parseInt(d.dataset.index,10)];
+      if(sec) scrollToSection(sec, false);
+    });
+  });
+
+  // Sprungmarken (z.B. /systemische-therapie/#faq): scrollt zum Abschnitt mit der passenden id.
   function goToHash(instant){
     var h = window.location.hash;
     if(!h || h.length < 2) return false;
     var target = document.getElementById(decodeURIComponent(h.slice(1)));
-    var i = target ? sections.indexOf(target) : -1;
-    if(i < 0) return false;
-    if(isDesktopMode()) goTo(i, instant);
-    else target.scrollIntoView();
+    if(!target || sections.indexOf(target) < 0) return false;
+    scrollToSection(target, instant);
     return true;
   }
   goToHash(true);
@@ -66,79 +81,6 @@
     goToHash(false);
     var mnav = document.getElementById('mobileNav'), mbtn = document.getElementById('hamburgerBtn');
     if(mnav && mnav.classList.contains('is-open')){ mnav.classList.remove('is-open'); if(mbtn){ mbtn.classList.remove('is-open'); mbtn.setAttribute('aria-expanded','false'); } }
-  });
-
-  function isPassthroughScroll(e){
-    // Erlaubt normales Scrollen innerhalb der FAQ-Liste (Unterseite
-    // Paartherapie), falls deren Inhalt trotz vertikaler Zentrierung/
-    // Sicherheitsnetz höher als der verfügbare Platz im Abschnitt ist –
-    // sonst würde das Mausrad sofort den Abschnittswechsel auslösen.
-    var el = e.target.closest ? e.target.closest('.faq-list, .rd-inner') : null;
-    if(!el || el.scrollHeight <= el.clientHeight) return false;
-    var atTop = el.scrollTop <= 0;
-    var atBottom = Math.ceil(el.scrollTop + el.clientHeight) >= el.scrollHeight;
-    if(e.deltaY < 0 && !atTop) return true;
-    if(e.deltaY > 0 && !atBottom) return true;
-    return false;
-  }
-
-  window.addEventListener('wheel', function(e){
-    if(!isDesktopMode()) return;
-    if(isPassthroughScroll(e)) return;
-    e.preventDefault();
-    if(animating) return;
-    if(Math.abs(e.deltaY) < 8) return;
-    animating = true;
-    goTo(index + (e.deltaY > 0 ? 1 : -1));
-    setTimeout(function(){ animating = false; }, 700);
-  }, {passive:false});
-
-  window.addEventListener('keydown', function(e){
-    if(!isDesktopMode()) return;
-    if(e.key==='ArrowDown'||e.key==='PageDown'){ e.preventDefault(); if(!animating){animating=true; goTo(index+1); setTimeout(function(){animating=false;},700);} }
-    if(e.key==='ArrowUp'||e.key==='PageUp'){ e.preventDefault(); if(!animating){animating=true; goTo(index-1); setTimeout(function(){animating=false;},700);} }
-  });
-
-  // Touch-Wischgesten für den Abschnittswechsel: Tablets (v.a. im Querformat, wo die
-  // Bildschirmbreite die Desktop-Grenze überschreitet) feuern beim Wischen keine
-  // "wheel"-Events, sondern nur Touch-Events. Ohne diese Handler ließ sich der
-  // Abschnitt nur über die Punkte, nicht aber per Wischen wechseln.
-  var touchStartX = null, touchStartY = null;
-  window.addEventListener('touchstart', function(e){
-    if(!isDesktopMode()) return;
-    if(e.touches.length !== 1) return;
-    touchStartX = e.touches[0].clientX;
-    touchStartY = e.touches[0].clientY;
-  }, {passive:true});
-
-  window.addEventListener('touchmove', function(e){
-    if(!isDesktopMode()) return;
-    if(touchStartY === null) return;
-    e.preventDefault();
-  }, {passive:false});
-
-  window.addEventListener('touchend', function(e){
-    if(!isDesktopMode()) return;
-    if(touchStartY === null) return;
-    var touch = e.changedTouches[0];
-    var deltaY = touchStartY - touch.clientY;
-    var deltaX = touchStartX - touch.clientX;
-    touchStartX = null; touchStartY = null;
-    if(Math.abs(deltaY) < 40 || Math.abs(deltaY) < Math.abs(deltaX)) return;
-    if(animating) return;
-    animating = true;
-    goTo(index + (deltaY > 0 ? 1 : -1));
-    setTimeout(function(){ animating = false; }, 700);
-  }, {passive:true});
-
-  dots.forEach(function(d){
-    d.addEventListener('click', function(){
-      if(!isDesktopMode()) return;
-      if(animating) return;
-      animating = true;
-      goTo(parseInt(d.dataset.index,10));
-      setTimeout(function(){ animating=false; }, 700);
-    });
   });
 })();
 
