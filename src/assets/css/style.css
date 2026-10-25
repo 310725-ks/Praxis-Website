@@ -1939,3 +1939,7 @@ body.on-contact .snap-dots button.is-active{background:#cdd8cb;}
 /* Auf dem Farbverlauf-Hero (Paar-, Einzel-, Familientherapie) heller Text */
 .ph-hero .hero-photo-wrap p.photo-credit{color:#fff;}
 .rd-photo.rd-plain{display:block;text-align:left;}
+
+/* Weitere Angebote: kleines Grafikelement links (ca. 40 % der Fotobreite) */
+.rd-more-media .rd-photo.rd-more-graphic{width:40%;max-width:none;min-width:140px;}
+.rd-more-media .rd-photo.rd-more-graphic img{aspect-ratio:auto;border-radius:14px;box-shadow:0 18px 32px -18px rgba(20,20,20,.35);}
