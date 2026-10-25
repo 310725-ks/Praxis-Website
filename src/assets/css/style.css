@@ -1943,3 +1943,67 @@ body.on-contact .snap-dots button.is-active{background:#cdd8cb;}
 /* Weitere Angebote: kleines Grafikelement links (ca. 40 % der Fotobreite) */
 .rd-more-media .rd-photo.rd-more-graphic{width:40%;max-width:none;min-width:140px;}
 .rd-more-media .rd-photo.rd-more-graphic img{aspect-ratio:auto;border-radius:14px;box-shadow:0 18px 32px -18px rgba(20,20,20,.35);}
+
+
+/* ==========================================================================
+   Freigegebene Entwürfe 10a, 10b, 11a (Oktober 2026)
+   10b  .rd-more2      Weitere Angebote (und FAQ): zentrierter Kopf, Kacheln
+   10a  .rd-tabs-center Coaching, Übliche Anliegen: zentrierter Kopf mit
+                        Umschalter, zweispaltige nummerierte Liste
+   11a  .rd-listeb2    Supervision, Übliche Inhalte: Liste links, Grafik rechts
+   ========================================================================== */
+.rd-center-head{display:flex;flex-direction:column;align-items:center;text-align:center;}
+.rd-center-head .rd-h2{max-width:860px;margin:12px 0 0;}
+.rd-more2 .rd-center-head,.rd-listeb2 .rd-center-head{margin-bottom:44px;}
+
+/* 10b */
+.rd-tiles2{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:32px;align-items:stretch;}
+.rd-tiles2.rd-tiles2-two{grid-template-columns:repeat(2,minmax(0,1fr));max-width:1040px;margin:0 auto;}
+.rd-tile2{display:flex;flex-direction:column;background:#fff;border-radius:14px;border-left:5px solid var(--sage);box-shadow:0 14px 30px -22px rgba(20,20,20,.3);padding:28px 30px 26px;}
+.rd-tile2:nth-child(2){border-left-color:var(--gold);}
+.rd-tile2 h3{font-size:1.3rem;line-height:1.3;margin:0 0 12px;transition:color .16s ease;}
+.rd-tile2 p{color:var(--muted);font-size:1rem;line-height:1.6;margin:0 0 18px;flex:1;}
+.rd-tile2:hover h3,.rd-tile2:hover .rd-more-link{color:var(--gold);}
+.rd-tile2.rd-tile2-faq{background:var(--navy);border-left-color:var(--navy);}
+.rd-tile2.rd-tile2-faq h3,.rd-tile2.rd-tile2-faq p,.rd-tile2.rd-tile2-faq .rd-more-link{color:#fff;}
+.rd-tile2.rd-tile2-faq:hover h3,.rd-tile2.rd-tile2-faq:hover .rd-more-link{color:#fff;}
+.rd-tile2.rd-tile2-faq:hover .rd-chev{transform:translateX(3px) rotate(-45deg);}
+.rd-tile2 .rd-chev{transition:transform .16s ease;}
+
+/* 10a */
+.rd-tabs-center .rd-center-head{margin-bottom:40px;}
+.rd-tabs-center .rd-center-head .rd-h2.rd-tabpanel{display:none;animation:none;}
+.rd-tabs-center .rd-center-head .rd-h2.rd-tabpanel.is-active{display:block;}
+.rd-tabs-center .rd-tabbar{margin-top:26px;}
+.rd-rows2{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:80px;border-top:1px solid #EDE1CF;}
+.rd-rows2 li{display:grid;grid-template-columns:48px minmax(0,1fr);gap:10px;padding:20px 0;border-bottom:1px solid #EDE1CF;color:var(--navy);font-size:1.12rem;line-height:1.5;}
+.rd-rows2 .rd-num{padding-top:3px;}
+
+/* 11a */
+.rd-listeb2-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,340px);gap:88px;align-items:center;}
+.rd-rows2.rd-rows2-one{grid-template-columns:1fr;}
+.rd-rows2.rd-rows2-one li{padding:15px 0;}
+.rd-listeb2 .rd-media{align-items:stretch;}
+.rd-listeb2 .rd-media img{width:100%;max-height:none;}
+
+@media(min-width:1025px) and (max-height:860px){
+  .rd-rows2 li{padding:14px 0;font-size:1.02rem;}
+  .rd-rows2.rd-rows2-one li{padding:11px 0;}
+  .rd-more2 .rd-center-head,.rd-listeb2 .rd-center-head,.rd-tabs-center .rd-center-head{margin-bottom:28px;}
+  .rd-listeb2 .rd-media img{max-height:48vh;width:auto;}
+}
+@media(max-width:1024px){
+  .rd-tiles2,.rd-tiles2.rd-tiles2-two{grid-template-columns:1fr;max-width:640px;margin:0 auto;gap:20px;}
+  .rd-rows2{grid-template-columns:1fr;}
+  .rd-listeb2-grid{grid-template-columns:1fr;gap:36px;}
+  .rd-listeb2 .rd-media{max-width:360px;}
+  /* Umschalter bleibt auch mobil sichtbar und schaltet die Inhalte um */
+  .rd-tabs-center .rd-tabbar{display:flex;}
+  .rd-tabs-center .rd-tabpanel{display:none;}
+  .rd-tabs-center .rd-tabpanel.is-active{display:block;}
+  .rd-tabs-center .rd-tabpanel + .rd-tabpanel{margin-top:0;}
+}
+@media(max-width:640px){
+  .rd-rows2 li{font-size:1rem;grid-template-columns:40px minmax(0,1fr);}
+  .rd-tile2{padding:22px 22px 20px;}
+}
