@@ -1908,3 +1908,9 @@ body.on-contact .snap-dots button.is-active{background:#cdd8cb;}
   /* Die Rechtszeile sitzt im Kontaktabschnitt; der globale Footer wäre doppelt. */
   body:has(.s-contact .legal-strip) .site-footer{display:none;}
 }
+
+/* Coaching Abschnitt 3: ohne Grafik, Karten nutzen die volle Breite */
+.rd-tiles-grid.rd-tiles-solo{grid-template-columns:minmax(0,1fr);}
+/* Lebensrad: Bildunterschrift unter der Grafik statt über deren Rand */
+.rd-photo.rd-plain{display:block;text-align:center;}
+.rd-photo.rd-plain .rd-credit{position:static;transform:none;display:inline-block;margin:12px 0 0;max-width:100%;}
