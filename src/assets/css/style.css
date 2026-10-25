@@ -1712,3 +1712,205 @@ body.on-contact .snap-dots button.is-active{background:#cdd8cb;}
 
 /* Sprungmarken: Abschnitt nicht unter dem fixierten Header verstecken (Tablet/Mobile) */
 @media(max-width:1024px){.snap-section[id]{scroll-margin-top:var(--header-h,0px);}}
+
+
+/* ==========================================================================
+   Neugestaltung Therapie-, Coaching- & Supervisionsseiten (Oktober 2026)
+   Alle neuen Abschnitte nutzen das Präfix .rd- und bauen auf den bestehenden
+   Bausteinen auf (.snap-section, .about-band.offers-band, .s-contact).
+   ========================================================================== */
+.rd-sec{position:relative;padding:0 8vw;background:var(--bg);}
+.rd-sec.rd-tint{background:#F4EDE2;}
+.rd-sec .about-band{display:block;}
+.rd-inner{width:100%;max-width:1220px;margin:0 auto;}
+.rd-eyebrow{color:var(--sage);text-transform:uppercase;letter-spacing:.1em;font-weight:700;font-size:1rem;}
+.rd-sec h2,.rd-sec h3{color:var(--navy);letter-spacing:.015em;}
+.rd-h2{font-size:2.1rem;line-height:1.2;margin:10px 0 0;text-wrap:balance;}
+.rd-accent{color:var(--gold);}
+.rd-text p{color:var(--muted);font-size:1.12rem;line-height:1.72;margin:14px 0 0;text-wrap:pretty;}
+.rd-num{color:var(--gold);font-weight:700;font-size:.86rem;letter-spacing:.06em;}
+.rd-bar{display:block;width:48px;height:4px;background:var(--navy);}
+.rd-chev{display:inline-block;width:7px;height:7px;border-right:2px solid var(--gold);border-bottom:2px solid var(--gold);transform:rotate(-45deg);}
+.rd-more-link{display:inline-flex;align-items:center;gap:10px;color:var(--navy);font-weight:700;font-size:1rem;transition:color .16s ease;}
+.rd-ph{width:100%;aspect-ratio:4/3;border-radius:20px;}
+.rd-media{display:flex;flex-direction:column;align-items:center;}
+.rd-photo{position:relative;display:inline-block;max-width:100%;}
+.rd-photo img{display:block;max-width:100%;height:auto;border-radius:20px;box-shadow:0 30px 54px -22px rgba(20,20,20,.4);}
+.rd-photo.rd-plain img{border-radius:8px;box-shadow:none;}
+.rd-credit{position:absolute;bottom:0;right:14px;max-width:calc(100% - 28px);transform:translateY(50%);margin:0;text-align:right;font-size:calc(.78rem - 1.7pt);font-style:italic;color:var(--muted);background:#fff;border:1px solid rgba(107,106,102,.32);border-radius:6px;padding:3px 10px;}
+
+/* Textabschnitte (zweispaltig) */
+.rd-cols{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:72px;margin-top:26px;align-items:start;}
+.rd-col{border-top:4px solid var(--navy);padding-top:22px;}
+.rd-col.c2{border-top-color:var(--sage);}
+.rd-col h2{font-size:1.85rem;line-height:1.2;margin:0;text-wrap:balance;}
+.rd-list{margin:16px 0 0;padding:16px 22px;background:#fff;border-radius:14px;border-left:5px solid var(--gold);box-shadow:0 14px 30px -22px rgba(20,20,20,.3);display:flex;flex-direction:column;gap:6px;}
+.rd-list li{position:relative;padding-left:20px;color:var(--muted);font-size:1rem;line-height:1.45;}
+.rd-list li::before{content:"";position:absolute;left:0;top:.62em;width:6px;height:6px;border-radius:50%;background:var(--gold);}
+.rd-list + p{margin-top:16px;}
+.ph-hero .hero-text p.rd-lead{font-size:1.3rem;line-height:1.55;}
+
+/* Übersicht: Meine Angebote (Bildkarten) */
+.rd-offer-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:44px;margin-top:36px;}
+.rd-offer{display:flex;flex-direction:column;}
+.rd-offer-img,.rd-offer .rd-ph{width:100%;aspect-ratio:16/10;border-radius:20px;overflow:hidden;}
+.rd-offer-img{box-shadow:0 30px 54px -22px rgba(20,20,20,.4);}
+.rd-offer-img img{width:100%;height:100%;object-fit:cover;display:block;}
+.rd-offer .rd-bar{margin:26px 0 14px;}
+.rd-offer:nth-child(2) .rd-bar{background:var(--sage);}
+.rd-offer:nth-child(3) .rd-bar{background:var(--gold);}
+.rd-offer h3{font-size:1.4rem;line-height:1.25;margin:0 0 10px;transition:color .16s ease;}
+.rd-offer p{color:var(--muted);font-size:1.02rem;line-height:1.62;margin:0 0 14px;}
+.rd-offer:hover h3,.rd-offer:hover .rd-more-link{color:var(--gold);}
+
+/* FAQ: Auswahlliste + Antwortfläche (Desktop), Akkordeon (Tablet/Mobil) */
+.rd-faq-grid{display:grid;grid-template-columns:minmax(0,460px) minmax(0,1fr);gap:52px;margin-top:32px;align-items:start;}
+.rd-faq-list{display:flex;flex-direction:column;gap:6px;}
+.rd-faq-q{all:unset;box-sizing:border-box;cursor:pointer;width:100%;display:grid;grid-template-columns:34px minmax(0,1fr) 26px;gap:12px;align-items:start;padding:16px 18px;border-radius:14px;border-left:5px solid transparent;transition:background .2s ease,border-color .2s ease;}
+.rd-faq-q:focus-visible{outline:2px solid var(--gold);outline-offset:2px;}
+.rd-faq-q .rd-num{padding-top:3px;}
+.rd-q{color:var(--navy);font-weight:500;font-size:1.02rem;line-height:1.5;transition:color .16s ease;}
+.rd-faq-q:hover .rd-q{color:var(--gold);}
+.rd-faq-item.is-active .rd-faq-q{background:#fff;border-left-color:var(--gold);box-shadow:0 14px 30px -22px rgba(20,20,20,.3);}
+.rd-faq-item.is-active .rd-q{font-weight:700;}
+.rd-faq-q .faq-toggle{display:none;}
+.rd-faq-a{display:none;}
+.rd-faq-detail{background:#fff;border-radius:14px;box-shadow:0 14px 30px -22px rgba(20,20,20,.3);overflow:hidden;}
+.rd-faq-detail-bar{height:8px;background:var(--grad);}
+.rd-faq-detail-body{padding:38px 48px 42px;}
+.rd-faq-detail-body.is-in{animation:rdFade .45s cubic-bezier(.16,1,.3,1);}
+.rd-faq-detail-body h3{font-size:1.45rem;line-height:1.3;margin:8px 0 18px;text-wrap:balance;}
+.rd-faq-detail-body p{color:var(--muted);font-size:1.08rem;line-height:1.72;margin:0 0 14px;max-width:680px;}
+@keyframes rdFade{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:none;}}
+
+/* Zitat + weitere Angebote */
+.rd-more-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:88px;align-items:center;}
+.rd-more-media{display:flex;flex-direction:column;gap:36px;}
+.rd-more-media .rd-ph{aspect-ratio:3/2;}
+.rd-more-media .rd-photo img{width:100%;aspect-ratio:3/2;object-fit:cover;}
+.rd-quote{margin:0;padding:6px 4px 4px 26px;border-left:2.4px solid var(--gold);}
+.rd-quote p{color:var(--navy);font-size:1.3rem;font-weight:500;line-height:1.5;font-style:italic;margin:0;}
+.rd-qm{color:var(--gold);font-family:Georgia,serif;font-style:normal;font-weight:400;font-size:2.3rem;line-height:.6;}
+.rd-qm.open{display:block;margin-bottom:8px;}
+.rd-qm.close{margin-left:3px;vertical-align:bottom;}
+.rd-quote cite{display:block;color:var(--navy);font-style:normal;font-size:.95rem;font-weight:500;margin-top:10px;}
+.rd-links{display:flex;flex-direction:column;gap:20px;margin-top:30px;}
+.rd-link{display:block;background:#fff;border-radius:14px;border-left:5px solid var(--sage);box-shadow:0 14px 30px -22px rgba(20,20,20,.3);padding:24px 26px;}
+.rd-link:nth-child(2){border-left-color:var(--gold);}
+.rd-link h3{font-size:1.25rem;margin:0 0 8px;transition:color .16s ease;}
+.rd-link p{color:var(--muted);font-size:.98rem;line-height:1.55;margin:0 0 12px;}
+.rd-link:hover h3,.rd-link:hover .rd-more-link{color:var(--gold);}
+.rd-faq-link{display:inline-flex;align-items:center;gap:10px;margin-top:26px;color:var(--navy);font-weight:700;transition:color .16s ease;}
+.rd-faq-link:hover{color:var(--gold);}
+
+/* Coaching/Supervision: Worum es geht */
+.rd-worum-grid{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:80px;align-items:center;}
+.rd-worum-grid .rd-ph{aspect-ratio:4/5;width:min(100%,calc(62vh * .8));}
+.rd-worum-grid .rd-media img{max-height:min(62vh,600px);width:auto;}
+.rd-worum-text{border-top:4px solid var(--navy);padding-top:22px;}
+.rd-worum-text .rd-h2{margin-bottom:4px;}
+.rd-worum-text p{max-width:640px;}
+
+/* Coaching: Anliegen/Themen mit Umschalter, Kacheln mit Balken oben */
+.rd-tabs-head{display:flex;align-items:center;justify-content:space-between;gap:24px;}
+.rd-tabbar{display:flex;gap:6px;padding:5px;background:#fff;border-radius:999px;box-shadow:0 14px 30px -22px rgba(20,20,20,.3);}
+.rd-tab{all:unset;cursor:pointer;padding:10px 22px;border-radius:999px;font-weight:700;font-size:.95rem;letter-spacing:.02em;color:var(--navy);transition:color .16s ease;}
+.rd-tab:hover{color:var(--gold);}
+.rd-tab.is-active{background:var(--grad);color:#fff;}
+.rd-tab:focus-visible{outline:2px solid var(--gold);outline-offset:2px;}
+.rd-tabpanel{display:none;}
+.rd-tabpanel.is-active{display:block;animation:rdFade .45s cubic-bezier(.16,1,.3,1);}
+.rd-tabpanel .rd-h2{margin:16px 0 0;max-width:900px;}
+.rd-tiles-grid{display:grid;grid-template-columns:minmax(0,340px) minmax(0,1fr);gap:56px;margin-top:30px;align-items:start;}
+.rd-tiles-grid .rd-ph{aspect-ratio:4/5;width:min(100%,calc(52vh * .8));}
+.rd-tiles-grid .rd-media img{max-height:52vh;width:auto;}
+.rd-tiles{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin:0;padding:0;list-style:none;}
+.rd-tile{background:#fff;border-radius:14px;border-top:5px solid var(--navy);box-shadow:0 14px 30px -22px rgba(20,20,20,.3);padding:16px 20px 18px;display:flex;flex-direction:column;gap:6px;color:var(--navy);font-size:1rem;line-height:1.48;}
+.rd-tile:nth-child(3n+2){border-top-color:var(--sage);}
+.rd-tile:nth-child(3n){border-top-color:var(--gold);}
+
+/* Supervision: Formate */
+.rd-fcards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:30px;margin-top:40px;}
+.rd-fcard{background:#fff;border-radius:14px;border-top:5px solid var(--navy);box-shadow:0 14px 30px -22px rgba(20,20,20,.3);padding:30px 30px 34px;}
+.rd-fcard:nth-child(2){border-top-color:var(--sage);}
+.rd-fcard:nth-child(3){border-top-color:var(--gold);}
+.rd-fcard h3{font-size:1.35rem;margin:0;}
+.rd-fcard p{color:var(--muted);font-size:1.02rem;line-height:1.68;margin:0;}
+
+/* Supervision: Bearbeitungsebenen (Randspalte + nummerierte Zeilen) */
+.rd-listeb-grid{display:grid;grid-template-columns:minmax(0,380px) minmax(0,1fr);gap:88px;align-items:start;}
+.rd-listeb-side .rd-bar{background:var(--sage);margin:16px 0 18px;}
+.rd-listeb-side .rd-h2{margin:0 0 30px;font-size:1.85rem;}
+.rd-listeb-side .rd-media{align-items:flex-start;}
+.rd-listeb-side .rd-media img{max-height:44vh;width:auto;}
+.rd-rows{list-style:none;margin:0;padding:0;border-top:1px solid #EDE1CF;max-width:720px;}
+.rd-rows li{display:grid;grid-template-columns:48px minmax(0,1fr);gap:12px;padding:16px 0;border-bottom:1px solid #EDE1CF;color:var(--navy);font-size:1.1rem;line-height:1.55;}
+.rd-rows .rd-num{padding-top:3px;}
+
+/* Desktop: Vollbild-Abschnitte. Reicht die Höhe nicht, scrollt der Inhalt
+   innerhalb des Abschnitts (siehe main.js, isPassthroughScroll). */
+@media(min-width:1025px){
+  .rd-inner{max-height:100%;overflow-y:auto;scrollbar-width:thin;padding:calc(0.625cm + 3.4vh) 4px 3.4vh;}
+}
+@media(min-width:1025px){
+  .rd-ez:has(.c2 .rd-list) .rd-cols{grid-template-columns:minmax(0,.86fr) minmax(0,1.14fr);gap:56px;}
+}
+@media(min-width:1025px) and (max-width:1180px){
+  .rd-cols,.rd-ez:has(.c2 .rd-list) .rd-cols{gap:44px;} .rd-more-grid,.rd-listeb-grid,.rd-worum-grid{gap:56px;} .rd-offer-grid{gap:28px;}
+}
+@media(min-width:1025px) and (max-height:860px){
+  .rd-text p{font-size:1.02rem;line-height:1.6;margin-top:10px;}
+  .rd-col h2{font-size:1.55rem;} .rd-cols{margin-top:18px;} .rd-col{padding-top:16px;}
+  .rd-list{margin-top:12px;padding:14px 20px;gap:5px;}
+  .rd-list li{font-size:.95rem;line-height:1.42;}
+  .rd-h2{font-size:1.8rem;}
+  .rd-faq-q{padding:12px 16px;} .rd-faq-detail-body{padding:28px 38px 30px;} .rd-faq-detail-body p{font-size:1rem;line-height:1.62;}
+  .rd-offer .rd-bar{margin:18px 0 10px;} .rd-offer-grid{margin-top:24px;}
+  .rd-tile{padding:12px 16px 14px;font-size:.95rem;} .rd-tiles{gap:12px;}
+  .rd-rows li{padding:11px 0;font-size:1rem;}
+  .rd-fcard{padding:24px 26px 26px;} .rd-fcard p{font-size:.98rem;line-height:1.6;}
+}
+
+/* Tablet und Mobil: normaler Seitenfluss */
+@media(max-width:1024px){
+  .rd-sec{padding:0 6vw 56px;}
+  .rd-sec .about-band{width:100vw;margin:0 calc(50% - 50vw) 40px;height:70px;}
+  .rd-cols,.rd-more-grid,.rd-worum-grid,.rd-tiles-grid,.rd-listeb-grid,.rd-faq-grid{grid-template-columns:1fr;gap:36px;}
+  .rd-offer-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:36px;}
+  .rd-fcards{grid-template-columns:1fr;gap:20px;}
+  .rd-h2{font-size:1.8rem;}
+  .rd-media img,.rd-worum-grid .rd-media img,.rd-tiles-grid .rd-media img,.rd-listeb-side .rd-media img{max-height:none;width:auto;max-width:min(100%,520px);}
+  .rd-worum-grid .rd-ph,.rd-tiles-grid .rd-ph{width:min(100%,420px);}
+  .rd-more-media .rd-photo,.rd-more-media .rd-ph{max-width:560px;}
+  .rd-tabbar{display:none;}
+  .rd-tabpanel{display:block;}
+  .rd-tabpanel + .rd-tabpanel{margin-top:56px;}
+  .rd-faq-detail{display:none;}
+  .rd-faq-q .faq-toggle{display:block;}
+  .rd-faq-item.is-active{background:#fff;border-radius:14px;box-shadow:0 14px 30px -22px rgba(20,20,20,.3);}
+  .rd-faq-item.is-active .rd-faq-q{box-shadow:none;background:transparent;border-left-color:transparent;}
+  .rd-faq-item.is-active .faq-toggle{transform:rotate(180deg);}
+  .rd-faq-item.is-active .faq-toggle::after{opacity:0;}
+  .rd-faq-a{display:grid;grid-template-rows:0fr;transition:grid-template-rows .6s cubic-bezier(.16,1,.3,1);}
+  .rd-faq-a-inner{overflow:hidden;padding:0 18px 0 69px;}
+  .rd-faq-item.is-active .rd-faq-a{grid-template-rows:1fr;}
+  .rd-faq-a-inner p{color:var(--muted);font-size:1rem;line-height:1.65;margin:0 0 12px;}
+  .rd-faq-a-inner p:last-child{margin-bottom:18px;}
+}
+@media(max-width:640px){
+  .rd-sec{padding:38px 5vw 44px;}
+  .rd-sec .about-band{margin:-38px calc(50% - 50vw) 32px;height:15px;}
+  .rd-eyebrow{font-size:.8rem;}
+  .rd-h2,.rd-listeb-side .rd-h2{font-size:1.5rem;}
+  .rd-col h2{font-size:1.4rem;}
+  .rd-text p{font-size:1rem;line-height:1.65;}
+  .rd-list{padding:16px 18px;}
+  .rd-list li{font-size:.96rem;}
+  .rd-offer-grid,.rd-tiles{grid-template-columns:1fr;}
+  .rd-tabs-head{display:block;}
+  .rd-rows li{font-size:1rem;grid-template-columns:40px minmax(0,1fr);}
+  .rd-quote p{font-size:1.1rem;}
+  .rd-faq-q{grid-template-columns:28px minmax(0,1fr) 26px;padding:14px 14px;}
+  .rd-faq-a-inner{padding:0 14px 0 14px;}
+  .rd-fcard{padding:22px 20px 24px;}
+}

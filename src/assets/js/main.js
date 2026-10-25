@@ -73,7 +73,7 @@
     // Paartherapie), falls deren Inhalt trotz vertikaler Zentrierung/
     // Sicherheitsnetz höher als der verfügbare Platz im Abschnitt ist –
     // sonst würde das Mausrad sofort den Abschnittswechsel auslösen.
-    var el = e.target.closest ? e.target.closest('.faq-list') : null;
+    var el = e.target.closest ? e.target.closest('.faq-list, .rd-inner') : null;
     if(!el || el.scrollHeight <= el.clientHeight) return false;
     var atTop = el.scrollTop <= 0;
     var atBottom = Math.ceil(el.scrollTop + el.clientHeight) >= el.scrollHeight;
@@ -284,6 +284,50 @@
       current = openInSpotlight(item, btn);
       faqColumns.classList.add('has-open');
       if(previous) restore(previous);
+    });
+  });
+})();
+
+(function(){
+  // Neugestaltung: FAQ als Auswahlliste mit Antwortfläche (Desktop) bzw.
+  // Akkordeon (Tablet/Mobil, <=1024px) sowie Umschalter Beruflich/Persönlich
+  // (Coaching). Auf Seiten ohne diese Bausteine passiert nichts.
+  document.querySelectorAll('.rd-faq').forEach(function(sec){
+    var items = Array.prototype.slice.call(sec.querySelectorAll('.rd-faq-item'));
+    var body = sec.querySelector('.rd-faq-detail-body');
+    function show(item){
+      items.forEach(function(it){
+        var on = it === item;
+        it.classList.toggle('is-active', on);
+        it.querySelector('.rd-faq-q').setAttribute('aria-expanded', on ? 'true' : 'false');
+      });
+      if(body && item){
+        body.innerHTML = '<div class="rd-num">' + item.querySelector('.rd-num').textContent + '</div><h3>' + item.querySelector('.rd-q').innerHTML + '</h3>' + item.querySelector('.rd-faq-a-inner').innerHTML;
+        body.classList.remove('is-in'); void body.offsetWidth; body.classList.add('is-in');
+      }
+    }
+    items.forEach(function(it){
+      var btn = it.querySelector('.rd-faq-q');
+      btn.addEventListener('click', function(){
+        if(window.innerWidth <= 1024 && it.classList.contains('is-active')){
+          it.classList.remove('is-active');
+          btn.setAttribute('aria-expanded', 'false');
+          return;
+        }
+        show(it);
+      });
+    });
+    show(sec.querySelector('.rd-faq-item.is-active') || items[0]);
+  });
+  document.querySelectorAll('.rd-tabs').forEach(function(sec){
+    var tabs = Array.prototype.slice.call(sec.querySelectorAll('.rd-tab'));
+    var panels = Array.prototype.slice.call(sec.querySelectorAll('.rd-tabpanel'));
+    tabs.forEach(function(t){
+      t.addEventListener('click', function(){
+        var k = t.getAttribute('data-tab');
+        tabs.forEach(function(x){ var on = x === t; x.classList.toggle('is-active', on); x.setAttribute('aria-selected', on ? 'true' : 'false'); });
+        panels.forEach(function(p){ p.classList.toggle('is-active', p.getAttribute('data-panel') === k); });
+      });
     });
   });
 })();
