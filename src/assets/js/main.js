@@ -42,6 +42,32 @@
   setHeaderH();
   window.addEventListener('resize', setHeaderH);
 
+  // Sprungmarken (z.B. /systemische-therapie/#faq): springt zum Abschnitt mit der
+  // passenden id. Desktop: Abschnittswechsel, Tablet/Mobile: normales Scrollen.
+  function goToHash(instant){
+    var h = window.location.hash;
+    if(!h || h.length < 2) return false;
+    var target = document.getElementById(decodeURIComponent(h.slice(1)));
+    var i = target ? sections.indexOf(target) : -1;
+    if(i < 0) return false;
+    if(isDesktopMode()) goTo(i, instant);
+    else target.scrollIntoView();
+    return true;
+  }
+  goToHash(true);
+  window.addEventListener('hashchange', function(){ goToHash(false); });
+  document.addEventListener('click', function(e){
+    var a = e.target.closest ? e.target.closest('a[href*="#"]') : null;
+    if(!a || a.pathname !== window.location.pathname || !a.hash) return;
+    var target = document.getElementById(a.hash.slice(1));
+    if(!target || sections.indexOf(target) < 0) return;
+    e.preventDefault();
+    if(window.location.hash !== a.hash) history.pushState(null, '', a.hash);
+    goToHash(false);
+    var mnav = document.getElementById('mobileNav'), mbtn = document.getElementById('hamburgerBtn');
+    if(mnav && mnav.classList.contains('is-open')){ mnav.classList.remove('is-open'); if(mbtn){ mbtn.classList.remove('is-open'); mbtn.setAttribute('aria-expanded','false'); } }
+  });
+
   function isPassthroughScroll(e){
     // Erlaubt normales Scrollen innerhalb der FAQ-Liste (Unterseite
     // Paartherapie), falls deren Inhalt trotz vertikaler Zentrierung/
