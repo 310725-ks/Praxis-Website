@@ -65,8 +65,10 @@
     var h = window.location.hash;
     if(!h || h.length < 2) return false;
     var target = document.getElementById(decodeURIComponent(h.slice(1)));
+    if(target && sections.indexOf(target) < 0 && target.closest) target = target.closest('.snap-section');
     if(!target || sections.indexOf(target) < 0) return false;
     scrollToSection(target, instant);
+    document.dispatchEvent(new CustomEvent('rd:hash'));
     return true;
   }
   goToHash(true);
@@ -75,6 +77,7 @@
     var a = e.target.closest ? e.target.closest('a[href*="#"]') : null;
     if(!a || a.pathname !== window.location.pathname || !a.hash) return;
     var target = document.getElementById(a.hash.slice(1));
+    if(target && sections.indexOf(target) < 0 && target.closest) target = target.closest('.snap-section');
     if(!target || sections.indexOf(target) < 0) return;
     e.preventDefault();
     if(window.location.hash !== a.hash) history.pushState(null, '', a.hash);
@@ -260,6 +263,17 @@
       });
     });
     show(sec.querySelector('.rd-faq-item.is-active') || items[0]);
+    // Sprungmarke direkt auf einen FAQ-Eintrag (z.B. #faq-krise): Eintrag öffnen
+    function openFromHash(){
+      var id = decodeURIComponent((window.location.hash || '').slice(1));
+      var it = id ? document.getElementById(id) : null;
+      if(!it || items.indexOf(it) < 0) return;
+      if(!it.classList.contains('is-active')) show(it);
+      // Tablet/Mobil (Akkordeon): zum geöffneten Eintrag scrollen
+      if(window.innerWidth <= 1024) setTimeout(function(){ it.scrollIntoView({behavior:'smooth', block:'start'}); }, 500);
+    }
+    openFromHash();
+    document.addEventListener('rd:hash', openFromHash);
   });
   document.querySelectorAll('.rd-tabs').forEach(function(sec){
     var tabs = Array.prototype.slice.call(sec.querySelectorAll('.rd-tab'));
