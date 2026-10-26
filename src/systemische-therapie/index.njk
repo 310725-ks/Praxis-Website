@@ -52,9 +52,9 @@ description: "Systemische Therapie und Beratung bei Stefan Gowitzke in Berlin-Mo
         <div class="rd-eyebrow">Systemische Therapie &amp; Beratung</div>
         <h2 class="rd-h2">Meine Angebote</h2>
         <div class="rd-offer-grid">
-          <a class="rd-offer" href="{{ '/paartherapie/' | url }}"><div class="rd-offer-img"><img src="{{ '/assets/img/paartherapie-hero-2.jpg' | url }}" alt="" loading="lazy"></div><span class="rd-bar"></span><h3>Paartherapie &amp; Beziehungsberatung</h3><p>für Paare oder Menschen in Mehrpersonen-Konstellationen, die ihre Beziehung belastet erleben und gemeinsam neue Verbundenheit und liebevolleren Kontakt entwickeln möchten.</p><span class="rd-more-link">Mehr erfahren<span class="rd-chev"></span></span></a>
-          <a class="rd-offer" href="{{ '/einzeltherapie/' | url }}"><div class="rd-offer-img"><img src="{{ '/assets/img/einzeltherapie-hero-4.jpg' | url }}" alt="" loading="lazy"></div><span class="rd-bar"></span><h3>Einzeltherapie &amp; Beratung</h3><p>individuelle Unterstützung für Menschen in herausfordernden Lebensphasen, die eigene hinderliche Muster im Denken, Fühlen und Verhalten verändern möchten.</p><span class="rd-more-link">Mehr erfahren<span class="rd-chev"></span></span></a>
-          <a class="rd-offer" href="{{ '/familientherapie/' | url }}"><div class="rd-offer-img"><img src="{{ '/assets/img/familientherapie-hero-2.jpg' | url }}" alt="" loading="lazy"></div><span class="rd-bar"></span><h3>Familientherapie &amp; Beratung</h3><p>für Familien und Familiensysteme, die Belastungen, Konflikte oder Umbrüche im Miteinander verstehen und neue, tragfähige Wege im Zusammenleben entwickeln möchten.</p><span class="rd-more-link">Mehr erfahren<span class="rd-chev"></span></span></a>
+          <a class="rd-offer" href="{{ offers.paar.url | url }}"><div class="rd-offer-img"><img src="{{ '/assets/img/paartherapie-hero-2.jpg' | url }}" alt="" loading="lazy"></div><span class="rd-bar"></span><h3>{{ offers.paar.title }}</h3><p>{{ offers.paar.text }}</p><span class="rd-more-link">Mehr erfahren<span class="rd-chev"></span></span></a>
+          <a class="rd-offer" href="{{ offers.einzel.url | url }}"><div class="rd-offer-img"><img src="{{ '/assets/img/einzeltherapie-hero-4.jpg' | url }}" alt="" loading="lazy"></div><span class="rd-bar"></span><h3>{{ offers.einzel.title }}</h3><p>{{ offers.einzel.text }}</p><span class="rd-more-link">Mehr erfahren<span class="rd-chev"></span></span></a>
+          <a class="rd-offer" href="{{ offers.familie.url | url }}"><div class="rd-offer-img"><img src="{{ '/assets/img/familientherapie-hero-2.jpg' | url }}" alt="" loading="lazy"></div><span class="rd-bar"></span><h3>{{ offers.familie.title }}</h3><p>{{ offers.familie.text }}</p><span class="rd-more-link">Mehr erfahren<span class="rd-chev"></span></span></a>
         </div>
       </div>
     </section>
@@ -72,13 +72,13 @@ description: "Systemische Therapie und Beratung bei Stefan Gowitzke in Berlin-Mo
             </div>
             <div class="rd-faq-item">
               <button class="rd-faq-q" aria-expanded="false"><span class="rd-num">02</span><span class="rd-q">Welche Kosten kommen auf mich zu, und wie kann ich einen Termin stornieren?</span><span class="faq-toggle"></span></button>
-              <div class="rd-faq-a"><div class="rd-faq-a-inner"><p>Der Stundensatz (60 Minuten) beträgt 140 Euro. Umsatzsteuer fällt nicht an.</p>
+              <div class="rd-faq-a"><div class="rd-faq-a-inner"><p>Der Stundensatz beträgt 140 Euro. Umsatzsteuer fällt nicht an.</p>
                 <ul class="rd-faq-ul">
-                  <li><strong>Einzelsitzung ab 60 Minuten:</strong> 140 Euro</li>
-                  <li><strong>Sitzung für zwei oder mehr Personen ab 90 Minuten:</strong> 210 Euro</li>
-                  <li><strong>Längere Gespräche:</strong> zusätzlich pro angefangenen 15 Minuten der anteilige Stundensatz</li>
+                  <li><strong>Einzelsitzung (ab 60 Minuten):</strong> 140 Euro</li>
+                  <li><strong>Sitzung für zwei oder mehr Personen (ab 90 Minuten):</strong> 210 Euro</li>
+                  <li><strong>Längere Sitzungen:</strong> je angefangene 15 Minuten zusätzlich 35 Euro</li>
                 </ul>
-                <p>Einzelgespräche biete ich ab einer Mindestdauer von 60 Minuten an. Termine für zwei oder mehr Personen biete ich mit einer Mindestdauer von 90 Minuten an. Längere Sitzungen können nach Absprache verabredet werden.</p><p>Demnach fallen pro Sitzung im Einzelsetting mindestens 140 Euro an, im Mehrpersonensetting aktuell mindestens 210 Euro. Für längere Gespräche rechne ich pro angefangenen 15 Minuten die anteiligen Kosten des Stundensatzes zusätzlich ab.</p><p>Bis 48 Stunden vor dem vereinbarten Termin können Sie kostenfrei stornieren. Bei späterer Absage stelle ich das volle Honorar in Rechnung, da sich ein Termin kurzfristig meist nicht neu vergeben lässt. Gelingt mir die Neuvergabe, fallen keine Kosten an.</p></div></div>
+                <p>Bis 48 Stunden vor dem vereinbarten Termin können Sie kostenfrei stornieren. Bei späterer Absage stelle ich das volle Honorar in Rechnung, da sich ein Termin kurzfristig meist nicht neu vergeben lässt. Gelingt mir die Neuvergabe, fallen keine Kosten an.</p></div></div>
             </div>
             <div class="rd-faq-item">
               <button class="rd-faq-q" aria-expanded="false"><span class="rd-num">03</span><span class="rd-q">Kann ich die Kosten bei meiner Krankenkasse erstattet bekommen?</span><span class="faq-toggle"></span></button>
@@ -108,7 +108,7 @@ description: "Systemische Therapie und Beratung bei Stefan Gowitzke in Berlin-Mo
             </div>
             <div class="rd-faq-item">
               <button class="rd-faq-q" aria-expanded="false"><span class="rd-num">07</span><span class="rd-q">Werden die Inhalte meiner Sitzungen vertraulich behandelt, und was bedeutet die Schweigepflicht für mich?</span><span class="faq-toggle"></span></button>
-              <div class="rd-faq-a"><div class="rd-faq-a-inner"><p>Ihre persönlichen Daten und alles, was in Beratung oder Therapie besprochen wird, unterliegen der gesetzlichen Schweigepflicht. Ohne Ihre ausdrückliche schriftliche Einwilligung gebe ich keine Auskünfte oder Informationen an Dritte weiter. Aufgehoben werden kann die Schweigepflicht nur in wenigen, gesetzlich definierten Situationen, nämlich wenn eine akute Selbst- oder Fremdgefährdung für Leib und Leben vorliegt.</p><p>Zur Qualitätssicherung nehme ich Kontroll-Supervision oder Lehr-Supervision in Weiterbildungskontexten wahr. Dort bringe ich Inhalte stets anonymisiert ein, d.h. es werden keine personenbezogenen Daten weitergegeben.</p></div></div>
+              <div class="rd-faq-a"><div class="rd-faq-a-inner"><p>Ihre persönlichen Daten und alles, was in Beratung oder Therapie besprochen wird, unterliegen der gesetzlichen Schweigepflicht. Ohne Ihre ausdrückliche schriftliche Einwilligung gebe ich keine Auskünfte oder Informationen an Dritte weiter. Aufgehoben werden kann die Schweigepflicht nur in wenigen, gesetzlich definierten Situationen, nämlich wenn eine akute Selbst- oder Fremdgefährdung für Leib und Leben vorliegt.</p><p>Zur Qualitätssicherung nehme ich Kontroll-Supervision oder Lehr-Supervision in Weiterbildungskontexten wahr. Dort bringe ich Inhalte stets anonymisiert ein, d.&nbsp;h. es werden keine personenbezogenen Daten weitergegeben.</p></div></div>
             </div>
             <div class="rd-faq-item">
               <button class="rd-faq-q" aria-expanded="false"><span class="rd-num">08</span><span class="rd-q">Was bedeutet das Systemische in den Beratungs- und Therapieansätzen?</span><span class="faq-toggle"></span></button>
@@ -127,8 +127,8 @@ description: "Systemische Therapie und Beratung bei Stefan Gowitzke in Berlin-Mo
           <h2 class="kb-headline">Beginnen wir mit einem Gespräch.</h2>
           <div class="rahmen-grid">
             <div><h3>Erstgespräch</h3><p>Wir klären Ihre Anliegen und ob es sich stimmig anfühlt, miteinander die Zusammenarbeit zu beginnen.</p></div>
-            <div><h3>Termine</h3><p>Nach dem Erstgespräch verabreden wir gemeinsam einen passenden Rhythmus der Sitzungen.</p></div>
-            <div><h3>Ort &amp; Format</h3><p>Sitzungen können live in Moabit oder online via Zoom stattfinden.</p></div>
+            <div><h3>Termine</h3><p>Nach dem Erstgespräch verabreden wir gemeinsam einen für Sie passenden Rhythmus der Sitzungen.</p></div>
+            <div><h3>Ort &amp; Format</h3><p>Sitzungen finden in Berlin-Moabit statt (INSA-Berlin · Alt-Moabit 91b) oder online per Video.</p></div>
           </div>
         </div>
         <div class="kb-right">
