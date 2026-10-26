@@ -2056,7 +2056,7 @@ body.on-contact .snap-dots button.is-active{background:#cdd8cb;}
 .rd-closing{margin:18px 0 0;color:var(--muted);font-size:.98rem;line-height:1.55;text-wrap:pretty;}
 /* Kleiner Hinweis im Hero (Einzeltherapie) */
 .ph-hero .hero-text p.hero-note{margin-top:20px;font-size:.82rem;line-height:1.55;opacity:.88;max-width:560px;}
-.ph-hero .hero-text p.hero-note a{color:inherit;font-weight:600;text-decoration:underline;text-underline-offset:2px;}
+.ph-hero .hero-text p a{color:inherit;font-weight:600;text-decoration:underline;text-underline-offset:2px;}
 /* Liste in FAQ-Antworten (Krisenhilfe) */
 .rd-faq-ul{list-style:none;margin:4px 0 16px;padding:0;max-width:680px;border-top:1px solid #EDE1CF;}
 .rd-faq-ul li{position:relative;padding:10px 0 10px 22px;border-bottom:1px solid #EDE1CF;color:var(--muted);font-size:1rem;line-height:1.55;}
@@ -2070,9 +2070,13 @@ body.on-contact .snap-dots button.is-active{background:#cdd8cb;}
   .rd-bullets li::before{top:calc(9px + .75em - 4px);}
   .rd-ez-lists .rd-col h2{margin-bottom:14px;}
 }
-@media(min-width:641px){
-  .ph-hero .hero-photo-wrap.hero-photo-portrait{max-width:482px;}
-}
+/* Einzeltherapie-Hero (Hochformat, unbeschnitten): gleiche Spaltenbreite wie die
+   Hero-Bilder der anderen Therapieseiten. Die Höhe ist auf diese Breite
+   (100cqw) und auf die sichtbare Fensterhöhe begrenzt, sodass das ganze Bild
+   ohne Scrollen zu sehen ist. Das Seitenverhältnis bleibt erhalten. */
+.ph-hero .hero-photo-wrap.hero-photo-portrait{container-type:inline-size;}
+.ph-hero .hero-photo-portrait .hero-photo{width:fit-content;max-width:100%;margin:0 auto;}
+.ph-hero .hero-photo-portrait .hero-photo img{display:block;width:auto;height:auto;max-width:100%;max-height:min(100cqw, calc(100vh - var(--header-h,90px) - 110px));}
 
 /* 13b  Übersicht "Meine Angebote": Bilder 4:3, Ausschnitt je Bild so, dass die Köpfe vollständig sichtbar sind */
 .rd-offers .rd-offer-img,.rd-offers .rd-offer .rd-ph{aspect-ratio:4/3;}
