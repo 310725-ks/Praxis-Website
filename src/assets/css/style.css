@@ -2054,8 +2054,8 @@ body.on-contact .snap-dots button.is-active{background:#cdd8cb;}
 .rd-bullets li{position:relative;padding:13px 0 13px 24px;border-bottom:1px solid #EDE1CF;color:var(--navy);font-size:1.03rem;line-height:1.5;}
 .rd-bullets li::before{content:"";position:absolute;left:0;top:calc(13px + .75em - 4px);width:8px;height:8px;background:var(--gold);}
 .rd-closing{margin:18px 0 0;color:var(--muted);font-size:.98rem;line-height:1.55;text-wrap:pretty;}
-/* Kleiner Hinweis im Hero (Einzeltherapie) */
-.ph-hero .hero-text p.hero-note{margin-top:20px;font-size:.82rem;line-height:1.55;opacity:.88;max-width:560px;}
+/* Kleiner Hinweis im Hero (Systemische Therapie, Einzeltherapie) */
+.ph-hero .hero-text p.hero-note{margin-top:20px;font-size:calc(.82rem + 1pt);line-height:1.55;opacity:.88;max-width:560px;}
 .ph-hero .hero-text p a{color:inherit;font-weight:600;text-decoration:underline;text-underline-offset:2px;}
 /* Liste in FAQ-Antworten (Krisenhilfe) */
 .rd-faq-ul{list-style:none;margin:4px 0 16px;padding:0;max-width:680px;border-top:1px solid #EDE1CF;}
