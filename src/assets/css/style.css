@@ -2168,3 +2168,18 @@ body.on-contact .snap-dots button.is-active{background:#cdd8cb;}
 .rd-tabs-center .rd-h2[data-panel="0"] .rd-accent{color:#6f7f67;}
 .rd-tabs-center .rd-h2[data-panel="1"] .rd-accent{color:var(--gold);}
 .rd-tabs-center .rd-accent{transition:color .4s ease;}
+
+/* Supervision · Übliche Inhalte (7a): Strich seitenbreit, Überschrift einzeilig,
+   Grafik rechts mittig zwischen Überschrift-Oberkante und letztem Stichpunkt */
+@media (min-width:1025px){
+  .rd-listeb2 .rd-inner{display:grid;grid-template-columns:minmax(0,1fr) 430px;column-gap:88px;}
+  .rd-listeb2 .rd-center-head,
+  .rd-listeb2 .rd-listeb2-grid{display:contents;}
+  .rd-listeb2 .rd-center-head .rd-eyebrow{grid-column:1 / -1;grid-row:1;}
+  .rd-listeb2 .rd-center-head .rd-h2{grid-column:1 / -1;grid-row:2;max-width:none;width:100%;white-space:nowrap;margin:var(--sg-eb-gap) 0 var(--sg-head-gap);}
+  .rd-listeb2 .rd-listeb2-grid > .rd-bullets{grid-column:1;grid-row:3;}
+  .rd-listeb2 .rd-listeb2-grid > .rd-media{grid-column:2;grid-row:2 / span 2;align-self:center;justify-self:center;width:410px;
+    /* Zentrierung erst ab Oberkante Überschrift: Strich (4px) + Abstand (22px) */
+    margin-top:calc(var(--sg-eb-gap) + var(--sg-rule) + var(--sg-rule-gap));}
+  .rd-listeb2 .rd-listeb2-grid > .rd-media img{width:100%;height:auto;}
+}
