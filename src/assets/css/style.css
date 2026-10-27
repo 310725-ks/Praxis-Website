@@ -2183,3 +2183,25 @@ body.on-contact .snap-dots button.is-active{background:#cdd8cb;}
     margin-top:calc(var(--sg-eb-gap) + var(--sg-rule) + var(--sg-rule-gap));}
   .rd-listeb2 .rd-listeb2-grid > .rd-media img{width:100%;height:auto;max-height:none;}
 }
+
+/* Abschnittsköpfe ohne Strich (Option 8a): Eyebrow → 14px → Überschrift.
+   Ausnahme: Spaltenstriche (.rd-col, .um-two-col > div) bleiben. */
+.rd-sec .rd-h2,
+.rd-center-head .rd-h2,
+.s-offers .eyebrow-label,
+.hp-offers .eyebrow-label,
+.s-about .about h2{border-top:none;padding-top:0;}
+.rd-sec .rd-h2,
+.rd-center-head .rd-h2{margin-top:14px;}
+.s-about .about h2{margin-top:14px;}
+
+@media (min-width:1025px){
+  /* Supervision · Übliche Inhalte (7a): Überschrift-Abstand und Zentrierung der Grafik nachziehen */
+  .rd-listeb2 .rd-center-head .rd-h2{margin:14px 0 var(--sg-head-gap);}
+  .rd-listeb2 .rd-listeb2-grid > .rd-media{margin-top:14px;}
+}
+@media (max-width:640px){
+  .rd-sec .rd-h2,
+  .rd-center-head .rd-h2,
+  .s-about .about h2{margin-top:10px;}
+}
