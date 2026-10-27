@@ -287,3 +287,18 @@
     });
   });
 })();
+
+
+/* Abschnittsstriche: Farbe läuft über die ganze Seite weiter (navy → salbei → gold). */
+(function(){
+  var colors=['var(--navy)','var(--sage)','var(--gold)'];
+  var sel='.rd-sec .rd-h2, .rd-col, .um-two-col > div, .s-offers .eyebrow-label, .s-about .about h2';
+  var i=0, lastTabGroup=null;
+  document.querySelectorAll(sel).forEach(function(el){
+    // Umschaltbare Überschriften (Coaching „Beruflich/Persönlich“) teilen sich eine Farbe
+    var group=el.classList.contains('rd-tabpanel')?el.parentElement:null;
+    if(group&&group===lastTabGroup){el.style.setProperty('--sg-rule-color',colors[(i-1)%3]);return;}
+    lastTabGroup=group;
+    el.style.setProperty('--sg-rule-color',colors[i%3]);i++;
+  });
+})();

@@ -2076,3 +2076,89 @@ body.on-contact .snap-dots button.is-active{background:#cdd8cb;}
 .rd-offers .rd-offer:nth-child(1) .rd-offer-img img{object-position:50% 8%;}
 .rd-offers .rd-offer:nth-child(2) .rd-offer-img img{object-position:50% 18%;}
 .rd-offers .rd-offer:nth-child(3) .rd-offer-img img{object-position:50% 6%;}
+
+
+/* =====================================================================
+   Vereinheitlichung Design (Design-Check 27.10.2026)
+   Diesen Block ans ENDE von style.css anhängen. Er überschreibt bewusst
+   frühere Einzelwerte; spätere Aufräumarbeiten können die alten Regeln
+   dann entfernen.
+   ===================================================================== */
+
+/* ---- 1. Abschnittskopf, Muster A: Eyebrow → farbiger Strich → Überschrift
+   Strich 4px, Abstand Eyebrow→Strich 12px, Strich→Überschrift 22px.
+   Farben laufen über die ganze Seite weiter: navy → salbei → gold → navy …
+   Die Farbe setzt main.js je Strich über --sg-rule-color (siehe ANLEITUNG). ---- */
+:root{--sg-rule:4px;--sg-eb-gap:12px;--sg-rule-gap:22px;--sg-head-gap:32px;--sg-col:calc((100% - 72px) / 2);}
+
+/* Einzelne Abschnitts-Überschrift (Meine Angebote, FAQ, Formate, Worum es geht, Weitere Angebote, Übliche Inhalte …) */
+.rd-sec .rd-h2{border-top:var(--sg-rule) solid var(--sg-rule-color,var(--navy));padding-top:var(--sg-rule-gap);margin-top:var(--sg-eb-gap);max-width:var(--sg-col);}
+.rd-center-head .rd-h2{margin-top:var(--sg-eb-gap);max-width:var(--sg-col);}
+/* „Worum es geht“: Strich lag bisher ÜBER der Eyebrow → jetzt wie überall darunter */
+.rd-worum-text{border-top:none;padding-top:0;}
+.rd-worum-text .rd-h2{max-width:none;}
+
+/* Zweispaltige Abschnitte: Strich an jeder Spalte (besteht bereits), Abstand angleichen, dritte Farbe */
+.rd-cols{margin-top:var(--sg-eb-gap);}
+.rd-col,.rd-col.c2{border-top:var(--sg-rule) solid var(--sg-rule-color,var(--navy));padding-top:var(--sg-rule-gap);}
+
+/* Startseite: „Meine Angebote“ und „Über mich“ */
+.s-offers .eyebrow-label,.hp-offers .eyebrow-label{border-top:var(--sg-rule) solid var(--sg-rule-color,var(--navy));padding-top:var(--sg-rule-gap);max-width:var(--sg-col);}
+.s-about .about h2{border-top:var(--sg-rule) solid var(--sg-rule-color,var(--navy));padding-top:var(--sg-rule-gap);}
+
+/* Über mich: Spalten wie zweispaltige Abschnitte */
+.um-two-col{margin-top:var(--sg-eb-gap);}
+.um-two-col > div{border-top:var(--sg-rule) solid var(--sg-rule-color,var(--navy));padding-top:var(--sg-rule-gap);}
+.um-two-col::before{display:none;}
+
+/* ---- 2. Überschriften ---- */
+/* H1 im Hero: überall gleiche Größe und gleicher Zeichenabstand */
+.um-hero-text h1{font-size:2.6rem;}
+.um-hero-text h1,.sv-hero-h1,.co-hero-h1{letter-spacing:.015em;}
+/* Abschnitts-Überschriften überall 2,1rem */
+.rd-h2,.s-offers .eyebrow-label,.s-about .about h2{font-size:2.1rem;line-height:1.2;}
+/* Spalten-Überschriften überall 1,85rem */
+.rd-col h2,.um-col-heading{font-size:1.85rem;line-height:1.2;margin:0;}
+.um-col-heading{margin-bottom:18px;}
+/* Eyebrows überall 1rem, Zeichenabstand .1em */
+.kb-eyebrow,.s-contact .kb-eyebrow,.ph-contact .kb-right .kb-eyebrow,.sv-contact .kb-right .kb-eyebrow,.co-contact .kb-right .kb-eyebrow{font-size:1rem;letter-spacing:.1em;}
+/* Überschrift → Inhalt: 32px */
+.rd-more2 .rd-center-head,.rd-listeb2 .rd-center-head,.rd-tabs-center .rd-center-head{margin-bottom:var(--sg-head-gap);}
+.rd-offer-grid,.rd-fcards,.rd-faq-grid{margin-top:var(--sg-head-gap);}
+.hp-offers .eyebrow-label{margin-bottom:var(--sg-head-gap);}
+.rd-ez-lists .rd-col h2{margin-bottom:22px;}
+
+/* ---- 3. Listen und Texte ---- */
+.rd-bullets li{font-size:1.05rem;line-height:1.55;padding:12px 0 12px 24px;}
+.rd-bullets li::before{top:calc(12px + .775em - 4px);}
+.rd-faq-ul li{font-size:1.05rem;line-height:1.55;}
+.um-cert-list li{line-height:1.55;}
+.rd-fcard p,.rd-offer p,.rd-tile2 p,.hp-offer p{font-size:1rem;}
+.s-contact .kb-left .kb-text,.s-contact .kb-right .kb-text,.ph-contact .kb-right .kb-text,.s-contact .kb-address,.s-contact .kb-online{font-size:1.12rem;}
+
+/* ---- Tablet ---- */
+@media (max-width:1024px){
+  :root{--sg-head-gap:28px;--sg-col:100%;}
+  .rd-h2,.s-offers .eyebrow-label,.s-about .about h2{font-size:1.8rem;}
+  .rd-col h2,.um-col-heading{font-size:1.6rem;}
+  .um-hero-text h1{font-size:2.2rem;}
+}
+/* ---- Mobil ---- */
+@media (max-width:640px){
+  :root{--sg-rule:3px;--sg-eb-gap:10px;--sg-rule-gap:16px;--sg-head-gap:24px;}
+  .rd-h2,.s-offers .eyebrow-label,.s-about .about h2{font-size:1.5rem;}
+  .rd-col h2,.um-col-heading{font-size:1.4rem;}
+  .um-hero-text h1{font-size:1.9rem;}
+  .kb-eyebrow,.s-contact .kb-eyebrow{font-size:.8rem;}
+  .rd-bullets li{font-size:1rem;padding:10px 0 10px 24px;}
+  .rd-bullets li::before{top:calc(10px + .775em - 4px);}
+  .rd-faq-ul li{font-size:1rem;}
+  .rd-fcard p,.rd-offer p,.rd-tile2 p,.hp-offer p{font-size:.95rem;}
+  .s-contact .kb-left .kb-text,.s-contact .kb-right .kb-text,.ph-contact .kb-right .kb-text,.s-contact .kb-address,.s-contact .kb-online{font-size:1rem;}
+}
+
+/* ---- 4. Systemische Therapie „Meine Angebote“: auf niedrigen Desktop-Bildschirmen
+   Bilder flacher (16:10 statt 4:3), damit der Abschnitt in die Bildschirmhöhe passt. ---- */
+@media (min-width:1025px) and (max-height:900px){
+  .rd-offers .rd-offer-img,.rd-offers .rd-offer .rd-ph{aspect-ratio:16/10;}
+}
