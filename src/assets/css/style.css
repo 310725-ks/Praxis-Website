@@ -2181,5 +2181,5 @@ body.on-contact .snap-dots button.is-active{background:#cdd8cb;}
   .rd-listeb2 .rd-listeb2-grid > .rd-media{grid-column:2;grid-row:2 / span 2;align-self:center;justify-self:center;width:410px;
     /* Zentrierung erst ab Oberkante Überschrift: Strich (4px) + Abstand (22px) */
     margin-top:calc(var(--sg-eb-gap) + var(--sg-rule) + var(--sg-rule-gap));}
-  .rd-listeb2 .rd-listeb2-grid > .rd-media img{width:100%;height:auto;}
+  .rd-listeb2 .rd-listeb2-grid > .rd-media img{width:100%;height:auto;max-height:none;}
 }
