@@ -302,3 +302,24 @@
     el.style.setProperty('--sg-rule-color',colors[i%3]);i++;
   });
 })();
+
+/* Kostenseiten: einfaches Akkordeon (jeweils ein Eintrag offen) */
+(function(){
+  document.querySelectorAll('.kst-acc').forEach(function(acc){
+    var items = Array.prototype.slice.call(acc.querySelectorAll('.kst-acc-item'));
+    items.forEach(function(it){
+      var btn = it.querySelector('.kst-acc-q');
+      btn.addEventListener('click', function(){
+        var open = !it.classList.contains('is-open');
+        items.forEach(function(o){
+          o.classList.remove('is-open');
+          o.querySelector('.kst-acc-q').setAttribute('aria-expanded','false');
+        });
+        if(open){
+          it.classList.add('is-open');
+          btn.setAttribute('aria-expanded','true');
+        }
+      });
+    });
+  });
+})();

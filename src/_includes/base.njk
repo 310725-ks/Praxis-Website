@@ -9,6 +9,8 @@
     navIndividual: "Einzeltherapie & Beratung",
     navCoaching: "Coaching",
     navSupervision: "Supervision",
+    navCoSu: "Coaching & Supervision",
+    navCosts: "Kosten",
     navApproach: "Meine Arbeitsweise",
     navAbout: "Über mich",
     menuOpen: "Menü öffnen",
@@ -84,11 +86,22 @@
             <a href="{{ (prefix + '/paartherapie/') | url }}">{{ t.navCouples }}</a>
             <a href="{{ (prefix + '/einzeltherapie/') | url }}">{{ t.navIndividual }}</a>
             <a href="{{ (prefix + '/familientherapie/') | url }}">{{ t.navFamily }}</a>
+            {% if curLang == 'de' %}<span class="dropdown-sep" aria-hidden="true"></span>
+            <a href="{{ (prefix + '/systemische-therapie/kosten/') | url }}">{{ t.navCosts }}</a>{% endif %}
             <a href="{{ (prefix + '/systemische-therapie/') | url }}#faq">{{ t.navFaq }}</a>
           </div>
         </li>
-        <li><a href="{{ (prefix + '/coaching/') | url }}">{{ t.navCoaching }}</a></li>
-        <li><a href="{{ (prefix + '/supervision/') | url }}">{{ t.navSupervision }}</a></li>
+        {% if curLang == 'de' %}<li class="has-dropdown">
+          <a href="{{ (prefix + '/coaching/') | url }}">{{ t.navCoSu }}</a>
+          <div class="dropdown">
+            <a href="{{ (prefix + '/coaching/') | url }}">{{ t.navCoaching }}</a>
+            <a href="{{ (prefix + '/supervision/') | url }}">{{ t.navSupervision }}</a>
+            <span class="dropdown-sep" aria-hidden="true"></span>
+            <a href="{{ (prefix + '/coaching-supervision/kosten/') | url }}">{{ t.navCosts }}</a>
+            <a href="{{ (prefix + '/coaching-supervision/faq/') | url }}">{{ t.navFaq }}</a>
+          </div>
+        </li>{% else %}<li><a href="{{ (prefix + '/coaching/') | url }}">{{ t.navCoaching }}</a></li>
+        <li><a href="{{ (prefix + '/supervision/') | url }}">{{ t.navSupervision }}</a></li>{% endif %}
         <li><a href="{{ (prefix + '/ueber-mich/') | url }}" class="nav-plain">{{ t.navAbout }}</a></li>
       </ul>
     </nav>
@@ -105,15 +118,26 @@
           <a href="{{ (prefix + '/paartherapie/') | url }}">{{ t.navCouples }}</a>
           <a href="{{ (prefix + '/einzeltherapie/') | url }}">{{ t.navIndividual }}</a>
           <a href="{{ (prefix + '/familientherapie/') | url }}">{{ t.navFamily }}</a>
+          {% if curLang == 'de' %}<span class="dropdown-sep" aria-hidden="true"></span>
+          <a href="{{ (prefix + '/systemische-therapie/kosten/') | url }}">{{ t.navCosts }}</a>{% endif %}
           <a href="{{ (prefix + '/systemische-therapie/') | url }}#faq">{{ t.navFaq }}</a>
         </div>
       </li>
-      <li class="mobile-nav-item">
+      {% if curLang == 'de' %}<li class="mobile-nav-item">
+        <button class="mobile-nav-toggle" aria-expanded="false">{{ t.navCoSu }}<span class="chevron"></span></button>
+        <div class="mobile-nav-sub">
+          <a href="{{ (prefix + '/coaching/') | url }}">{{ t.navCoaching }}</a>
+          <a href="{{ (prefix + '/supervision/') | url }}">{{ t.navSupervision }}</a>
+          <span class="dropdown-sep" aria-hidden="true"></span>
+          <a href="{{ (prefix + '/coaching-supervision/kosten/') | url }}">{{ t.navCosts }}</a>
+          <a href="{{ (prefix + '/coaching-supervision/faq/') | url }}">{{ t.navFaq }}</a>
+        </div>
+      </li>{% else %}<li class="mobile-nav-item">
         <a class="mobile-nav-toggle mobile-nav-link" href="{{ (prefix + '/coaching/') | url }}">{{ t.navCoaching }}</a>
       </li>
       <li class="mobile-nav-item">
         <a class="mobile-nav-toggle mobile-nav-link" href="{{ (prefix + '/supervision/') | url }}">{{ t.navSupervision }}</a>
-      </li>
+      </li>{% endif %}
       <li class="mobile-nav-item">
         <a class="mobile-nav-toggle mobile-nav-link" href="{{ (prefix + '/ueber-mich/') | url }}">{{ t.navAbout }}</a>
       </li>
