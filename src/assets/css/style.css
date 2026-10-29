@@ -979,6 +979,9 @@ body.on-contact .snap-dots button.is-active{background:#cdd8cb;}
    Die Textspalte ist höchstens 700px breit und lässt mindestens 56px je Abstand frei. */
 @media(min-width:1025px){
   .snap-section.um-hero-section{padding-left:0;padding-right:36px;}
+  /* Feste Fotobreite (4:5 der Höhe): Safari bemisst die auto-Spalte sonst nach der
+     Originalbreite des Bildes -> Foto klebt am linken Fensterrand, Abstände ungleich. */
+  .um-hero-photo{width:calc(min(64.4vh,529px) * .8);}
   .um-hero-inner{max-width:none;margin:0;gap:0;justify-content:space-evenly;
     grid-template-columns:auto minmax(0,min(700px,calc(100vw - 36px - 0.8 * min(64.4vh,529px) - 168px)));}
 }
