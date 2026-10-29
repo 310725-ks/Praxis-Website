@@ -2306,3 +2306,11 @@ h1.rd-h2{color:var(--navy);letter-spacing:.015em;font-weight:700;}
   .kst-btn{width:100%;justify-content:center;}
   .kst-btns{flex-direction:column;}
 }
+
+/* Check-up: Rahmen-Sektion zweispaltig (2 × 2 Punkte), Startseite: Linkzeilen unter den Angebotsgruppen */
+.rahmen-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:24px 28px;}
+.hp-overview.hp-links{display:flex;flex-wrap:wrap;gap:6px 30px;}
+@media(max-width:640px){
+  .rahmen-grid{grid-template-columns:1fr;gap:18px;}
+}
+.kst-price-text strong{font-size:1.7rem;}
