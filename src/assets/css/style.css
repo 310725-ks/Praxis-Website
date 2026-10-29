@@ -2366,3 +2366,167 @@ h1.rd-h2{color:var(--navy);letter-spacing:.015em;font-weight:700;}
 .sv-themen-list li::before,
 .sv-ebenen-list li::before,
 .co-twocol-list li::before{border-radius:50%;}
+
+/* ==========================================================================
+   Mobile-Check-up (Änderungsauftrag AENDERUNG_MOBILE): Handy und Tablet.
+   Die Desktop-Ansicht (ab 1025px) bleibt unverändert.
+   ========================================================================== */
+.header-quick,.rd-readmore,.page-jump,.krise-btns,.krise-lead,.kb-facts,.rd-mtabbar{display:none;}
+.sv-fc-toggle,.sv-topic-chev{display:none;}
+.sv-topic-q{all:unset;display:block;cursor:default;}
+button.sv-format-head{background:none;border:0;padding:0;font:inherit;color:inherit;text-align:left;width:100%;cursor:default;}
+.rd-tiles-dots{display:none;}
+.um-ab-list{list-style:none;margin:0;padding:0;color:var(--muted);font-size:1.05rem;line-height:1.6;}
+.um-ab-list li{display:inline;}
+.um-ab-list li + li::before{content:" · ";}
+
+/* E1 · Mail und Telefon in der Kopfzeile (Handy und Tablet) */
+@media (max-width:1024px){
+  .header-quick{display:flex;gap:8px;margin-left:auto;}
+  .hq-btn{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;box-sizing:border-box;}
+  .hq-btn svg{width:18px;height:18px;}
+  .hq-mail{background:var(--grad);color:#fff;}
+  .hq-tel{border:2px solid var(--navy);color:var(--navy);}
+  .hq-tel:hover{border-color:var(--gold);color:var(--gold);}
+}
+@media (max-width:640px){
+  .site-header{padding:10px 14px 10px 5vw;gap:8px;}
+  .brand{font-size:1.22rem;flex:1;white-space:nowrap;}
+  .header-quick{margin-left:0;}
+}
+
+/* M6 · Tippflächen mindestens 44px */
+@media (max-width:1024px){
+  .hamburger-btn{width:44px;height:44px;}
+  .mobile-nav-sub a{padding:12px 4px;min-height:44px;box-sizing:border-box;}
+  .rd-tab{min-height:44px;box-sizing:border-box;padding:12px 22px;}
+  .s-contact .kb-buttons a{min-height:46px;box-sizing:border-box;}
+  .kst-btn{min-height:44px;box-sizing:border-box;}
+  .lang-switch .lang-link,.lang-switch .lang-active,.lang-switch .is-disabled{display:inline-flex;align-items:center;min-height:36px;padding:0 10px;}
+}
+
+/* E2 · „Weiterlesen“ */
+@media (max-width:1024px){
+  .rd-clamp:not(.is-expanded) > p:not(:first-of-type):not(.rd-keep){display:none;}
+  .rd-clamp:not(.is-expanded) > p:first-of-type{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;}
+  .rd-readmore{all:unset;box-sizing:border-box;cursor:pointer;display:flex;align-items:center;gap:12px;min-height:44px;margin-top:6px;color:var(--navy);font-weight:700;font-size:1rem;}
+  .rd-readmore:focus-visible{outline:2px solid var(--gold);outline-offset:2px;border-radius:6px;}
+  .rd-readmore .faq-toggle{transition:transform .35s cubic-bezier(.4,0,.2,1);}
+  .rd-clamp.is-expanded .rd-readmore .faq-toggle{transform:rotate(180deg);}
+  .rd-clamp.is-expanded .rd-readmore .faq-toggle::after{opacity:0;}
+}
+
+/* E3 · Umschalter für zwei Listen */
+@media (max-width:1024px){
+  .rd-mtabs .rd-mtabbar{display:flex;align-self:flex-start;gap:6px;padding:5px;background:#fff;border-radius:999px;box-shadow:0 14px 30px -22px rgba(20,20,20,.3);margin:14px 0 24px;width:max-content;max-width:100%;}
+  .rd-mtabs .rd-mtabbar button{all:unset;cursor:pointer;min-height:44px;box-sizing:border-box;padding:12px 20px;border-radius:999px;font-weight:700;font-size:.95rem;color:var(--navy);}
+  .rd-mtabs .rd-mtabbar button.is-active{background:var(--grad);color:#fff;}
+  .rd-mtabs .rd-mpanel{display:none;}
+  .rd-mtabs .rd-mpanel.is-active{display:block;}
+}
+
+/* E4 · Supervision: Formatkarten aufklappbar, Inhalte als Liste */
+@media (max-width:1024px){
+  .sv-step-cards .rd-fcard{padding:14px 16px;}
+  .sv-step-cards .sv-format-head{all:unset;box-sizing:border-box;cursor:pointer;width:100%;display:flex;align-items:center;gap:14px;min-height:44px;margin:0;}
+  .sv-step-cards .sv-format-icon{width:40px;height:40px;}
+  .sv-step-cards .sv-format-icon svg{width:20px;height:20px;}
+  .sv-step-cards .sv-format-head h3{flex:1;font-size:1.1rem;}
+  .sv-fc-toggle{display:block;flex-shrink:0;}
+  .sv-step-cards .rd-fcard > p{display:none;margin-top:12px;}
+  .sv-step-cards .rd-fcard.is-open > p{display:block;}
+  .sv-step-cards .rd-fcard.is-open .sv-fc-toggle{transform:rotate(180deg);}
+  .sv-step-cards .rd-fcard.is-open .sv-fc-toggle::after{opacity:0;}
+  .sv-step-cards.has-open .rd-fcard:not(.is-open){opacity:.55;transition:opacity .2s ease;}
+
+  .sv-topics{padding:0 18px;}
+  .sv-topic{padding:0;}
+  .sv-topic-q{cursor:pointer;display:flex;align-items:center;justify-content:space-between;min-height:44px;width:100%;box-sizing:border-box;padding:7px 0;}
+  .sv-topic-q h4{font-size:1.02rem;}
+  .sv-topic-chev{display:block;width:8px;height:8px;border-right:2px solid var(--gold);border-bottom:2px solid var(--gold);transform:rotate(45deg);margin:0 6px 4px 0;transition:transform .25s ease;}
+  .sv-topic.is-open .sv-topic-chev{transform:rotate(-135deg);margin:4px 6px 0 0;}
+  .sv-topic > p{display:none;padding:0 0 16px;}
+  .sv-topic.is-open > p{display:block;}
+}
+
+/* E5 · Rahmen-Sektion als Schritte */
+@media (max-width:640px){
+  .rahmen-grid{counter-reset:rstep;position:relative;gap:20px;}
+  .rahmen-grid > div:not(:last-child){counter-increment:rstep;display:grid;grid-template-columns:32px minmax(0,1fr);column-gap:14px;position:relative;}
+  .rahmen-grid > div:not(:last-child)::before{content:counter(rstep);grid-row:1 / span 2;width:32px;height:32px;border-radius:50%;background:var(--grad);color:#fff;font-weight:700;font-size:.9rem;display:flex;align-items:center;justify-content:center;}
+  .rahmen-grid > div:not(:last-child) h3{margin:5px 0 6px;}
+  .rahmen-grid > div:nth-child(-n+2)::after{content:"";position:absolute;left:15px;top:34px;bottom:-20px;width:2px;background:rgba(184,135,63,.6);}
+  .rahmen-grid > div:last-child{margin-top:2px;padding:14px 16px;border-radius:10px;border:1px solid rgba(255,255,255,.18);}
+  .rahmen-grid > div:last-child h3{text-transform:uppercase;letter-spacing:.1em;color:var(--sage);font-size:.72rem;margin:0 0 4px;}
+  .rahmen-grid > div:last-child p{font-size:.95rem;color:#dfe3e8;}
+}
+
+/* E6 · Kostenkarte Privatpersonen: Angebote als Chips */
+@media (max-width:640px){
+  .kst-navy .kst-dots{flex-direction:row;flex-wrap:wrap;gap:8px;}
+  .kst-navy .kst-dots li{padding:6px 12px;background:#faf6ee;border:1px solid #EDE1CF;border-radius:999px;font-size:.88rem;color:var(--navy);line-height:1.3;}
+  .kst-navy .kst-dots li::before{display:none;}
+}
+
+/* A2 · „Weitere Angebote und FAQ“ zum Wischen */
+@media (max-width:640px){
+  .rd-tiles2,.rd-tiles2.rd-tiles2-two{display:flex;grid-template-columns:none;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;margin-right:-5vw;padding:0 5vw 6px 0;max-width:none;scrollbar-width:none;}
+  .rd-tiles2::-webkit-scrollbar{display:none;}
+  .rd-tile2{flex:0 0 280px;scroll-snap-align:start;box-sizing:border-box;}
+  .rd-tile2-faq{order:-1;}
+  .rd-tiles-dots{display:flex;justify-content:center;gap:8px;margin-top:14px;}
+  .rd-tiles-dots span{width:6px;height:6px;border-radius:3px;background:#d8cdb8;transition:width .2s ease,background .2s ease;}
+  .rd-tiles-dots span.is-active{width:20px;background:var(--navy);}
+}
+
+/* A3 · Sprungmarken unter dem Hero */
+@media (max-width:1024px){
+  .page-jump{display:flex;flex-direction:column;gap:8px;margin-top:22px;}
+  .page-jump-label{color:var(--sage);text-transform:uppercase;letter-spacing:.1em;font-weight:700;font-size:.72rem;}
+  .page-jump-list{display:flex;flex-wrap:wrap;gap:8px;}
+  .page-jump-list a{min-height:44px;box-sizing:border-box;display:inline-flex;align-items:center;gap:8px;padding:0 14px;border-radius:999px;background:#fff;border:1px solid #e3d6c0;color:var(--navy);font-weight:600;font-size:.9rem;}
+  .page-jump-list a::after{content:"";width:6px;height:6px;border-right:2px solid var(--gold);border-bottom:2px solid var(--gold);transform:rotate(45deg);margin-top:-3px;}
+}
+
+/* A4 · Krisen-FAQ mit Anruf-Buttons */
+@media (max-width:1024px){
+  .krise-btns{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:4px 0 14px;}
+  .krise-btn{min-height:56px;box-sizing:border-box;border-radius:12px;display:flex;flex-direction:column;justify-content:center;padding:8px 10px;gap:1px;text-decoration:none;}
+  .krise-btn strong{display:flex;align-items:center;gap:7px;}
+  .krise-btn svg{width:14px;height:14px;flex-shrink:0;}
+  .krise-btn span{font-size:.78rem;}
+  .krise-btn-out{border:2px solid var(--navy);color:var(--navy);}
+  .krise-btn-out strong{font-size:.92rem;white-space:nowrap;}
+  .krise-btn-fill{background:var(--navy);color:#fff;}
+  .krise-btn-fill strong{font-size:1.15rem;}
+  .krise-btn-fill span{color:#dfe3e8;}
+  .krise-lead{display:block;margin:0 0 4px !important;color:var(--navy) !important;font-weight:600;font-size:.92rem !important;}
+}
+
+/* M9 · Hero: Hinweis unter das Foto */
+@media (max-width:640px){
+  .ph-hero .hero-split{display:grid;}
+  .ph-hero .hero-text{display:contents;}
+  .ph-hero .hero-text > *{order:1;}
+  .ph-hero .hero-photo-wrap{order:2;}
+  .ph-hero .hero-text p.hero-welcome,.ph-hero .hero-text p.hero-note{order:3;margin:22px 0 0;background:#fff;border:1px solid #EDE1CF;border-radius:10px;padding:12px 14px;font-size:.92rem;line-height:1.55;opacity:1;max-width:none;}
+  .ph-hero .page-jump{order:4;}
+}
+
+/* M11 · Über mich: Lehrtätigkeit als Liste */
+@media (max-width:640px){
+  .um-ab-list li{display:block;position:relative;padding:7px 0 7px 18px;border-bottom:1px solid #EDE1CF;}
+  .um-ab-list li:last-child{border-bottom:none;}
+  .um-ab-list li + li::before{content:none;}
+  .um-ab-list li::after{content:"";position:absolute;left:0;top:15px;width:5px;height:5px;border-radius:50%;background:var(--gold);}
+}
+
+/* M12 · Kontakt: rechte Spalte als Kurzfakten (nur .kb-right.has-facts) */
+@media (max-width:640px){
+  .kb-right.has-facts > .kb-text,.kb-right.has-facts > .kb-address,.kb-right.has-facts > .kb-online{display:none;}
+  .kb-right.has-facts > .kb-facts{display:block;margin:0;}
+  .kb-facts > div{display:grid;grid-template-columns:96px minmax(0,1fr);gap:12px;padding:12px 0;border-top:1px solid rgba(255,255,255,.18);}
+  .kb-facts > div:last-child{border-bottom:1px solid rgba(255,255,255,.18);}
+  .kb-facts dt{text-transform:uppercase;letter-spacing:.1em;color:var(--sage);font-weight:700;font-size:.72rem;padding-top:4px;}
+  .kb-facts dd{margin:0;color:#fff;font-size:.98rem;line-height:1.5;}
+}

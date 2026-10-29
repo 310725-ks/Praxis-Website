@@ -15,6 +15,7 @@ description: "Familientherapie und Beratung bei Stefan Gowitzke in Berlin-Moabit
             <h1>Familientherapie und Beratung</h1>
             <p class="rd-lead">Familientherapie und Beratung unterstützt Familien und Familiensysteme dabei, Belastungen, Konflikte oder Umbrüche im Miteinander zu verstehen und neue, tragfähige Wege im Zusammenleben zu entwickeln. Dabei kommen alle Familienmitglieder mit ihren Sichtweisen und Anliegen zu Wort, auch die Kinder, und wir entdecken gemeinsam, was Ihre Familie stärkt.</p>
             <p class="hero-welcome"><strong>Alle sind willkommen:</strong> Familien in der ganzen Vielfalt ihrer Formen und Lebensweisen, ob &bdquo;klassische&ldquo; Kernfamilie, Patchworkfamilie, queere Familie oder alleinerziehende Eltern.</p>
+            <nav class="page-jump" aria-label="Auf dieser Seite"><span class="page-jump-label">Auf dieser Seite</span><div class="page-jump-list"><a href="#vorgehen">Muster und Settings</a><a href="#anlaesse">Anlässe</a><a href="#angebote">Angebote</a><a href="#kontakt">Kontakt</a></div></nav>
           </div>
           <div class="hero-photo-wrap">
             <div class="hero-photo">
@@ -25,25 +26,27 @@ description: "Familientherapie und Beratung bei Stefan Gowitzke in Berlin-Moabit
       </div>
     </section>
 
-    <section class="snap-section rd-sec rd-ez" data-index="1">
+    <section class="snap-section rd-sec rd-ez" id="vorgehen" data-index="1">
       <div class="about-band offers-band"></div>
       <div class="rd-inner">
         <div class="rd-eyebrow">Familientherapie &amp; Beratung</div>
         <div class="rd-cols">
           <div class="rd-col rd-text c1"><h2>Familiäre Muster über Generationen</h2><p>Eltern möchten für ihre Kinder da sein und vieles besser machen, als sie es selbst erlebt haben, und doch zeigen sich unter Stress wieder ungünstige Verhaltensweisen. Ebenso wollen Kinder ihre Eltern schützen: Mit feinen Antennen übernehmen sie unbewusst Aufträge, Verantwortung oder Emotionen der Eltern oder geraten dagegen in Konflikt. Die mehrgenerationale Perspektive bezieht ein, dass familiäre Themen und Muster von Großeltern über Eltern an Kinder weitergegeben werden und dort häufig Ansatzpunkte für Veränderung liegen.</p></div>
-          <div class="rd-col rd-text c2"><h2>Flexible Gestaltung der Settings nach Themen und Auftragslage</h2><p>Eine Stärke der Systemischen Familientherapie und Beratung ist, dass die beteiligten Familienmitglieder in wechselnden Konstellationen miteinander ins Gespräch kommen können.</p>
+          <div class="rd-clamp rd-col rd-text c2"><h2>Flexible Gestaltung der Settings nach Themen und Auftragslage</h2><p>Eine Stärke der Systemischen Familientherapie und Beratung ist, dass die beteiligten Familienmitglieder in wechselnden Konstellationen miteinander ins Gespräch kommen können.</p>
             <p>Sie entscheiden mit, wer an den Sitzungen teilnimmt: Eltern und Kinder gemeinsam, nur die Eltern, die Geschwister oder auch die Großeltern. Bei Bedarf sind Einzelgespräche mit Kindern oder Elternteilen möglich, und weitere Personen können dazukommen. Wir richten uns danach, was Ihnen hilft.</p>
-            <p><a class="rd-more-link" href="{{ '/systemische-therapie/' | url }}#arbeitsverstaendnis">Mehr zu meinem Systemischen Arbeitsverständnis<span class="rd-chev"></span></a></p></div>
+            <button class="rd-readmore" type="button" aria-expanded="false"><span class="faq-toggle"></span><span class="rd-readmore-t">Weiterlesen</span></button>
+            <p class="rd-keep"><a class="rd-more-link" href="{{ '/systemische-therapie/' | url }}#arbeitsverstaendnis">Mehr zu meinem Systemischen Arbeitsverständnis<span class="rd-chev"></span></a></p></div>
         </div>
       </div>
     </section>
 
-    <section class="snap-section rd-sec rd-tint rd-ez rd-ez-lists" data-index="2">
+    <section class="snap-section rd-sec rd-tint rd-ez rd-ez-lists rd-mtabs" id="anlaesse" data-index="2">
       <div class="about-band offers-band"></div>
       <div class="rd-inner">
         <div class="rd-eyebrow">Familientherapie &amp; Beratung</div>
+        <div class="rd-mtabbar" role="tablist"><button class="is-active" role="tab" aria-selected="true" data-mtab="0">Anlässe</button><button role="tab" aria-selected="false" data-mtab="1">Wobei es hilft</button></div>
         <div class="rd-cols">
-          <div class="rd-col rd-text c1"><h2>Was können Anlässe für Familientherapie sein?</h2>
+          <div class="rd-col rd-text c1 rd-mpanel is-active" data-mpanel="0"><h2>Was können Anlässe für Familientherapie sein?</h2>
             <ul class="rd-bullets">
               <li>Eltern sorgen sich um das Verhalten ihres Kindes</li>
               <li>Offene oder unterschwellige Konflikte belasten das Familienleben</li>
@@ -52,7 +55,7 @@ description: "Familientherapie und Beratung bei Stefan Gowitzke in Berlin-Moabit
               <li>Erkrankungen, Verluste oder Trauer belasten die Familie</li>
               <li>Eltern zweifeln an ihrer Beziehung, stehen vor einer Trennung oder sind bereits getrennt</li>
             </ul></div>
-          <div class="rd-col rd-text c2"><h2>Wobei kann Familientherapie helfen?</h2>
+          <div class="rd-col rd-text c2 rd-mpanel" data-mpanel="1"><h2>Wobei kann Familientherapie helfen?</h2>
             <ul class="rd-bullets">
               <li>Das Verhalten einzelner Familienmitglieder als Hinweis auf Themen der ganzen Familie zu verstehen</li>
               <li>Rollen, Aufträge und Erwartungen zwischen den Generationen sichtbar zu machen</li>
@@ -66,7 +69,7 @@ description: "Familientherapie und Beratung bei Stefan Gowitzke in Berlin-Moabit
       </div>
     </section>
 
-    <section class="snap-section rd-sec rd-more2" data-index="3">
+    <section class="snap-section rd-sec rd-more2" id="angebote" data-index="3">
       <div class="about-band offers-band"></div>
       <div class="rd-inner">
         <div class="rd-center-head">
@@ -78,10 +81,11 @@ description: "Familientherapie und Beratung bei Stefan Gowitzke in Berlin-Moabit
             <a class="rd-tile2" href="{{ offers.einzel.url | url }}"><h3>{{ offers.einzel.title }}</h3><p>{{ offers.einzel.text }}</p><span class="rd-more-link">Mehr erfahren<span class="rd-chev"></span></span></a>
             <a class="rd-tile2 rd-tile2-faq" href="{{ '/systemische-therapie/' | url }}#faq"><h3>Häufig gestellte Fragen</h3><p>Zu Ablauf, Dauer, Kosten, Krisen, Vielfalt und Schweigepflicht.</p><span class="rd-more-link">Zu den Fragen<span class="rd-chev"></span></span></a>
         </div>
+        <div class="rd-tiles-dots" aria-hidden="true"><span class="is-active"></span><span></span><span></span></div>
       </div>
     </section>
 
-<section class="snap-section s-contact ph-contact" data-index="4">
+<section class="snap-section s-contact ph-contact" id="kontakt" data-index="4">
       <div class="kb-grid">
         <div class="kb-left">
           <span class="kb-eyebrow">Rahmen</span>

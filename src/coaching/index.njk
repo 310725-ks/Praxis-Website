@@ -14,6 +14,7 @@ description: "Coaching bei Stefan Gowitzke in Berlin-Moabit und online."
           <h1 class="co-hero-h1">Coaching</h1>
           <p>Coaching ist für mich ein Raum für Resonanz und Reflexion. Gemeinsam betrachten wir Ihre Situation aus neuen Blickwinkeln und klären, was Ihnen wichtig ist und welche Schritte dazu passen. So unterstütze ich Sie dabei, in persönlichen und beruflichen Veränderungsprozessen Sinn zu finden und sich neu zu orientieren.</p>
           <p>Gelingt der Prozess, entsteht mehr Klarheit, und Sie gewinnen Spielraum im Erleben und im Handeln. Dabei knüpfen wir an Ihren Stärken und Ressourcen an.</p>
+          <nav class="page-jump" aria-label="Auf dieser Seite"><span class="page-jump-label">Auf dieser Seite</span><div class="page-jump-list"><a href="#worum">Worum es geht</a><a href="#anliegen">Anliegen</a><a href="#angebote">Angebote</a><a href="#kontakt">Kontakt</a></div></nav>
         </div>
         <div class="co-hero-photo-wrap">
           <div class="um-hero-photo co-hero-photo">
@@ -23,22 +24,22 @@ description: "Coaching bei Stefan Gowitzke in Berlin-Moabit und online."
       </div>
     </section>
 
-    <section class="snap-section rd-sec rd-worum" data-index="1">
+    <section class="snap-section rd-sec rd-worum" id="worum" data-index="1">
       <div class="about-band offers-band"></div>
       <div class="rd-inner">
         <div class="rd-worum-grid">
           <div class="rd-media"><div class="rd-photo rd-plain"><img src="{{ '/assets/img/coaching-lebensrad.webp' | url }}" width="1200" height="918" loading="lazy" alt="Mein Lebensrad: eine grafische Darstellung mit acht Lebensbereichen"></div></div>
-          <div class="rd-worum-text rd-text">
+          <div class="rd-clamp rd-worum-text rd-text">
             <div class="rd-eyebrow">Coaching</div>
             <h2 class="rd-h2">Worum es geht</h2>
             <p>Ein Coaching kann persönliche oder berufliche Anlässe haben, und oft greifen beide ineinander: Berufliche Anliegen hängen häufig mit der eigenen Dynamik und mit den Gegebenheiten der Organisation zusammen.</p>
-            <p>Coaching passt zu Menschen, die sich persönlich weiterentwickeln möchten und den Austausch auf Augenhöhe suchen. Wenn Sie eine offene Frage beschäftigt oder Sie ein Ziel verfolgen, entsteht Wachstum besonders im Gespräch mit anderen. Wir arbeiten an Ihren Anliegen ressourcen- und lösungsorientiert: Sie erweitern Ihre Einflussmöglichkeiten, entwickeln zusätzliche Fähigkeiten und übernehmen selbst Verantwortung für Ihre Veränderungsprozesse. Ich begleite Sie dabei, die Entscheidungen bleiben bei Ihnen.</p>
+            <p>Coaching passt zu Menschen, die sich persönlich weiterentwickeln möchten und den Austausch auf Augenhöhe suchen. Wenn Sie eine offene Frage beschäftigt oder Sie ein Ziel verfolgen, entsteht Wachstum besonders im Gespräch mit anderen. Wir arbeiten an Ihren Anliegen ressourcen- und lösungsorientiert: Sie erweitern Ihre Einflussmöglichkeiten, entwickeln zusätzliche Fähigkeiten und übernehmen selbst Verantwortung für Ihre Veränderungsprozesse. Ich begleite Sie dabei, die Entscheidungen bleiben bei Ihnen.</p><button class="rd-readmore" type="button" aria-expanded="false"><span class="faq-toggle"></span><span class="rd-readmore-t">Weiterlesen</span></button>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="snap-section rd-sec rd-tint rd-tabs rd-tabs-center" data-index="2">
+    <section class="snap-section rd-sec rd-tint rd-tabs rd-tabs-center" id="anliegen" data-index="2">
       <div class="about-band offers-band"></div>
       <div class="rd-inner">
         <div class="rd-center-head">
@@ -74,7 +75,7 @@ description: "Coaching bei Stefan Gowitzke in Berlin-Moabit und online."
       </div>
     </section>
 
-    <section class="snap-section rd-sec rd-more2" data-index="3">
+    <section class="snap-section rd-sec rd-more2" id="angebote" data-index="3">
       <div class="about-band offers-band"></div>
       <div class="rd-inner">
         <div class="rd-center-head">
@@ -86,10 +87,11 @@ description: "Coaching bei Stefan Gowitzke in Berlin-Moabit und online."
             <a class="rd-tile2" href="{{ offers.systemisch.url | url }}"><h3>{{ offers.systemisch.title }}</h3><p>{{ offers.systemisch.text }}</p><span class="rd-more-link">Mehr erfahren<span class="rd-chev"></span></span></a>
             <a class="rd-tile2 rd-tile2-faq" href="{{ '/coaching-supervision/faq/' | url }}"><h3>Häufig gestellte Fragen</h3><p>Zu Unterschieden der Formate, Ablauf, Dauer, Ort, Vertraulichkeit und Kosten.</p><span class="rd-more-link">Zu den Fragen<span class="rd-chev"></span></span></a>
         </div>
+        <div class="rd-tiles-dots" aria-hidden="true"><span class="is-active"></span><span></span><span></span></div>
       </div>
     </section>
 
-<section class="snap-section s-contact co-contact" data-index="4">
+<section class="snap-section s-contact co-contact" id="kontakt" data-index="4">
       <div class="kb-grid">
         <div class="kb-left">
           <span class="kb-eyebrow">Rahmen</span>

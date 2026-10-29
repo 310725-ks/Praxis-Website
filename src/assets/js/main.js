@@ -262,7 +262,15 @@
         show(it);
       });
     });
-    show(sec.querySelector('.rd-faq-item.is-active') || items[0]);
+    if(window.innerWidth <= 1024){
+      items.forEach(function(it){ it.classList.remove('is-active'); it.querySelector('.rd-faq-q').setAttribute('aria-expanded','false'); });
+    } else {
+      show(sec.querySelector('.rd-faq-item.is-active') || items[0]);
+    }
+    // Fenster vergrößert: Antwortfläche füllen, falls keine Frage aktiv ist
+    window.addEventListener('resize', function(){
+      if(window.innerWidth > 1024 && !sec.querySelector('.rd-faq-item.is-active') && items[0]) show(items[0]);
+    });
     // Sprungmarke direkt auf einen FAQ-Eintrag (z.B. #faq-krise): Eintrag öffnen
     function openFromHash(){
       var id = decodeURIComponent((window.location.hash || '').slice(1));
@@ -321,5 +329,72 @@
         }
       });
     });
+  });
+})();
+
+/* E2 · Weiterlesen */
+(function(){
+  document.querySelectorAll('.rd-clamp').forEach(function(box){
+    var btn = box.querySelector('.rd-readmore'); if(!btn) return;
+    var t = btn.querySelector('.rd-readmore-t');
+    btn.addEventListener('click', function(){
+      var open = box.classList.toggle('is-expanded');
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      if(t) t.textContent = open ? 'Weniger anzeigen' : 'Weiterlesen';
+    });
+  });
+})();
+
+/* E3 · Umschalter für zwei Listen (mobil) */
+(function(){
+  document.querySelectorAll('.rd-mtabs').forEach(function(sec){
+    var tabs = sec.querySelectorAll('.rd-mtabbar button');
+    var panels = sec.querySelectorAll('.rd-mpanel');
+    tabs.forEach(function(b){
+      b.addEventListener('click', function(){
+        var k = b.getAttribute('data-mtab');
+        tabs.forEach(function(x){ var on = x===b; x.classList.toggle('is-active',on); x.setAttribute('aria-selected',on?'true':'false'); });
+        panels.forEach(function(p){ p.classList.toggle('is-active', p.getAttribute('data-mpanel')===k); });
+      });
+    });
+  });
+})();
+
+/* E4 · Supervision: Formatkarten (eine offen) und Inhalte (mehrere offen) */
+(function(){
+  var wrap = document.querySelector('.sv-step-cards');
+  if(wrap){
+    var cards = Array.prototype.slice.call(wrap.querySelectorAll('.rd-fcard'));
+    cards.forEach(function(c){
+      var h = c.querySelector('.sv-format-head');
+      h.addEventListener('click', function(){
+        if(window.innerWidth > 1024) return;
+        var open = !c.classList.contains('is-open');
+        cards.forEach(function(o){ o.classList.remove('is-open'); o.querySelector('.sv-format-head').setAttribute('aria-expanded','false'); });
+        if(open){ c.classList.add('is-open'); h.setAttribute('aria-expanded','true'); }
+        wrap.classList.toggle('has-open', open);
+      });
+    });
+  }
+  document.querySelectorAll('.sv-topic').forEach(function(tp){
+    var q = tp.querySelector('.sv-topic-q'); if(!q) return;
+    q.addEventListener('click', function(){
+      if(window.innerWidth > 1024) return;
+      var open = tp.classList.toggle('is-open');
+      q.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+  });
+})();
+
+/* A2 · Punkte unter den wischbaren Kacheln */
+(function(){
+  document.querySelectorAll('.rd-tiles2').forEach(function(row){
+    var dots = row.parentElement.querySelectorAll('.rd-tiles-dots span'); if(!dots.length) return;
+    row.addEventListener('scroll', function(){
+      var tiles = Array.prototype.slice.call(row.children).sort(function(a,b){ return a.offsetLeft - b.offsetLeft; });
+      var i = 0, x = row.scrollLeft + 10;
+      tiles.forEach(function(t,idx){ if(t.offsetLeft - row.offsetLeft <= x) i = idx; });
+      dots.forEach(function(d,idx){ d.classList.toggle('is-active', idx===i); });
+    }, {passive:true});
   });
 })();
