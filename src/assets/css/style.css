@@ -2318,3 +2318,6 @@ h1.rd-h2{color:var(--navy);letter-spacing:.015em;font-weight:700;}
 /* Kontaktspalte rechts (Startseite, Über mich, Kostenseiten): einheitlicher Zeilenabstand */
 .s-contact .kb-right:has(.kb-address) > p,
 .s-contact .kb-right:has(.kb-address) > address{line-height:1.5;}
+
+/* Kostenseite Therapie: Erstkontakt-Kästchen so breit wie der Fragenbereich darunter */
+.kst-first-wide{max-width:900px;}
