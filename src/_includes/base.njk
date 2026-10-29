@@ -11,7 +11,6 @@
     navSupervision: "Supervision",
     navCoSu: "Coaching & Supervision",
     navCosts: "Kosten",
-    navApproach: "Meine Arbeitsweise",
     navAbout: "Über mich",
     menuOpen: "Menü öffnen",
     footerImpressum: "Impressum",
@@ -28,11 +27,12 @@
     navIndividual: "Individual Therapy & Counseling",
     navCoaching: "Coaching",
     navSupervision: "Supervision",
-    navApproach: "My Approach",
+    navCoSu: "Coaching & Supervision",
+    navCosts: "Costs",
     navAbout: "About Me",
     menuOpen: "Open menu",
-    footerImpressum: "Legal Notice",
-    footerDatenschutz: "Privacy Policy",
+    footerImpressum: "Legal Notice (in German)",
+    footerDatenschutz: "Privacy Policy (in German)",
     footerMemberships: "Professional Memberships"
   }
 } %}
@@ -48,6 +48,11 @@
 <title>{{ title }} · Stefan Gowitzke</title>
 <meta name="description" content="{{ description }}">
 <link rel="stylesheet" href="{{ '/assets/css/style.css' | url }}?v={{ assetVersion.css }}">
+{% if hasTranslation != false %}{% set dePath = page.url.replace('/en/', '/') if curLang == 'en' else page.url %}{% set enPath = page.url if curLang == 'en' else '/en' + page.url %}
+<link rel="alternate" hreflang="de" href="https://www.stefangowitzke.de{{ dePath }}">
+<link rel="alternate" hreflang="en" href="https://www.stefangowitzke.de{{ enPath }}">
+<link rel="alternate" hreflang="x-default" href="https://www.stefangowitzke.de{{ dePath }}">
+{% endif %}
 </head>
 <body>
 <div class="header-sticky-group">
@@ -86,12 +91,12 @@
             <a href="{{ (prefix + '/paartherapie/') | url }}">{{ t.navCouples }}</a>
             <a href="{{ (prefix + '/einzeltherapie/') | url }}">{{ t.navIndividual }}</a>
             <a href="{{ (prefix + '/familientherapie/') | url }}">{{ t.navFamily }}</a>
-            {% if curLang == 'de' %}<span class="dropdown-sep" aria-hidden="true"></span>
-            <a href="{{ (prefix + '/systemische-therapie/kosten/') | url }}">{{ t.navCosts }}</a>{% endif %}
+            <span class="dropdown-sep" aria-hidden="true"></span>
+            <a href="{{ (prefix + '/systemische-therapie/kosten/') | url }}">{{ t.navCosts }}</a>
             <a href="{{ (prefix + '/systemische-therapie/') | url }}#faq">{{ t.navFaq }}</a>
           </div>
         </li>
-        {% if curLang == 'de' %}<li class="has-dropdown">
+        <li class="has-dropdown">
           <a href="{{ (prefix + '/coaching/') | url }}">{{ t.navCoSu }}</a>
           <div class="dropdown">
             <a href="{{ (prefix + '/coaching/') | url }}">{{ t.navCoaching }}</a>
@@ -100,8 +105,7 @@
             <a href="{{ (prefix + '/coaching-supervision/kosten/') | url }}">{{ t.navCosts }}</a>
             <a href="{{ (prefix + '/coaching-supervision/faq/') | url }}">{{ t.navFaq }}</a>
           </div>
-        </li>{% else %}<li><a href="{{ (prefix + '/coaching/') | url }}">{{ t.navCoaching }}</a></li>
-        <li><a href="{{ (prefix + '/supervision/') | url }}">{{ t.navSupervision }}</a></li>{% endif %}
+        </li>
         <li><a href="{{ (prefix + '/ueber-mich/') | url }}" class="nav-plain">{{ t.navAbout }}</a></li>
       </ul>
     </nav>
@@ -122,12 +126,12 @@
           <a href="{{ (prefix + '/paartherapie/') | url }}">{{ t.navCouples }}</a>
           <a href="{{ (prefix + '/einzeltherapie/') | url }}">{{ t.navIndividual }}</a>
           <a href="{{ (prefix + '/familientherapie/') | url }}">{{ t.navFamily }}</a>
-          {% if curLang == 'de' %}<span class="dropdown-sep" aria-hidden="true"></span>
-          <a href="{{ (prefix + '/systemische-therapie/kosten/') | url }}">{{ t.navCosts }}</a>{% endif %}
+          <span class="dropdown-sep" aria-hidden="true"></span>
+          <a href="{{ (prefix + '/systemische-therapie/kosten/') | url }}">{{ t.navCosts }}</a>
           <a href="{{ (prefix + '/systemische-therapie/') | url }}#faq">{{ t.navFaq }}</a>
         </div>
       </li>
-      {% if curLang == 'de' %}<li class="mobile-nav-item">
+      <li class="mobile-nav-item">
         <button class="mobile-nav-toggle" aria-expanded="false">{{ t.navCoSu }}<span class="chevron"></span></button>
         <div class="mobile-nav-sub">
           <a href="{{ (prefix + '/coaching/') | url }}">{{ t.navCoaching }}</a>
@@ -136,12 +140,7 @@
           <a href="{{ (prefix + '/coaching-supervision/kosten/') | url }}">{{ t.navCosts }}</a>
           <a href="{{ (prefix + '/coaching-supervision/faq/') | url }}">{{ t.navFaq }}</a>
         </div>
-      </li>{% else %}<li class="mobile-nav-item">
-        <a class="mobile-nav-toggle mobile-nav-link" href="{{ (prefix + '/coaching/') | url }}">{{ t.navCoaching }}</a>
       </li>
-      <li class="mobile-nav-item">
-        <a class="mobile-nav-toggle mobile-nav-link" href="{{ (prefix + '/supervision/') | url }}">{{ t.navSupervision }}</a>
-      </li>{% endif %}
       <li class="mobile-nav-item">
         <a class="mobile-nav-toggle mobile-nav-link" href="{{ (prefix + '/ueber-mich/') | url }}">{{ t.navAbout }}</a>
       </li>

@@ -340,7 +340,8 @@
     btn.addEventListener('click', function(){
       var open = box.classList.toggle('is-expanded');
       btn.setAttribute('aria-expanded', open ? 'true' : 'false');
-      if(t) t.textContent = open ? 'Weniger anzeigen' : 'Weiterlesen';
+      var en = document.documentElement.lang === 'en';
+      if(t) t.textContent = open ? (en ? 'Show less' : 'Weniger anzeigen') : (en ? 'Read more' : 'Weiterlesen');
     });
   });
 })();
