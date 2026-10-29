@@ -2239,10 +2239,13 @@ h1.rd-h2{color:var(--navy);letter-spacing:.015em;font-weight:700;}
 .kst-p.kst-p-s{font-size:.95rem;}
 .kst-price-text strong{font-size:2rem;line-height:1.2;}
 .kst-note{margin-top:auto;background:#faf6ee;border-radius:6px;padding:10px 14px;font-size:.88rem;line-height:1.45;color:var(--muted);}
+.kst-card .kst-note{margin-top:0;}
+.kst-card-first{margin-top:auto;padding-top:22px;border-top:1px solid #eee6d6;display:flex;flex-direction:column;gap:12px;}
+.kst-card-first::before{content:"";display:block;width:56px;height:4px;border-radius:2px;background:var(--grad);margin-bottom:2px;}
+.kst-card-first .kst-btns{margin-top:0;padding-top:6px;}
 
 .kst-first{background:#fff;border-radius:14px;box-shadow:0 14px 30px -22px rgba(20,20,20,.3);padding:32px 30px 28px;position:relative;overflow:hidden;display:flex;flex-direction:column;gap:12px;}
 .kst-first::before{content:"";position:absolute;left:0;right:0;top:0;height:6px;background:var(--grad);}
-.kst-firsts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:28px;margin-top:28px;align-items:stretch;}
 .kst-first-lead{margin:0;color:var(--navy);font-weight:600;font-size:1.04rem;line-height:1.55;}
 .kst-first-p{margin:0;color:var(--muted);font-size:.95rem;line-height:1.62;}
 .kst-btns{display:flex;flex-wrap:wrap;gap:12px;margin-top:auto;padding-top:10px;}
@@ -2285,7 +2288,7 @@ h1.rd-h2{color:var(--navy);letter-spacing:.015em;font-weight:700;}
 .rd-faq-a-inner .rd-faq-link{margin-top:6px;}
 
 @media(max-width:1024px){
-  .kst-cards,.kst-firsts,.kst-wide-grid{grid-template-columns:1fr;gap:20px;}
+  .kst-cards,.kst-wide-grid{grid-template-columns:1fr;gap:20px;}
   .kst-wide-grid{gap:28px;}
   .kst-first-wide{grid-template-columns:1fr;gap:18px;}
   .kst-first-wide .kst-btns{flex-direction:row;flex-wrap:wrap;}
@@ -2305,6 +2308,8 @@ h1.rd-h2{color:var(--navy);letter-spacing:.015em;font-weight:700;}
   .kst-acc-a-inner{padding:0 16px;}
   .kst-btn{width:100%;justify-content:center;}
   .kst-btns{flex-direction:column;}
+  .kst-card-first{padding-top:18px;gap:10px;}
+  .kst-card-first::before{width:48px;}
 }
 
 /* Check-up: Rahmen-Sektion zweispaltig (2 × 2 Punkte), Startseite: Linkzeilen unter den Angebotsgruppen */
