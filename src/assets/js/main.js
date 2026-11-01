@@ -315,6 +315,12 @@
 (function(){
   document.querySelectorAll('.kst-acc').forEach(function(acc){
     var items = Array.prototype.slice.call(acc.querySelectorAll('.kst-acc-item'));
+    // Mobil/Tablet: alle Fragen anfangs zugeklappt (ohne Zuklapp-Animation beim Laden)
+    if(window.innerWidth <= 1024){
+      acc.classList.add('kst-noanim');
+      items.forEach(function(o){ o.classList.remove('is-open'); o.querySelector('.kst-acc-q').setAttribute('aria-expanded','false'); });
+      requestAnimationFrame(function(){ requestAnimationFrame(function(){ acc.classList.remove('kst-noanim'); }); });
+    }
     items.forEach(function(it){
       var btn = it.querySelector('.kst-acc-q');
       btn.addEventListener('click', function(){

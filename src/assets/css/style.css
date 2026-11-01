@@ -2592,3 +2592,22 @@ button.sv-format-head{background:none;border:0;padding:0;font:inherit;color:inhe
 
 /* Englische Version: "About Me" im Menü nicht umbrechen */
 .main-nav a.nav-plain{white-space:nowrap;}
+
+/* M13 · Mobil: Korrekturen Therapieseiten / FAQ */
+/* FAQ-Überschriften: Gold-Hover nur mit echter Maus und breitem Fenster. Auf Touchgeräten bleibt
+   :hover nach dem Tippen „kleben“ -> zugeklappte Karte blieb gold; jetzt immer wieder blau. */
+@media (max-width:1024px){
+  .rd-faq-q:hover .rd-q{color:var(--navy);}
+  .kst-acc-q:hover .kst-acc-t{color:var(--navy);}
+  .kst-noanim .kst-acc-a{transition:none;}
+}
+/* Weiterlesen auf den Therapieseiten: Kernsatz bleibt sichtbar, restlicher Text klappt auf. */
+@media (max-width:1024px){
+  .rd-clamp .rd-kernsatz{display:block;}
+}
+/* Erster Abschnitt der Therapieseiten: Schriftgrößen wie in den übrigen Abschnitten
+   (Überschrift = Abschnittsüberschrift 1.4rem, Fließtext 1rem / 1.65). */
+@media (max-width:640px){
+  .snap-section.s-hero.ph-hero .hero h1{font-size:1.4rem;line-height:1.2;margin:8px 0 12px;}
+  .ph-hero .hero-text p.rd-lead{font-size:1rem;line-height:1.65;}
+}
