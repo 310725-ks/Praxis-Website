@@ -1,0 +1,23 @@
+---
+permalink: /sitemap.xml
+eleventyExcludeFromCollections: true
+---
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+{%- set host = "https://www.stefangowitzke.de" %}
+{%- for item in collections.all %}
+{%- if item.url and item.url != "/sitemap.xml" %}
+{%- set isEn = (item.data.lang == "en") %}
+{%- set dePath = item.url.replace("/en/", "/") if isEn else item.url %}
+{%- set enPath = item.url if isEn else "/en" + item.url %}
+  <url>
+    <loc>{{ host }}{{ item.url }}</loc>
+{%- if item.data.hasTranslation != false %}
+    <xhtml:link rel="alternate" hreflang="de" href="{{ host }}{{ dePath }}"/>
+    <xhtml:link rel="alternate" hreflang="en" href="{{ host }}{{ enPath }}"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="{{ host }}{{ dePath }}"/>
+{%- endif %}
+  </url>
+{%- endif %}
+{%- endfor %}
+</urlset>

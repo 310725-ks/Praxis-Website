@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://stefangowitzke.de/sitemap.xml
+Sitemap: https://www.stefangowitzke.de/sitemap.xml
