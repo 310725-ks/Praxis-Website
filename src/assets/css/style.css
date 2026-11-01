@@ -2631,3 +2631,19 @@ button.sv-format-head{background:none;border:0;padding:0;font:inherit;color:inhe
   section.snap-section.rd-formate{padding-bottom:12px;}
   section.snap-section.rd-inhalte{padding-top:0;}
 }
+
+/* Kostenseiten: Fragen zu Kosten und Ablauf im selben Abschnitt wie die Preisangaben
+   (kein Farbband, gleicher Hintergrund, kleiner Abstand) */
+.kst-sec.rd-tint .about-band{display:none;}
+section.snap-section[data-index].kst-sec.rd-tint:not(.s-contact){background:var(--bg);}
+@media(min-width:1025px){
+  section.snap-section[data-index].kst-sec:not(.s-contact):not(.rd-tint){min-height:0;padding-bottom:0;}
+  section.snap-section[data-index].kst-sec.rd-tint:not(.s-contact){min-height:0;padding-top:0;}
+  .kst-sec.rd-tint .kst-qh{margin-top:48px;}
+  .kst-sec:not(.rd-tint) .rd-inner{padding-bottom:0;}
+  .kst-sec.rd-tint .rd-inner{padding-top:0;}
+}
+@media(max-width:1024px){
+  .kst-sec:not(.rd-tint){padding-bottom:0;}
+  .kst-sec.rd-tint .kst-qh{margin-top:40px;}
+}
