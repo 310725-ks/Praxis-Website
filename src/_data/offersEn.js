@@ -4,7 +4,7 @@ module.exports = {
   paar: {
     url: "/en/paartherapie/",
     title: "Couples Therapy & Relationship Counseling",
-    text: "for couples or people in multi-person constellations who experience their relationship as strained and want to develop new connection and more loving contact together."
+    text: "for couples and people in multi-partner relationships who are struggling in their relationship and want to build a new sense of connection and a more understanding way of being together."
   },
   einzel: {
     url: "/en/einzeltherapie/",
