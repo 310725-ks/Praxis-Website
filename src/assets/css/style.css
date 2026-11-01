@@ -2605,9 +2605,8 @@ button.sv-format-head{background:none;border:0;padding:0;font:inherit;color:inhe
 @media (max-width:1024px){
   .rd-clamp .rd-kernsatz{display:block;}
 }
-/* Erster Abschnitt der Therapieseiten: Schriftgrößen wie in den übrigen Abschnitten
-   (Überschrift = Abschnittsüberschrift 1.4rem, Fließtext 1rem / 1.65). */
+/* Erster Abschnitt der Therapieseiten: Einleitungstext wie der Fließtext (1rem / 1.65);
+   die Seitenüberschrift behält die Größe der Coaching-Seite (1.9rem, siehe .snap-section.s-hero .hero h1). */
 @media (max-width:640px){
-  .snap-section.s-hero.ph-hero .hero h1{font-size:1.4rem;line-height:1.2;margin:8px 0 12px;}
   .ph-hero .hero-text p.rd-lead{font-size:1rem;line-height:1.65;}
 }
