@@ -2616,3 +2616,6 @@ button.sv-format-head{background:none;border:0;padding:0;font:inherit;color:inhe
 
 /* Supervision: kein Farbverlaufsband zwischen Schritt 1 (Setting) und Schritt 2 (Inhalt) */
 .rd-inhalte .about-band{display:none;}
+
+/* FAQ Desktop: keine Frage vorgewählt, Antwortfläche zeigt einen Hinweis */
+.rd-faq-detail-body p.rd-faq-ph{color:var(--muted);font-size:1.05rem;line-height:1.6;margin:0;min-height:140px;display:flex;align-items:center;}
