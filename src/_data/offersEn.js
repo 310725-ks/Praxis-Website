@@ -4,31 +4,31 @@ module.exports = {
   paar: {
     url: "/en/paartherapie/",
     title: "Couples Therapy & Relationship Counseling",
-    text: "for couples and people in multi-partner relationships who are struggling in their relationship and want to build a new sense of connection and a more understanding way of being together."
+    text: "For couples and people in multi-partner relationships who are struggling in their relationship and want to build a new sense of connection and a more understanding way of being together."
   },
   einzel: {
     url: "/en/einzeltherapie/",
     title: "Individual Therapy & Counseling",
-    text: "individual support for people in challenging phases of life who want to change their own unhelpful patterns of thinking, feeling and behavior."
+    text: "One-to-one support for people facing challenging times who want to change habitual ways of thinking, feeling and acting that hold them back."
   },
   familie: {
     url: "/en/familientherapie/",
     title: "Family Therapy & Counseling",
-    text: "for families and family systems who want to understand stresses, conflicts or upheavals in their life together and develop new, sustainable ways of living together."
+    text: "For families who want to understand tensions, conflicts or major changes between them, and develop new ways of being together."
   },
   coaching: {
     url: "/en/coaching/",
     title: "Coaching",
-    text: "for people who care about professional and personal growth, take responsibility and want to unfold additional skills and potentials."
+    text: "For people who value professional and personal growth, want to take responsibility and develop new skills and unfold their full potential."
   },
   supervision: {
     url: "/en/supervision/",
     title: "Supervision",
-    text: "for individuals, teams or groups who want to reflect on their professional practice – for quality assurance and their own well-being."
+    text: "For individuals, teams or groups who want to reflect on their work, to ensure quality and look after their own well-being."
   },
   systemisch: {
     url: "/en/systemische-therapie/",
     title: "Systemic Therapy & Counseling",
-    text: "for couples, individuals and families who want to find new ways of coping with stressful situations, conflicts or recurring problems."
+    text: "For couples, individuals and families who are dealing with stressful situations, conflict or problems that keep returning, who want to find new ways of dealing with them."
   }
 };

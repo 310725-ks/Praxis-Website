@@ -2610,3 +2610,6 @@ button.sv-format-head{background:none;border:0;padding:0;font:inherit;color:inhe
 @media (max-width:640px){
   .ph-hero .hero-text p.rd-lead{font-size:1rem;line-height:1.65;}
 }
+
+/* Startseite „Über mich“: Link zur ausführlichen Seite */
+.s-about .about-more{margin-top:14px;min-height:44px;}
