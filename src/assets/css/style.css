@@ -2245,7 +2245,7 @@ body.on-contact .snap-dots button.is-active{background:#cdd8cb;}
 .mobile-nav-item.is-open .mobile-nav-sub.mobile-nav-sub-buttons{max-height:260px;}
 
 h1.rd-h2{color:var(--navy);letter-spacing:.015em;font-weight:700;}
-.kst-lead{color:var(--muted);font-size:1.08rem;line-height:1.72;max-width:720px;margin:14px 0 0;text-wrap:pretty;}
+.kst-lead{color:var(--muted);font-size:1.08rem;line-height:1.72;max-width:none;margin:14px 0 0;text-wrap:pretty;}
 .kst-eb{color:var(--sage);text-transform:uppercase;letter-spacing:.1em;font-weight:700;font-size:.8rem;}
 
 .kst-cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:28px;margin-top:32px;align-items:stretch;}
