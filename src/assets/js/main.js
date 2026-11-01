@@ -251,10 +251,6 @@
         body.classList.remove('is-in'); void body.offsetWidth; body.classList.add('is-in');
       }
     }
-    function showPlaceholder(){
-      var det = sec.querySelector('.rd-faq-detail');
-      if(body && det){ body.innerHTML = '<p class="rd-faq-ph">' + (det.getAttribute('data-placeholder') || '') + '</p>'; }
-    }
     items.forEach(function(it){
       var btn = it.querySelector('.rd-faq-q');
       btn.addEventListener('click', function(){
@@ -269,12 +265,11 @@
     if(window.innerWidth <= 1024){
       items.forEach(function(it){ it.classList.remove('is-active'); it.querySelector('.rd-faq-q').setAttribute('aria-expanded','false'); });
     } else {
-      var act = sec.querySelector('.rd-faq-item.is-active');
-      if(act) show(act); else showPlaceholder();
+      show(sec.querySelector('.rd-faq-item.is-active') || items[0]);
     }
     // Fenster vergrößert: Antwortfläche füllen, falls keine Frage aktiv ist
     window.addEventListener('resize', function(){
-      if(window.innerWidth > 1024 && !sec.querySelector('.rd-faq-item.is-active')) showPlaceholder();
+      if(window.innerWidth > 1024 && !sec.querySelector('.rd-faq-item.is-active') && items[0]) show(items[0]);
     });
     // Sprungmarke direkt auf einen FAQ-Eintrag (z.B. #faq-krise): Eintrag öffnen
     function openFromHash(){
