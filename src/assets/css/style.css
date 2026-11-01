@@ -2616,3 +2616,18 @@ button.sv-format-head{background:none;border:0;padding:0;font:inherit;color:inhe
 
 /* Supervision: kein Farbverlaufsband zwischen Schritt 1 (Setting) und Schritt 2 (Inhalt) */
 .rd-inhalte .about-band{display:none;}
+
+/* Supervision (Desktop): Schritt 1 (Setting) und Schritt 2 (Inhalt) als zusammenhängender Lesefluss,
+   ohne bildschirmhohe Abschnitte dazwischen und ohne wiederholte Überschrift */
+@media(min-width:1025px){
+  section.snap-section[data-index].rd-formate:not(.s-contact){min-height:0;padding-bottom:0;}
+  section.snap-section[data-index].rd-inhalte:not(.s-contact){min-height:0;padding-top:0;}
+  .rd-inhalte .sv-step{margin-top:0;}
+  .rd-formate .rd-inner{padding-bottom:0;}
+  .rd-inhalte .rd-eyebrow,.rd-inhalte .rd-h2{display:none;}
+}
+
+@media(max-width:1024px){
+  section.snap-section.rd-formate{padding-bottom:12px;}
+  section.snap-section.rd-inhalte{padding-top:0;}
+}
